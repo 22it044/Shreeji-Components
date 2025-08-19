@@ -1,15 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-import { Linkedin, Heart, MessageCircle, Share2, Eye, Calendar, ExternalLink, Download, Mail } from 'lucide-react';
+import { Linkedin, Heart, MessageCircle, Share2, Calendar, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
 
 const LinkedInSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [linkedInPosts, setLinkedInPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const linkedInAccount = "https://www.linkedin.com/company/shreeji-components/";
+  const companyId = "shreeji-components"; // LinkedIn company identifier
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        // Only set to visible if not already visible (runs animation only once)
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.2 }
     );
@@ -19,42 +29,35 @@ const LinkedInSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
 
-  const linkedInAccount = "https://www.linkedin.com/company/shreeji-components/";
-  
-  const linkedInPosts = [
-    {
-      id: 1,
-      date: '3 days ago',
-      content: '🔧 Proud to announce that Shreeji Components has successfully delivered another batch of precision brass components to our automotive clients! Our IATF 16949:2016 certification ensures every part meets the highest industry standards. #PrecisionManufacturing #BrassComponents #Automotive',
-      image: '/images/Precision Brass manufacturing.jpg',
-      likes: 127,
-      comments: 23,
-      shares: 15,
-    },
-    {
-      id: 2,
-      date: '1 week ago',
-      content: '🌍 Exciting milestone achieved! We\'ve now expanded our reach to serve 65+ diverse clients across the globe. From automotive to renewable energy, our precision brass parts are making a difference in various industries. #GlobalReach #Manufacturing #QualityFirst',
-      image: '/images/CNC Machining manufacturing.jpg',
-      likes: 89,
-      comments: 12,
-      shares: 8,
-    },
-    {
-      id: 3,
-      date: '2 weeks ago',
-      content: '🏆 30+ years of manufacturing excellence! From our facility in Jamnagar, Gujarat, we continue to deliver millions of precision brass parts monthly. Our journey from a small workshop to an ISO 9001:2015 certified manufacturer is a testament to our commitment to quality. #Anniversary #QualityManufacturing',
-      image: '/images/Excellence engineering_.jpg',
-      likes: 156,
-      comments: 31,
-      shares: 22,
-    },
-  ];
+  // Fetch LinkedIn posts
+  useEffect(() => {
+    const fetchLinkedInPosts = async () => {
+      setLoading(true);
+      try {
+        // Use the JSON file in the public folder for LinkedIn posts
+        const apiUrl = `/api/linkedin/posts/${companyId}.json`;
+        const response = await axios.get(apiUrl);
+        if (response.data && Array.isArray(response.data)) {
+          setLinkedInPosts(response.data);
+        } else {
+          console.error('Invalid response format:', response.data);
+          setError('Received invalid data format from API');
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching LinkedIn posts:', err);
+        setError('Failed to load LinkedIn posts. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    fetchLinkedInPosts();
+  }, [companyId]);
 
   return (
-    <section id="linkedin" ref={sectionRef} className="py-16 bg-background">
+    <div id="linkedin" ref={sectionRef} className="py-16 bg-background">
       <div className="container mx-auto px-4">
         {/* Simple Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -66,77 +69,135 @@ const LinkedInSection = () => {
           </p>
         </div>
 
-        {/* LinkedIn Posts */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {linkedInPosts.map((post, index) => (
-            <div
-              key={post.id}
-              className={`bg-background rounded-2xl shadow-card hover:shadow-elegant transition-all duration-500 border border-border-light overflow-hidden ${
-                isVisible ? 'animate-scale-in' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              {/* Post Header */}
-              <div className="p-6 pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-[#0077B5] rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">S</span>
+        {/* LinkedIn Posts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {loading ? (
+            // Loading state
+            <>
+              {[1, 2, 3].map((placeholder) => (
+                <div key={placeholder} className="bg-background rounded-2xl shadow-card border border-border-light overflow-hidden animate-pulse">
+                  <div className="p-6 pb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-slate-200 rounded-lg"></div>
+                      <div className="space-y-2">
+                        <div className="h-3 bg-slate-200 rounded w-24"></div>
+                        <div className="h-2 bg-slate-200 rounded w-16"></div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground text-sm">Shreeji Components</h4>
-                      <div className="flex items-center space-x-2 text-xs text-medium-gray">
-                        <Calendar className="w-3 h-3" />
-                        <span>{post.date}</span>
+                    <div className="space-y-2 mt-4">
+                      <div className="h-3 bg-slate-200 rounded"></div>
+                      <div className="h-3 bg-slate-200 rounded"></div>
+                      <div className="h-3 w-2/3 bg-slate-200 rounded"></div>
+                    </div>
+                  </div>
+                  <div className="h-40 bg-slate-200"></div>
+                  <div className="p-6 pt-4">
+                    <div className="flex justify-between">
+                      <div className="h-4 w-24 bg-slate-200 rounded"></div>
+                      <div className="h-4 w-16 bg-slate-200 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : error ? (
+            // Error state
+            <div className="col-span-3 text-center py-12">
+              <div className="text-destructive mb-4">{error}</div>
+              <Button 
+                onClick={() => window.location.reload()}
+                variant="outline"
+                className="mx-auto"
+              >
+                Try Again
+              </Button>
+            </div>
+          ) : Array.isArray(linkedInPosts) && linkedInPosts.length > 0 ? (
+            // Loaded posts
+            linkedInPosts.map((post, index) => (
+              <div
+                key={post.id}
+                className={`bg-background rounded-2xl shadow-card hover:shadow-elegant transition-all duration-500 border border-border-light overflow-hidden ${
+                  isVisible ? 'animate-scale-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                {/* Post Header */}
+                <div className="p-6 pb-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-[#0077B5] rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">S</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground text-sm">Shreeji Components</h4>
+                        <div className="flex items-center space-x-2 text-xs text-medium-gray">
+                          <Calendar className="w-3 h-3" />
+                          <span>{post.date}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <Linkedin className="w-4 h-4 text-[#0077B5]" />
+                  
+                  {/* Post Content */}
+                  <p className="text-sm text-foreground leading-relaxed mb-4">
+                    {post.content}
+                  </p>
                 </div>
                 
-                {/* Post Content */}
-                <p className="text-foreground leading-relaxed text-sm mb-4">
-                  {post.content}
-                </p>
-              </div>
-
-              {/* Post Image */}
-              <div className="relative overflow-hidden h-40">
-                <img 
-                  src={post.image} 
-                  alt="LinkedIn post content" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Engagement Stats */}
-              <div className="p-6 pt-4">
-                <div className="flex items-center justify-between text-sm text-medium-gray">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Heart className="w-4 h-4" />
-                      <span>{post.likes}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <MessageCircle className="w-4 h-4" />
-                      <span>{post.comments}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Share2 className="w-4 h-4" />
-                      <span>{post.shares}</span>
-                    </div>
+                {/* Post Image */}
+                {post.image && (
+                  <div className="relative h-48 md:h-56 overflow-hidden bg-light-gray">
+                    <img 
+                      src={post.image} 
+                      alt="LinkedIn post" 
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                    />
                   </div>
-                  <button 
-                    onClick={() => window.open(linkedInAccount, '_blank')}
-                    className="text-[#0077B5] hover:text-[#005885] transition-colors duration-200 text-xs font-medium flex items-center space-x-1"
-                  >
-                    <span>View</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </button>
+                )}
+                
+                {/* Post Footer */}
+                <div className="p-6 pt-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex space-x-4">
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
+                        <Heart className="w-3.5 h-3.5 text-[#0077B5]" />
+                        <span>{post.likes}</span>
+                      </div>
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>{post.comments}</span>
+                      </div>
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
+                        <Share2 className="w-3.5 h-3.5" />
+                        <span>{post.shares}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => window.open(linkedInAccount, '_blank')}
+                      className="text-[#0077B5] hover:text-[#005885] transition-colors duration-200 text-xs font-medium flex items-center space-x-1"
+                    >
+                      <span>View</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
               </div>
+            ))
+          ) : (
+            // No posts available
+            <div className="col-span-3 text-center py-12">
+              <div className="mb-4 text-medium-gray">No LinkedIn posts available at the moment.</div>
+              <Button 
+                onClick={() => window.open(linkedInAccount, '_blank')}
+                variant="outline"
+                className="mx-auto"
+              >
+                <Linkedin className="w-4 h-4 mr-2" />
+                Visit our LinkedIn
+              </Button>
             </div>
-          ))}
+          )}
         </div>
 
         {/* Follow CTA */}
@@ -161,7 +222,7 @@ const LinkedInSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

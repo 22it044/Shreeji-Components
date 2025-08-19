@@ -27,7 +27,7 @@ const IndustriesSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(industries.length / 4));
-    }, 3000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -72,7 +72,7 @@ const IndustriesSection = () => {
       icon: Fuel,
       title: 'Oil & Gas',
       description: 'Corrosion-resistant components for petroleum and natural gas applications',
-      image: '/images/Rubber industries.jpg'
+      image: '/images/Oil and gass.jpg'
     },
     {
       icon: Zap,
@@ -84,19 +84,19 @@ const IndustriesSection = () => {
       icon: Wrench,
       title: 'Pneumatic',
       description: 'Precision pneumatic fittings and air handling system components',
-      image: '/images/High quality raw material.jpg'
+      image: '/images/Pnumatic.jpg'
     },
     {
       icon: Building2,
       title: 'Agriculture',
       description: 'Durable agricultural equipment components and irrigation system parts',
-      image: '/images/Excellence engineering_.jpg'
+      image: '/images/agriculture.jpg'
     },
     {
       icon: CircuitBoard,
       title: 'EV (Electric Vehicles)',
       description: 'Advanced components for electric vehicle charging and power systems',
-      image: '/images/Green Energy-433308.jpg'
+      image: '/images/ev cars.jpg'
     },
     {
       icon: Truck,

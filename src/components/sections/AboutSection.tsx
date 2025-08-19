@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { Cog, Shield, Clock, Lightbulb, Users, Leaf, ChevronLeft, ChevronRight, CheckCircle, Settings, Award } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Cog, Shield, Clock, Lightbulb, Users, Leaf, ChevronLeft, ChevronRight, CheckCircle, Settings, Award, Globe, Factory, ShieldCheck, Target } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import facilityImage from '@/assets/facility-interior.jpg';
 
 const AboutSection = () => {
@@ -20,7 +21,7 @@ const AboutSection = () => {
       title: 'Engineering Excellence'
     },
     {
-      src: '/images/IMG-20230502-WA0016.jpg',
+      src: '/images/Metal_Fabrication_Quality_Control-725w.webp',
       alt: 'Manufacturing Facility',
       title: 'State-of-the-Art Facility'
     },
@@ -30,6 +31,8 @@ const AboutSection = () => {
       title: 'Premium Raw Materials'
     }
   ];
+  
+
   
   // Quality control processes
   const qualityProcesses = [
@@ -71,7 +74,10 @@ const AboutSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        // Only set to visible if not already visible (runs animation only once)
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.2 }
     );
@@ -81,7 +87,7 @@ const AboutSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
 
   const values = [
     {
@@ -167,6 +173,8 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
+            
+
           </div>
 
           {/* Image Carousel Section */}

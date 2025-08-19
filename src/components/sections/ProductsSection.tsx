@@ -63,6 +63,11 @@ const ProductCarousel = () => {
       src: '/images/Precision Brass manufacturing.jpg',
       title: 'Precision Manufacturing',
       description: 'State-of-the-art manufacturing process'
+    },
+    {
+      src: '/images/brass-fittings-sale-parts-installation-600nw-1842618283.webp',
+      title: 'Brass Fittings',
+      description: 'Installation and assembly fittings'
     }
   ];
 
@@ -157,35 +162,35 @@ const ProductsSection = () => {
       title: 'Brass Hex Parts',
       description: 'Precision-engineered hexagonal brass components for various industrial applications.',
       features: ['Hex Bolts', 'Hex Nuts', 'Hex Spacers', 'Custom Hex Parts'],
-      image: '/images/Brass hex parts.jpg',
+      image: 'images/products images/Brass Barb Fitting.jpg',
     },
     {
       icon: Zap,
       title: 'Brass Terminals',
       description: 'High-quality brass terminals including nickel plated and neutral terminals for electrical applications.',
       features: ['Nickel Plated Terminals', 'Neutral Terminals', 'Electrical Connectors', 'Custom Terminals'],
-      image: '/images/Brass neural terminals.png',
+      image: '/images/products images/Brass CNC turned components.jpg',
     },
     {
       icon: Wrench,
       title: 'Brass Inserts & Pins',
       description: 'Precision brass inserts, moulding inserts, and pins for various assembly applications.',
       features: ['Threaded Inserts', 'Moulding Inserts', 'Precision Pins', 'Custom Inserts'],
-      image: '/images/Diverse brass parts.jpg',
+      image: '/images/products images/Brass pipe fittings and inserts.jpg',
     },
     {
       icon: Car,
       title: 'Automotive Parts',
       description: 'IATF 16949:2016 certified automotive components for various vehicle systems.',
       features: ['Engine Parts', 'Transmission Components', 'Brake Parts', 'Electrical Components'],
-      image: '/images/Brass hyderlauic parts.jpg',
+      image: '/images/products images/Brass mould  parts.jpg',
     },
     {
       icon: Settings,
       title: 'Fasteners & Rivets',
       description: 'High-strength brass fasteners, rivets and connector parts for assembly applications.',
       features: ['Brass Rivets', 'Connector Parts', 'Fasteners', 'Assembly Hardware'],
-      image: '/images/Brass connector parts.png',
+      image: '/images/products images/Brass components for meters.jpg',
     },
     {
       icon: Droplets,
@@ -193,6 +198,27 @@ const ProductsSection = () => {
       description: 'Precision sheet metal parts and stainless steel components manufactured to exact specifications.',
       features: ['Sheet Metal Parts', 'Stainless Steel Parts', 'Copper Components', 'Aluminium Parts'],
       image: '/images/Brass sheet metal p arts.jpg',
+    },
+    {
+      icon: Settings,
+      title: 'Brass Hex Parts',
+      description: 'Precision-engineered hexagonal brass components for various industrial applications.',
+      features: ['Hex Bolts', 'Hex Nuts', 'Hex Spacers', 'Custom Hex Parts'],
+      image: '/images/products images/Brass knurling inserts.jpg',
+    },
+    {
+      icon: Zap,
+      title: 'Brass Terminals',
+      description: 'High-quality brass terminals including nickel plated and neutral terminals for electrical applications.',
+      features: ['Nickel Plated Terminals', 'Neutral Terminals', 'Electrical Connectors', 'Custom Terminals'],
+      image: '/images/products images/Brass components for meters.jpg',
+    },
+    {
+      icon: Wrench,
+      title: 'Brass Inserts & Pins',
+      description: 'Precision brass inserts, moulding inserts, and pins for various assembly applications.',
+      features: ['Threaded Inserts', 'Moulding Inserts', 'Precision Pins', 'Custom Inserts'],
+      image: '/images/products images/Brass sensor parts.jpg',
     },
   ];
 
@@ -254,14 +280,7 @@ const ProductsSection = () => {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <Button 
-                  variant="ghost" 
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
-                >
-                  View Details
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
+                {/* No CTA button here as per requirement */}
               </div>
             </div>
           ))}

@@ -34,15 +34,6 @@ const DownloadSection = () => {
       popular: true,
     },
     {
-      icon: FileText,
-      title: 'Product Catalog',
-      description: 'Detailed specifications and technical drawings of all our brass components',
-      fileSize: '5.8 MB',
-      pages: '28 pages',
-      format: 'PDF',
-      popular: false,
-    },
-    {
       icon: Image,
       title: 'Quality Certificates',
       description: 'ISO 9001:2015, IATF 16949:2016, Z Bronze, and EEPC India certifications',
@@ -51,15 +42,7 @@ const DownloadSection = () => {
       format: 'PDF',
       popular: false,
     },
-    {
-      icon: FileText,
-      title: 'Capability Statement',
-      description: 'Manufacturing capabilities, machinery details, and technical specifications',
-      fileSize: '3.1 MB',
-      pages: '12 pages',
-      format: 'PDF',
-      popular: false,
-    },
+    
   ];
 
   const handleDownload = (item: typeof downloadItems[0]) => {

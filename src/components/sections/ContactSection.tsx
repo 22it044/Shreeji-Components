@@ -350,11 +350,11 @@ Sent via Shreeji Components Website Contact Form`);
           <div className="space-y-8">
             {/* Team Members */}
             <div className="bg-background rounded-xl p-6 shadow-card">
-              <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center">
+              <h4 className="text-xl font-semibold text-foreground mb-6 flex items-center">
                 <Phone className="w-5 h-5 text-primary mr-2" />
                 Direct Contact
               </h4>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {teamMembers.map((member, index) => (
                   <div key={index} className="border-b border-border-light last:border-b-0 pb-4 last:pb-0">
                     <h5 className="font-semibold text-foreground">{member.name}</h5>
@@ -374,7 +374,7 @@ Sent via Shreeji Components Website Contact Form`);
                         <Phone className="w-4 h-4 mr-2" />
                         {member.phone}
                       </a>
-                      {member.linkedin !== '#' && (
+                      {member.linkedin && (
                         <a 
                           href={member.linkedin}
                           target="_blank"
@@ -431,13 +431,6 @@ Sent via Shreeji Components Website Contact Form`);
                 >
                   <MapPin className="w-4 h-4 mr-2" />
                   Get Directions
-                </a>
-                <a
-                  href="tel:+918347549511"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary-light transition-colors duration-200"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Schedule Visit
                 </a>
               </div>
               

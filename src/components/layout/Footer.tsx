@@ -111,7 +111,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-dark-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-dark-foreground/70">
-            © 2024 Shreeji Components. All rights reserved.
+            © 2025 Shreeji Components. All rights reserved.
           </div>
           <div className="flex items-center space-x-6 text-sm text-dark-foreground/70">
             <a href="#" className="hover:text-secondary transition-colors">Privacy Policy</a>

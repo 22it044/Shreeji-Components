@@ -13,7 +13,10 @@ const HeroSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        // Only set to visible if not already visible (runs animation only once)
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.1 }
     );
@@ -23,7 +26,7 @@ const HeroSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,12 +68,13 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-transparent to-amber-900/30"></div>
+        {/* Enhanced overlay with better translucency */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/75 to-slate-900/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/25 via-transparent to-amber-900/25"></div>
         
-        {/* Animated mesh gradient overlay */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-amber-500/20 animate-pulse"></div>
+        {/* Animated mesh gradient overlay - only animates once */}
+        <div className="absolute inset-0 opacity-30">
+          <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-amber-500/20 ${isVisible ? 'animate-pulse' : ''}`}></div>
         </div>
       </div>
 
