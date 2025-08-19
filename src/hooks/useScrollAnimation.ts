@@ -7,8 +7,8 @@ interface UseScrollAnimationProps {
 }
 
 export const useScrollAnimation = ({ 
-  threshold = 0.1, 
-  rootMargin = '0px', 
+  threshold = 0.15, 
+  rootMargin = '0px 0px -10% 0px', 
   triggerOnce = true 
 }: UseScrollAnimationProps = {}) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,13 +18,17 @@ export const useScrollAnimation = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasTriggered) {
           setIsVisible(true);
           if (triggerOnce) {
             setHasTriggered(true);
+            // Keep animation visible permanently once triggered
+            setTimeout(() => {
+              observer.disconnect();
+            }, 100);
           }
-        } else if (!triggerOnce || !hasTriggered) {
-          setIsVisible(false);
+        } else if (!triggerOnce) {
+          setIsVisible(entry.isIntersecting);
         }
       },
       {
@@ -42,7 +46,7 @@ export const useScrollAnimation = ({
     };
   }, [threshold, rootMargin, triggerOnce, hasTriggered]);
 
-  return { elementRef, isVisible };
+  return { elementRef, isVisible: hasTriggered ? true : isVisible };
 };
 
 export default useScrollAnimation;

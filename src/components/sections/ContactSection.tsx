@@ -57,15 +57,44 @@ const ContactSection = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Create mailto URL for quote request
+      const subject = encodeURIComponent(`Quote Request from ${formData.name} - ${formData.company}`);
+      const body = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company}
+Phone: ${formData.phone}
+Product Interest: ${formData.productInterest}
+
+Message:
+${formData.message}
+
+---
+Sent via Shreeji Components Website Contact Form`);
+      
+      const mailtoUrl = `mailto:chhapiah@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open mailto link
+      window.location.href = mailtoUrl;
+      
+      // Show success message after a short delay
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        toast({
+          title: "Thank you for your inquiry!",
+          description: "Your email client should open with the quote request. We'll respond within 24 hours.",
+        });
+      }, 1000);
+    } catch (error) {
       setIsSubmitting(false);
-      setIsSubmitted(true);
       toast({
-        title: "Thank you for your inquiry!",
-        description: "We'll get back to you within 24 hours with a detailed response.",
+        title: "Error sending message",
+        description: "Please try again or contact us directly at chhapiah@gmail.com",
+        variant: "destructive",
       });
-    }, 2000);
+    }
   };
 
   const contactInfo = [
@@ -120,7 +149,7 @@ const ContactSection = () => {
       role: 'CEO and Founder',
       email: 'sandipchhapia2001@gmail.com', 
       phone: '+91 9824206708',
-      linkedin: '#', // Personal account - link not provided
+      linkedin: 'https://www.linkedin.com/in/sandip-chhapia-899637188/',
     },
   ];
 

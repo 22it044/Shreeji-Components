@@ -6,28 +6,35 @@
 
 @layer base {
   :root {
-    /* Refined B2B Manufacturing Brand Colors */
-    --primary: 215 84% 35%;           /* Professional Navy Blue */
+    /* Premium B2B Manufacturing Brand Colors */
+    --primary: 215 84% 32%;           /* Deep Professional Navy */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 84% 45%;
-    --primary-light: 215 84% 95%;
+    --primary-glow: 215 84% 42%;
+    --primary-light: 215 50% 96%;
+    --primary-dark: 215 84% 25%;
     
-    --secondary: 36 100% 50%;         /* Refined Gold Accent */
+    --secondary: 36 85% 48%;          /* Refined Gold Accent */
     --secondary-foreground: 0 0% 100%;
-    --secondary-glow: 36 100% 60%;
-    --secondary-light: 36 100% 95%;
+    --secondary-glow: 36 85% 58%;
+    --secondary-light: 36 60% 96%;
     
-    --dark: 220 39% 11%;              /* Deep Charcoal */
+    --dark: 218 39% 9%;               /* Deeper Charcoal */
     --dark-foreground: 0 0% 100%;
     
-    --background: 0 0% 100%;          /* Pure White */
-    --foreground: 220 39% 11%;
+    --background: 218 18% 98%;        /* Soft Off-White */
+    --foreground: 218 39% 11%;
     
-    --light-bg: 215 20% 98%;          /* Very Light Background */
-    --medium-gray: 220 9% 46%;        /* Professional Gray */
-    --light-gray: 220 9% 85%;         /* Light Gray for subtle elements */
-    --border-light: 220 13% 91%;      /* Subtle Border */
-    --success: 142 76% 36%;           /* Quality Green */
+    --light-bg: 215 25% 96%;          /* Sophisticated Light Background */
+    --medium-gray: 218 12% 44%;       /* Professional Gray */
+    --light-gray: 218 12% 82%;        /* Refined Light Gray */
+    --border-light: 218 16% 88%;      /* Premium Border */
+    --success: 142 71% 34%;           /* Professional Green */
+    
+    /* New Premium Colors */
+    --accent-blue: 213 94% 68%;       /* Premium Accent Blue */
+    --warm-gray: 28 8% 52%;           /* Warm Professional Gray */
+    --platinum: 210 11% 93%;          /* Platinum Background */
+    --steel: 215 14% 34%;             /* Steel Gray */
     
     /* Component Colors */
     --card: 0 0% 100%;
@@ -51,14 +58,19 @@
     
     --radius: 12px;
     
-    /* Refined B2B Gradients */
+    /* Premium B2B Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--primary-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--platinum)) 0%, hsl(var(--background)) 50%, hsl(var(--light-bg)) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(var(--light-bg)), hsl(var(--background)));
-    --gradient-professional: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--light-bg)) 100%);
+    --gradient-professional: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--platinum)) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--light-bg)) 50%, hsl(var(--platinum)) 100%);
     
-    /* Professional Shadows - Using static values for better browser compatibility */
+    /* Premium Professional Shadows */
+    --shadow-card: 0 2px 8px -1px rgba(0, 0, 0, 0.06), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
+    --shadow-elegant: 0 8px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+    --shadow-deep: 0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 8px 20px -5px rgba(0, 0, 0, 0.08);
+    --shadow-premium: 0 20px 45px -10px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.06);
     
     /* Smooth Professional Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

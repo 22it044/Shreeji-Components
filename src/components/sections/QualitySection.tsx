@@ -1,24 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, FileCheck, Users, TrendingUp, Shield } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const QualitySection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const { elementRef: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15, triggerOnce: true });
 
   const qualityCommitments = [
     'ISO 9001:2015 Quality Management System',
@@ -36,25 +20,21 @@ const QualitySection = () => {
       icon: Award,
       title: 'ISO 9001:2015',
       description: 'Quality Management System',
-      validUntil: '2026',
     },
     {
       icon: FileCheck,
       title: 'IATF 16949:2016',
       description: 'Automotive Quality Standard',
-      validUntil: 'Current',
     },
     {
       icon: Shield,
       title: 'Z Bronze',
       description: 'Bronze Quality Certification',
-      validUntil: 'Current',
     },
     {
       icon: TrendingUp,
       title: 'EEPC India',
       description: 'Export Promotion Council Member',
-      validUntil: 'Active',
     },
   ];
 
@@ -169,7 +149,7 @@ const QualitySection = () => {
                       <div className="flex items-center space-x-2">
                         <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
                         <span className="text-sm text-success font-semibold">
-                          Valid: {cert.validUntil}
+                          Certified
                         </span>
                       </div>
                     </div>

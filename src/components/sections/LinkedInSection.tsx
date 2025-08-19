@@ -21,7 +21,7 @@ const LinkedInSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const linkedInAccount = "https://linkedin.com/in/harshilchhapia";
+  const linkedInAccount = "https://www.linkedin.com/company/shreeji-components/";
   
   const linkedInPosts = [
     {

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Zap, Car, Wrench, Home, Settings, Droplets, ChevronLeft, ChevronRight, Factory } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import productsImage from '@/assets/products-brass.jpg';
 
 // Product Carousel Component
@@ -147,24 +148,8 @@ const ProductCarousel = () => {
 };
 
 const ProductsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const { elementRef: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15, triggerOnce: true });
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const productCategories = [
     {
@@ -301,10 +286,21 @@ const ProductsSection = () => {
               tailored to your unique requirements and specifications.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="btn-hero">
+              <Button 
+                className="btn-hero"
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Request Custom Quote
               </Button>
-              <Button variant="outline" className="btn-outline">
+              <Button 
+                variant="outline" 
+                className="btn-outline"
+                onClick={() => {
+                  document.getElementById('downloads')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Download Catalog
               </Button>
             </div>
