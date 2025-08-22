@@ -6,6 +6,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Product Pages
+import BrassElectricalTerminalParts from "./pages/products/BrassElectricalTerminalParts";
+import BrassCrossDiamondKnurlingInserts from "./pages/products/BrassCrossDiamondKnurlingInserts";
+import PreciseKnurlingInserts from "./pages/products/PreciseKnurlingInserts";
+import BrassHexBody from "./pages/products/BrassHexBody";
+import BrassSpecialHexInserts from "./pages/products/BrassSpecialHexInserts";
+import BrassNickelPlatedTerminal from "./pages/products/BrassNickelPlatedTerminal";
+import BrassForgingComponents from "./pages/products/BrassForgingComponents";
+import BrassHexCriticalNptThread from "./pages/products/BrassHexCriticalNptThread";
+import BrassSensorTemperatureBody from "./pages/products/BrassSensorTemperatureBody";
+import BrassRivets from "./pages/products/BrassRivets";
+import BrassPinMoldingInserts from "./pages/products/BrassPinMoldingInserts";
+import ProductDetail from "./pages/products/ProductDetailTemplate";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -16,6 +30,23 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          
+          {/* Product Routes - Specific routes first */}
+          <Route path="/products/brass-electrical-terminal-parts" element={<BrassElectricalTerminalParts />} />
+          <Route path="/products/brass-cross-diamond-knurling-inserts" element={<BrassCrossDiamondKnurlingInserts />} />
+          <Route path="/products/precise-knurling-inserts" element={<PreciseKnurlingInserts />} />
+          <Route path="/products/brass-hex-body" element={<BrassHexBody />} />
+          <Route path="/products/brass-special-hex-inserts" element={<BrassSpecialHexInserts />} />
+          <Route path="/products/brass-nickel-plated-terminal" element={<BrassNickelPlatedTerminal />} />
+          <Route path="/products/brass-forging-components" element={<BrassForgingComponents />} />
+          <Route path="/products/brass-hex-critical-npt-thread" element={<BrassHexCriticalNptThread />} />
+          <Route path="/products/brass-sensor-temperature-body" element={<BrassSensorTemperatureBody />} />
+          <Route path="/products/brass-rivets" element={<BrassRivets />} />
+          <Route path="/products/brass-pin-molding-inserts" element={<BrassPinMoldingInserts />} />
+          
+          {/* Generic product route as fallback */}
+          <Route path="/products/:productId" element={<ProductDetail />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

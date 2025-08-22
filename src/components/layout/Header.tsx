@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Wrench } from 'lucide-react';
+import { Menu, X, Phone, Mail, Wrench, Award, CheckCircle, Globe, Shield, Sparkle, Star, Linkedin, BadgeCheck, Zap, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
@@ -26,15 +26,40 @@ const Header = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offsetTop = element.offsetTop - 120; // Account for fixed header height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
+    // Check if we're on a product page
+    const isProductPage = window.location.pathname.includes('/products/');
+    
+    if (isProductPage) {
+      // If on product page, extract the section ID and store it in sessionStorage
+      const sectionId = href.replace('#', '');
+      sessionStorage.setItem('scrollTarget', sectionId);
+      
+      // Navigate to the home page
+      window.location.href = '/';
+    } else {
+      // If on home page, scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = (element as HTMLElement).offsetTop - 120; // Account for fixed header height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
     }
     setIsMobileMenuOpen(false);
+  };
+
+  // Function to navigate to home page with specific section
+  const navigateToHomeSection = (href: string) => {
+    // Extract the section ID from the href (remove the # symbol)
+    const sectionId = href.replace('#', '');
+    
+    // Store the target section in sessionStorage before navigation
+    sessionStorage.setItem('scrollTarget', sectionId);
+    
+    // Navigate to the home page
+    window.location.href = '/';
   };
 
   return (
@@ -45,94 +70,201 @@ const Header = () => {
           : 'bg-background/90 backdrop-blur-sm'
       }`}
     >
-      {/* Top Contact Bar */}
-      <div className="bg-dark text-dark-foreground py-2 px-4 text-sm">
-        <div className="container mx-auto flex justify-between items-center">
+      {/* Top Contact Bar - Professional design */}
+      <div className="bg-gradient-to-r from-dark to-dark/95 text-dark-foreground py-2.5 px-4 text-sm relative overflow-hidden border-b border-dark-foreground/10">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl opacity-70"></div>
+          <div className="absolute -left-4 -bottom-4 w-20 h-20 bg-secondary/5 rounded-full blur-lg opacity-70"></div>
+        </div>
+        
+        <div className="container mx-auto flex justify-between items-center relative z-10">
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
-              <Phone className="h-4 w-4" />
+            <div className="flex items-center space-x-2 hover:text-primary transition-colors duration-300 group">
+              <div className="bg-primary/10 p-1.5 rounded-full group-hover:bg-primary/20 transition-colors duration-300">
+                <Phone className="h-3.5 w-3.5" />
+              </div>
               <span>+91 8347549511</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4" />
+            
+            {/* LinkedIn Link */}
+            <a 
+              href="https://www.linkedin.com/company/shreeji-components/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 hover:text-[#0077B5] transition-colors duration-300 group"
+            >
+              <div className="bg-[#0077B5]/10 p-1.5 rounded-full group-hover:bg-[#0077B5]/20 transition-colors duration-300">
+                <Linkedin className="h-3.5 w-3.5" />
+              </div>
+              <span className="hidden sm:inline-block">Connect on LinkedIn</span>
+              <span className="inline-block sm:hidden">LinkedIn</span>
+            </a>
+            <div className="flex items-center space-x-2 hover:text-primary transition-colors duration-300 group">
+              <div className="bg-primary/10 p-1.5 rounded-full group-hover:bg-primary/20 transition-colors duration-300">
+                <Mail className="h-3.5 w-3.5" />
+              </div>
               <span>chhapiah@gmail.com</span>
             </div>
           </div>
-          <div className="hidden md:block text-xs">
-            ISO 9001:2015 Certified | IATF 16949:2016 Compliant
+          
+          {/* Enhanced certification display */}
+          <div className="hidden md:flex items-center space-x-4 text-xs">
+            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
+              <Award className="h-3 w-3 text-primary" />
+              <span>ISO 9001:2015</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
+              <CheckCircle className="h-3 w-3 text-secondary" />
+              <span>IATF 16949:2016</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
+              <Globe className="h-3 w-3 text-primary" />
+              <span>Global Exports</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-gradient-to-r from-primary/10 to-secondary/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-primary/10 shadow-elegant">
+              <BadgeCheck className="h-2.5 w-2.5 text-primary" />
+              <span className="text-primary">CERTIFIED QUALITY</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="relative w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-lg overflow-hidden border border-border-light">
+      {/* Main Navigation - Professional styling */}
+      <nav className="container mx-auto px-4 py-3 relative">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute right-1/4 top-1/2 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute left-1/3 top-1/4 w-24 h-24 bg-secondary/5 rounded-full blur-2xl opacity-40"></div>
+        </div>
+        
+        <div className="flex items-center justify-between relative z-10">
+          {/* Professional Logo */}
+          <div className="flex items-center space-x-3 group">
+            <div className="relative w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-md overflow-hidden border border-border-light/30 group-hover:border-primary/20 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <img 
                 src="/images/company logo.jpg" 
                 alt="Shreeji Components Logo" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain relative z-10 group-hover:scale-102 transition-transform duration-300"
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Shreeji Components</h1>
-              <p className="text-xs text-amber-600 font-medium">Precision Brass Manufacturing</p>
+              <div className="flex items-center space-x-2">
+                <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/90">Shreeji Components</h1>
+                <div className="hidden sm:flex items-center space-x-1 bg-gradient-to-r from-primary/10 to-secondary/10 px-2 py-0.5 rounded-full text-[10px] font-medium">
+                  <Star className="h-2.5 w-2.5 text-primary" />
+                  <span className="text-primary">SINCE 1990</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-6 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+                <p className="text-xs text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-medium">Precision Brass Manufacturing</p>
+              </div>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Enhanced Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
+            {navigation.map((item, index) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                onClick={() => {
+                  const isProductPage = window.location.pathname.includes('/products/');
+                  if (isProductPage) {
+                    navigateToHomeSection(item.href);
+                  } else {
+                    scrollToSection(item.href);
+                  }
+                }}
+                className="text-foreground hover:text-primary transition-all duration-200 font-medium relative group"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
+                {/* Subtle glow effect on hover */}
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/0 to-secondary/0 group-hover:from-primary/5 group-hover:to-secondary/5 rounded-lg blur-sm transition-all duration-300 -z-10"></span>
               </button>
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Enhanced CTA Button */}
           <div className="hidden lg:block">
             <Button 
-              onClick={() => scrollToSection('#contact')}
-              className="btn-hero"
+              onClick={() => {
+                const isProductPage = window.location.pathname.includes('/products/');
+                if (isProductPage) {
+                  navigateToHomeSection('#contact');
+                } else {
+                  scrollToSection('#contact');
+                }
+              }}
+              className="relative overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary-dark text-white font-bold px-6 py-2.5 rounded-full shadow-elegant hover:shadow-elegant-hover transition-all duration-500 transform hover:-translate-y-1 group"
             >
-              Get Quote
+              <span className="relative z-10 flex items-center">Contact Us <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" /></span>
+              {/* Animated background effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/10 w-1/3 -skew-x-12 transform -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 ease-in-out"></span>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Enhanced Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors relative group"
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div className="relative z-10">
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </div>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Enhanced Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-border-light bg-background/95 backdrop-blur-md rounded-lg">
-            <div className="flex flex-col space-y-4">
-              {navigation.map((item) => (
+          <div className="lg:hidden mt-4 py-4 border-t border-border-light bg-background/95 backdrop-blur-md rounded-lg shadow-elegant overflow-hidden">
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute right-0 bottom-0 w-40 h-40 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl"></div>
+              <div className="absolute left-0 top-0 w-32 h-32 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-xl"></div>
+            </div>
+            
+            <div className="flex flex-col space-y-4 relative z-10">
+              {navigation.map((item, index) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  onClick={() => {
+                    const isProductPage = window.location.pathname.includes('/products/');
+                    if (isProductPage) {
+                      navigateToHomeSection(item.href);
+                    } else {
+                      scrollToSection(item.href);
+                    }
+                  }}
+                  className="text-left px-4 py-2 text-foreground hover:text-primary transition-all duration-300 font-medium relative group"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {item.name}
+                  <span className="relative z-10">{item.name}</span>
+                  <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-24"></span>
+                  {/* Subtle background highlight on hover */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 to-secondary/0 group-hover:from-primary/5 group-hover:to-secondary/5 rounded-lg transition-all duration-300 -z-10"></span>
                 </button>
               ))}
               <div className="px-4 pt-2">
                 <Button 
-                  onClick={() => scrollToSection('#contact')}
-                  className="btn-hero w-full"
+                  onClick={() => {
+                    const isProductPage = window.location.pathname.includes('/products/');
+                    if (isProductPage) {
+                      navigateToHomeSection('#contact');
+                    } else {
+                      scrollToSection('#contact');
+                    }
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="relative overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary-dark text-white font-bold px-6 py-3 rounded-full shadow-elegant hover:shadow-elegant-hover transition-all duration-500 w-full mt-4 group"
                 >
-                  Get Quote
+                  <span className="relative z-10 flex items-center justify-center">Get Quote <Shield className="ml-2 w-4 h-4 group-hover:rotate-12 transition-transform duration-300" /></span>
+                  {/* Animated background effect */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/10 w-1/3 -skew-x-12 transform -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 ease-in-out"></span>
                 </Button>
               </div>
             </div>

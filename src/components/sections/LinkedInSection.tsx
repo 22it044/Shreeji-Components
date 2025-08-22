@@ -1,17 +1,43 @@
 import { useEffect, useRef, useState } from 'react';
-import { Linkedin, Heart, MessageCircle, Share2, Calendar, ExternalLink, Loader2 } from 'lucide-react';
+import { Linkedin, Heart, MessageCircle, Share2, Calendar, ExternalLink, BadgeCheck, Award, Globe, Star, Sparkles, Gem, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const LinkedInSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [linkedInPosts, setLinkedInPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Static LinkedIn posts
+  const linkedInPosts = [
+    {
+      id: 1,
+      date: '3 days ago',
+      content: '🔧 Proud to announce that Shreeji Components has successfully delivered another batch of precision brass components to our automotive clients! Our IATF 16949:2016 certification ensures every part meets the highest industry standards. #PrecisionManufacturing #BrassComponents #Automotive',
+      image: '/images/Precision Brass manufacturing.jpg',
+      likes: 127,
+      comments: 23,
+      shares: 15,
+    },
+    {
+      id: 2,
+      date: '1 week ago',
+      content: '🌍 Exciting milestone achieved! We\'ve now expanded our reach to serve 65+ diverse clients across the globe. From automotive to renewable energy, our precision brass parts are making a difference in various industries. #GlobalReach #Manufacturing #QualityFirst',
+      image: '/images/CNC Machining manufacturing.jpg',
+      likes: 89,
+      comments: 12,
+      shares: 8,
+    },
+    {
+      id: 3,
+      date: '2 weeks ago',
+      content: '🏆 30+ years of manufacturing excellence! From our facility in Jamnagar, Gujarat, we continue to deliver millions of precision brass parts monthly. Our journey from a small workshop to an ISO 9001:2015 certified manufacturer is a testament to our commitment to quality. #Anniversary',
+      image: '/images/Excellence engineering_.jpg',
+      likes: 156,
+      comments: 31,
+      shares: 22,
+    },
+  ];
 
   const linkedInAccount = "https://www.linkedin.com/company/shreeji-components/";
-  const companyId = "shreeji-components"; // LinkedIn company identifier
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,162 +57,151 @@ const LinkedInSection = () => {
     return () => observer.disconnect();
   }, [isVisible]);
 
-  // Fetch LinkedIn posts
-  useEffect(() => {
-    const fetchLinkedInPosts = async () => {
-      setLoading(true);
-      try {
-        // Use the JSON file in the public folder for LinkedIn posts
-        const apiUrl = `/api/linkedin/posts/${companyId}.json`;
-        const response = await axios.get(apiUrl);
-        if (response.data && Array.isArray(response.data)) {
-          setLinkedInPosts(response.data);
-        } else {
-          console.error('Invalid response format:', response.data);
-          setError('Received invalid data format from API');
-        }
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching LinkedIn posts:', err);
-        setError('Failed to load LinkedIn posts. Please try again later.');
-        setLoading(false);
-      }
-    };
-
-    fetchLinkedInPosts();
-  }, [companyId]);
+  // No need to fetch posts as they are now static
 
   return (
-    <div id="linkedin" ref={sectionRef} className="py-16 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Simple Header */}
-        <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Connect with us on <span className="text-[#0077B5]">LinkedIn</span>
+    <div id="linkedin" ref={sectionRef} className="py-20 bg-gradient-subtle relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#0077B5]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      
+      {/* Floating elements */}
+      <div className="absolute top-20 left-10 opacity-20 animate-float-slow">
+        <Linkedin className="w-16 h-16 text-[#0077B5]" />
+      </div>
+      <div className="absolute bottom-20 right-10 opacity-20 animate-float">
+        <Globe className="w-12 h-12 text-primary" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Enhanced Premium Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-16 relative"
+        >
+          {/* Premium tag */}
+          <div className="inline-block relative mb-2">
+            <span className="text-sm font-semibold text-[#0077B5] uppercase tracking-wider bg-[#0077B5]/10 px-4 py-1 rounded-full flex items-center justify-center space-x-1 shadow-glow border border-[#0077B5]/20">
+              <Sparkles className="w-3.5 h-3.5 mr-1" />
+              <span>Professional Network</span>
+            </span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077B5] to-[#00a0dc]">Connect</span> with us on LinkedIn
+            <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-[#0077B5]/50 to-transparent rounded-full"></div>
           </h2>
-          <p className="text-lg text-medium-gray max-w-2xl mx-auto leading-relaxed">
-            Stay updated with our latest achievements and industry insights
+          
+          <p className="text-xl text-medium-gray max-w-2xl mx-auto leading-relaxed">
+            Stay updated with our latest achievements, industry insights, and premium manufacturing excellence
           </p>
-        </div>
+          
+          {/* Decorative line with badge */}
+          <div className="flex items-center justify-center mt-8">
+             <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#0077B5]/50"></div>
+             <div className="mx-4 p-1 rounded-full bg-gradient-to-r from-[#0077B5] to-[#00a0dc] shadow-glow">
+               <div className="bg-background rounded-full p-2">
+                 <BadgeCheck className="w-5 h-5 text-[#0077B5]" />
+               </div>
+             </div>
+             <div className="h-px w-16 bg-gradient-to-r from-[#0077B5]/50 to-transparent"></div>
+          </div>
+        </motion.div>
 
-        {/* LinkedIn Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {loading ? (
-            // Loading state
-            <>
-              {[1, 2, 3].map((placeholder) => (
-                <div key={placeholder} className="bg-background rounded-2xl shadow-card border border-border-light overflow-hidden animate-pulse">
-                  <div className="p-6 pb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-slate-200 rounded-lg"></div>
-                      <div className="space-y-2">
-                        <div className="h-3 bg-slate-200 rounded w-24"></div>
-                        <div className="h-2 bg-slate-200 rounded w-16"></div>
-                      </div>
-                    </div>
-                    <div className="space-y-2 mt-4">
-                      <div className="h-3 bg-slate-200 rounded"></div>
-                      <div className="h-3 bg-slate-200 rounded"></div>
-                      <div className="h-3 w-2/3 bg-slate-200 rounded"></div>
-                    </div>
-                  </div>
-                  <div className="h-40 bg-slate-200"></div>
-                  <div className="p-6 pt-4">
-                    <div className="flex justify-between">
-                      <div className="h-4 w-24 bg-slate-200 rounded"></div>
-                      <div className="h-4 w-16 bg-slate-200 rounded"></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </>
-          ) : error ? (
-            // Error state
-            <div className="col-span-3 text-center py-12">
-              <div className="text-destructive mb-4">{error}</div>
-              <Button 
-                onClick={() => window.location.reload()}
-                variant="outline"
-                className="mx-auto"
-              >
-                Try Again
-              </Button>
-            </div>
-          ) : Array.isArray(linkedInPosts) && linkedInPosts.length > 0 ? (
+        {/* Enhanced LinkedIn Posts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 relative">
+          {linkedInPosts.length > 0 ? (
             // Loaded posts
             linkedInPosts.map((post, index) => (
-              <div
+              <motion.div
                 key={post.id}
-                className={`bg-background rounded-2xl shadow-card hover:shadow-elegant transition-all duration-500 border border-border-light overflow-hidden ${
-                  isVisible ? 'animate-scale-in' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 200}ms` }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-background/80 backdrop-blur-sm rounded-2xl shadow-elegant hover:shadow-elegant-hover transition-all duration-500 border border-[#0077B5]/10 overflow-hidden group relative"
               >
-                {/* Post Header */}
-                <div className="p-6 pb-4">
+                {/* Enhanced Post Header */}
+                <div className="p-6 pb-4 relative">
+                  <div className="absolute top-3 right-3">
+                    <div className="bg-gradient-to-r from-[#0077B5]/10 to-[#00a0dc]/10 rounded-full px-2 py-0.5 text-xs font-medium text-[#0077B5] border border-[#0077B5]/20 shadow-sm flex items-center">
+                      <BadgeCheck className="w-3 h-3 mr-1" />
+                      <span>Official</span>
+                    </div>
+                  </div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-[#0077B5] rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#0077B5] to-[#00a0dc] rounded-lg flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300">
                         <span className="text-white font-bold text-sm">S</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground text-sm">Shreeji Components</h4>
+                        <h4 className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#0077B5] to-[#00a0dc] text-sm">Shreeji Components</h4>
                         <div className="flex items-center space-x-2 text-xs text-medium-gray">
-                          <Calendar className="w-3 h-3" />
+                          <Calendar className="w-3 h-3 text-[#0077B5]" />
                           <span>{post.date}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Post Content */}
-                  <p className="text-sm text-foreground leading-relaxed mb-4">
+                  {/* Enhanced Post Content */}
+                  <p className="text-sm text-foreground leading-relaxed mb-4 group-hover:text-foreground/90 transition-colors duration-300">
                     {post.content}
                   </p>
                 </div>
                 
-                {/* Post Image */}
+                {/* Enhanced Post Image */}
                 {post.image && (
-                  <div className="relative h-48 md:h-56 overflow-hidden bg-light-gray">
+                  <div className="relative h-48 md:h-56 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0077B5]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                     <img 
                       src={post.image} 
                       alt="LinkedIn post" 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                     />
+
                   </div>
                 )}
                 
-                {/* Post Footer */}
+                {/* Enhanced Post Footer */}
                 <div className="p-6 pt-4">
                   <div className="flex justify-between items-center">
                     <div className="flex space-x-4">
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
-                        <Heart className="w-3.5 h-3.5 text-[#0077B5]" />
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                        <Heart className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.likes}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
-                        <MessageCircle className="w-3.5 h-3.5" />
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                        <MessageCircle className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.comments}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray">
-                        <Share2 className="w-3.5 h-3.5" />
+                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                        <Share2 className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.shares}</span>
                       </div>
                     </div>
                     <button
                       onClick={() => window.open(linkedInAccount, '_blank')}
-                      className="text-[#0077B5] hover:text-[#005885] transition-colors duration-200 text-xs font-medium flex items-center space-x-1"
+                      className="bg-gradient-to-r from-[#0077B5]/10 to-[#00a0dc]/10 hover:from-[#0077B5]/20 hover:to-[#00a0dc]/20 text-[#0077B5] px-3 py-1 rounded-full transition-all duration-300 text-xs font-medium flex items-center space-x-1 border border-[#0077B5]/10 group-hover:border-[#0077B5]/30 shadow-sm"
                     >
-                      <span>View</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <span>View Post</span>
+                      <ExternalLink className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" />
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))
           ) : (
             // No posts available
-            <div className="col-span-3 text-center py-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="col-span-3 text-center py-12"
+            >
               <div className="mb-4 text-medium-gray">No LinkedIn posts available at the moment.</div>
               <Button 
                 onClick={() => window.open(linkedInAccount, '_blank')}
@@ -196,31 +211,76 @@ const LinkedInSection = () => {
                 <Linkedin className="w-4 h-4 mr-2" />
                 Visit our LinkedIn
               </Button>
-            </div>
+            </motion.div>
           )}
         </div>
 
-        {/* Follow CTA */}
-        <div className={`text-center transition-all duration-1000 delay-500 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-r from-[#0077B5]/5 to-[#0077B5]/10 rounded-2xl p-8 max-w-2xl mx-auto border border-[#0077B5]/20">
-            <div className="w-12 h-12 bg-[#0077B5] rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Linkedin className="w-6 h-6 text-white" />
+        {/* Enhanced LinkedIn Follow CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+          className="text-center relative"
+        >
+          <div className="bg-gradient-to-br from-background/80 to-background/60 backdrop-blur-md rounded-2xl p-10 max-w-3xl mx-auto border border-[#0077B5]/20 shadow-elegant hover:shadow-elegant-hover transition-all duration-500 group relative overflow-hidden">
+            {/* Background glow effect */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#0077B5]/20 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#0077B5]/10 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+
+            
+            <div className="w-16 h-16 bg-gradient-to-br from-[#0077B5] to-[#00a0dc] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow group-hover:scale-110 transition-transform duration-500">
+              <Linkedin className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-foreground mb-3">
-              Follow for More Updates
+            
+            <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#0077B5] to-[#00a0dc]">
+              Join Our Professional Network
             </h3>
-            <p className="text-medium-gray mb-6 leading-relaxed">
-              Connect with us on LinkedIn for regular updates on our manufacturing achievements and industry insights.
+            
+            <p className="text-lg text-medium-gray mb-8 leading-relaxed max-w-xl mx-auto">
+              Connect with Shreeji Components on LinkedIn for exclusive updates on our manufacturing achievements, industry insights, and global partnerships.
             </p>
+            
             <Button 
               onClick={() => window.open(linkedInAccount, '_blank')}
-              className="bg-[#0077B5] hover:bg-[#005885] text-white px-8 py-3 rounded-full transition-all duration-300 group"
+              className="bg-gradient-to-r from-[#0077B5] to-[#00a0dc] hover:from-[#00a0dc] hover:to-[#0077B5] text-white px-10 py-6 rounded-xl shadow-glow hover:shadow-elegant-hover transition-all duration-500 group relative overflow-hidden"
             >
-              <Linkedin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-              Follow on LinkedIn
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative flex items-center justify-center">
+                <Linkedin className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-lg font-medium">Follow on LinkedIn</span>
+                <Zap className="w-5 h-5 ml-2 animate-pulse" />
+              </span>
             </Button>
+            
+            {/* Trust indicators */}
+            <div className="flex items-center justify-center mt-8 space-x-6">
+              <div className="flex items-center text-xs text-medium-gray">
+                <BadgeCheck className="w-4 h-4 text-[#0077B5] mr-1" />
+                <span>Verified Company</span>
+              </div>
+              <div className="flex items-center text-xs text-medium-gray">
+                <Award className="w-4 h-4 text-[#0077B5] mr-1" />
+                <span>Industry Leader</span>
+              </div>
+              <div className="flex items-center text-xs text-medium-gray">
+                <Globe className="w-4 h-4 text-[#0077B5] mr-1" />
+                <span>Global Network</span>
+              </div>
+            </div>
           </div>
-        </div>
+          
+          {/* Bottom decorative element */}
+          <div className="mt-16 flex items-center justify-center">
+            <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#0077B5]/30"></div>
+            <div className="mx-4 p-1 rounded-full bg-gradient-to-r from-[#0077B5]/20 to-[#00a0dc]/20 shadow-sm">
+              <div className="bg-background rounded-full p-2">
+                <Star className="w-4 h-4 text-[#0077B5]" />
+              </div>
+            </div>
+            <div className="h-px w-24 bg-gradient-to-r from-[#0077B5]/30 to-transparent"></div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

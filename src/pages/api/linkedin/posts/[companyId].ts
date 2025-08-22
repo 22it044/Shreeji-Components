@@ -55,7 +55,6 @@ export default async function handler(
 
 // Mock data function for demonstration
 function getMockPosts() {
-  // Ensure we return an array format
   return [
     {
       id: 1,

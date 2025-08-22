@@ -34,15 +34,41 @@ const DownloadSection = () => {
       popular: true,
     },
     {
-      icon: Image,
-      title: 'Quality Certificates',
-      description: 'ISO 9001:2015, IATF 16949:2016, Z Bronze, and EEPC India certifications',
-      fileSize: '1.2 MB',
-      pages: '8 pages',
+      icon: FileText,
+      title: 'ISO 9001:2015 Certificate',
+      description: 'Quality Management System certification demonstrating our commitment to quality standards',
+      fileSize: '0.8 MB',
+      pages: '1 page',
       format: 'PDF',
       popular: false,
     },
-    
+    {
+      icon: FileText,
+      title: 'IATF 16949:2016 Certificate',
+      description: 'Automotive Quality Management System certification for automotive industry standards',
+      fileSize: '0.9 MB',
+      pages: '1 page',
+      format: 'PDF',
+      popular: false,
+    },
+    {
+      icon: FileText,
+      title: 'Z Bronze Certificate 1',
+      description: 'Z Bronze certification for excellence in manufacturing and quality control',
+      fileSize: '0.7 MB',
+      pages: '1 page',
+      format: 'PDF',
+      popular: false,
+    },
+    {
+      icon: FileText,
+      title: 'Z Bronze Certificate 2',
+      description: 'Additional Z Bronze certification for specialized manufacturing processes',
+      fileSize: '0.7 MB',
+      pages: '1 page',
+      format: 'PDF',
+      popular: false,
+    },
   ];
 
   const handleDownload = (item: typeof downloadItems[0]) => {
@@ -51,10 +77,11 @@ const DownloadSection = () => {
     
     // Map each item to its actual file path
     const fileMap: Record<string, string> = {
-      'Company Brochure': '/shreeji-components-profile.pdf',
-      'Product Catalog': '#', // Placeholder - add actual file when available
-      'Quality Certificates': '#', // Placeholder - add actual file when available  
-      'Capability Statement': '#', // Placeholder - add actual file when available
+      'Company Brochure': '/shreeji-company-brochure.pdf',
+      'ISO 9001:2015 Certificate': '/ISO 2015 .pdf',
+      'IATF 16949:2016 Certificate': '/IATF.pdf',
+      'Z Bronze Certificate 1': '/Z Bronze1.pdf',
+      'Z Bronze Certificate 2': '/z Bronze 2.pdf',
     };
     
     const filePath = fileMap[item.title];
@@ -72,7 +99,7 @@ const DownloadSection = () => {
   };
 
   return (
-    <section id="downloads" ref={sectionRef} className="py-20 bg-gradient-subtle">
+    <section id="downloads" ref={sectionRef} className="py-28 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -86,13 +113,13 @@ const DownloadSection = () => {
         </div>
 
         {/* Download Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {downloadItems.map((item, index) => (
             <div
               key={item.title}
-              className={`relative bg-background rounded-2xl p-8 shadow-card hover:shadow-elegant border border-border-light transition-all duration-500 group overflow-hidden ${
+              className={`relative bg-background rounded-2xl p-8 shadow-md hover:shadow-lg border border-border-light transition-all duration-300 group overflow-hidden ${
                 isVisible ? 'animate-scale-in' : 'opacity-0'
-              }`}
+              } hover:-translate-y-1`}
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Popular Badge */}
@@ -104,8 +131,8 @@ const DownloadSection = () => {
               )}
 
               {/* Icon */}
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-light to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                <item.icon className="w-7 h-7 text-primary" />
               </div>
 
               {/* Content */}
@@ -135,9 +162,9 @@ const DownloadSection = () => {
               {/* Download Button */}
               <Button 
                 onClick={() => handleDownload(item)}
-                className="w-full btn-hero group-hover:scale-105 transition-transform duration-300"
+                className="w-full bg-primary/10 hover:bg-primary/20 text-primary font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:translate-x-1"
               >
-                <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                <Download className="w-4 h-4 mr-2" />
                 Download {item.format}
               </Button>
 

@@ -7,37 +7,37 @@
 @layer base {
   :root {
     /* Premium B2B Manufacturing Brand Colors - Enhanced for Brass Manufacturing */
-    --primary: 215 84% 32%;           /* Deep Professional Navy */
+    --primary: 215 84% 38%;           /* Vivid Professional Navy - Brightened */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 84% 42%;
+    --primary-glow: 215 84% 48%;      /* Enhanced glow effect */
     --primary-light: 215 50% 96%;
     --primary-dark: 215 84% 25%;
     
-    --secondary: 38 85% 48%;          /* Enhanced Brass Gold Accent */
+    --secondary: 38 90% 55%;          /* Enhanced Brass Gold Accent - More vivid */
     --secondary-foreground: 0 0% 100%;
-    --secondary-glow: 38 85% 58%;
-    --secondary-light: 38 60% 96%;
+    --secondary-glow: 38 90% 65%;      /* Enhanced glow effect */
+    --secondary-light: 38 70% 96%;
     
-    --dark: 218 39% 9%;               /* Deeper Charcoal */
+    --dark: 218 45% 10%;               /* Deeper Charcoal - More contrast */
     --dark-foreground: 0 0% 100%;
     
     --background: 218 18% 99%;        /* Crisp Professional Off-White */
-    --foreground: 218 39% 11%;
+    --foreground: 218 45% 12%;        /* Enhanced contrast for better readability */
     
-    --light-bg: 215 25% 97%;          /* Enhanced Sophisticated Light Background */
-    --medium-gray: 218 12% 44%;       /* Professional Gray */
-    --light-gray: 218 12% 84%;        /* Enhanced Refined Light Gray */
-    --border-light: 218 16% 90%;      /* Premium Border */
-    --success: 142 71% 34%;           /* Professional Green */
+    --light-bg: 215 25% 98%;          /* Enhanced Sophisticated Light Background */
+    --medium-gray: 218 15% 48%;       /* Professional Gray - More vivid */
+    --light-gray: 218 15% 88%;        /* Enhanced Refined Light Gray */
+    --border-light: 218 20% 92%;      /* Premium Border - More visible */
+    --success: 142 80% 38%;           /* Professional Green - More vivid */
     
     /* Enhanced Premium Colors for Brass Manufacturing */
-    --accent-blue: 213 94% 68%;       /* Premium Accent Blue */
-    --warm-gray: 28 10% 52%;          /* Enhanced Warm Professional Gray */
-    --platinum: 210 11% 95%;          /* Enhanced Platinum Background */
-    --steel: 215 14% 34%;             /* Steel Gray */
-    --brass: 38 80% 60%;              /* Signature Brass Accent */
-    --brass-light: 38 70% 90%;        /* Light Brass Highlight */
-    --brass-dark: 38 70% 40%;         /* Deep Brass Accent */
+    --accent-blue: 213 94% 72%;       /* Premium Accent Blue - More vivid */
+    --warm-gray: 28 15% 55%;          /* Enhanced Warm Professional Gray - More vivid */
+    --platinum: 210 15% 96%;          /* Enhanced Platinum Background */
+    --steel: 215 18% 38%;             /* Steel Gray - More vivid */
+    --brass: 38 85% 65%;              /* Signature Brass Accent - More vivid */
+    --brass-light: 38 75% 92%;        /* Light Brass Highlight - Enhanced */
+    --brass-dark: 38 75% 45%;         /* Deep Brass Accent - Enhanced */
     
     /* Component Colors */
     --card: 0 0% 100%;
@@ -64,22 +64,28 @@
     /* Enhanced Premium B2B Gradients for Brass Manufacturing */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-primary-secondary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%); /* New mixed gradient */
     --gradient-hero: linear-gradient(135deg, hsl(var(--platinum)) 0%, hsl(var(--background)) 50%, hsl(var(--light-bg)) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(var(--light-bg)), hsl(var(--background)));
     --gradient-professional: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--platinum)) 100%);
     --gradient-premium: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--light-bg)) 50%, hsl(var(--platinum)) 100%);
     --gradient-brass: linear-gradient(135deg, hsl(var(--brass-light)) 0%, hsl(var(--brass)) 50%, hsl(var(--brass-dark)) 100%);
     --gradient-quality: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--brass-light)) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(var(--dark)) 0%, hsl(var(--steel)) 100%); /* New dark gradient */
     
     /* Premium Professional Shadows */
-    --shadow-card: 0 2px 8px -1px rgba(0, 0, 0, 0.06), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
-    --shadow-elegant: 0 8px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
-    --shadow-deep: 0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 8px 20px -5px rgba(0, 0, 0, 0.08);
-    --shadow-premium: 0 20px 45px -10px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+    --shadow-card: 0 2px 10px -1px rgba(0, 0, 0, 0.08), 0 1px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-elegant: 0 8px 28px -5px rgba(0, 0, 0, 0.1), 0 4px 15px -2px rgba(0, 0, 0, 0.06);
+    --shadow-deep: 0 15px 40px -5px rgba(0, 0, 0, 0.14), 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-premium: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+    --shadow-glow-primary: 0 0 15px rgba(var(--primary-rgb), 0.4);
+    --shadow-glow-secondary: 0 0 15px rgba(var(--secondary-rgb), 0.4);
     
     /* Smooth Professional Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -379,4 +385,35 @@
 
 .bg-gradient-quality {
   background: var(--gradient-quality);
+}
+
+/* Premium Shadow Effects */
+.shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+.shadow-elegant-hover {
+  box-shadow: var(--shadow-premium);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3), 0 0 5px rgba(var(--secondary-rgb), 0.2);
+}
+
+/* Premium Filter Effects */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 5px rgba(var(--primary-rgb), 0.4));
+}
+
+.drop-shadow-text {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.drop-shadow-text-colored {
+  text-shadow: 0 2px 10px rgba(var(--primary-rgb), 0.2), 0 1px 5px rgba(var(--secondary-rgb), 0.1);
+}
+
+/* Premium Background Effects */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }

@@ -1,5 +1,14 @@
 import type { Config } from "tailwindcss";
 
+const withOpacity = (variableName: string) => {
+  return ({ opacityValue }: { opacityValue: number }) => {
+    if (opacityValue !== undefined) {
+      return `hsla(var(${variableName}), ${opacityValue})`;
+    }
+    return `hsl(var(${variableName}))`;
+  };
+};
+
 export default {
 	darkMode: ["class"],
 	content: [
@@ -21,6 +30,10 @@ export default {
 			fontFamily: {
 				inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 			},
+      cssVariables: {
+        'primary-rgb': '215, 84, 32',  // RGB values for primary color
+        'secondary-rgb': '38, 85, 48', // RGB values for secondary color
+      },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -92,6 +105,7 @@ export default {
 				'glow': '0 8px 32px -8px rgba(30, 64, 175, 0.12)',
 				'card': '0 2px 12px -2px rgba(31, 41, 55, 0.06)',
 				'deep': '0 10px 40px -10px rgba(31, 41, 55, 0.15)',
+        'elegant-hover': '0 8px 30px -4px rgba(30, 64, 175, 0.12), 0 4px 15px -2px rgba(30, 64, 175, 0.08)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
