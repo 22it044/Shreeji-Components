@@ -175,10 +175,10 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
 
           {/* Product Header */}
           <div className="text-center mb-16 relative">
-            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-royal-sapphire rounded-full"></div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 relative inline-block">
-              <span className="text-gradient-primary">{product.title}</span>
-              <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-primary/20 to-transparent rounded-full"></div>
+              <span className="text-royal-sapphire">{product.title}</span>
+              <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-royal-sapphire/20 to-transparent rounded-full"></div>
             </h1>
             <p className="text-xl text-medium-gray max-w-3xl mx-auto leading-relaxed">
               {product.description}
@@ -197,6 +197,37 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
 
           {/* Product Content - Changed to vertical layout */}
           <div className="flex flex-col gap-12 mb-16">
+            {/* Related Products */}
+            <div className="bg-white rounded-2xl p-8 shadow-elegant max-w-4xl mx-auto w-full">
+              <div className="flex items-center mb-6">
+                <div className="w-1 h-8 bg-royal-sapphire rounded-full mr-3"></div>
+                <h2 className="text-2xl font-bold text-foreground">Other Products</h2>
+              </div>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {Object.entries(productDetails).map(([id, item]) => (
+                  id !== productId && (
+                    <Link 
+                      key={id} 
+                      to={`/products/${id}`} 
+                      className="group bg-light-bg/50 rounded-lg p-3 hover:bg-light-bg transition-colors duration-300 flex flex-col items-center"
+                    >
+                      <div className="w-full h-24 overflow-hidden rounded-md mb-2">
+                        <img 
+                          src={item.imagePath || '/images/placeholder.jpg'} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <span className="text-xs text-center font-medium text-medium-gray group-hover:text-royal-sapphire transition-colors duration-300">
+                        {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
+                      </span>
+                    </Link>
+                  )
+                ))}
+              </div>
+            </div>
+            
             {/* Product Image */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-elegant group transform hover:scale-[1.02] transition-all duration-500 max-w-4xl mx-auto w-full">
               {product.imagePath ? (
@@ -218,46 +249,46 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
             {/* Product Details */}
             <div className="bg-white rounded-2xl p-8 shadow-elegant transform hover:shadow-xl transition-all duration-300 max-w-4xl mx-auto w-full">
               <div className="flex items-center mb-6">
-                <div className="w-1 h-8 bg-primary rounded-full mr-3"></div>
+                <div className="w-1 h-8 bg-royal-sapphire rounded-full mr-3"></div>
                 <h2 className="text-2xl font-bold text-foreground">Product Specifications</h2>
               </div>
               
               <div className="space-y-6">
                 <div className="bg-light-bg/50 p-4 rounded-lg hover:bg-light-bg transition-colors duration-300">
-                  <h3 className="text-lg font-semibold text-primary mb-2 flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                  <h3 className="text-lg font-semibold text-royal-sapphire mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-royal-sapphire rounded-full mr-2"></span>
                     Length / Size:
                   </h3>
                   <p className="text-medium-gray pl-4">{product.lengthSize}</p>
                 </div>
                 
                 <div className="bg-light-bg/50 p-4 rounded-lg hover:bg-light-bg transition-colors duration-300">
-                  <h3 className="text-lg font-semibold text-primary mb-2 flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                  <h3 className="text-lg font-semibold text-royal-sapphire mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-royal-sapphire rounded-full mr-2"></span>
                     Typical Application:
                   </h3>
                   <p className="text-medium-gray pl-4">{product.typicalApplication}</p>
                 </div>
                 
                 <div className="bg-light-bg/50 p-4 rounded-lg hover:bg-light-bg transition-colors duration-300">
-                  <h3 className="text-lg font-semibold text-primary mb-2 flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                  <h3 className="text-lg font-semibold text-royal-sapphire mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-royal-sapphire rounded-full mr-2"></span>
                     Threads:
                   </h3>
                   <p className="text-medium-gray pl-4">{product.threads}</p>
                 </div>
                 
                 <div className="bg-light-bg/50 p-4 rounded-lg hover:bg-light-bg transition-colors duration-300">
-                  <h3 className="text-lg font-semibold text-primary mb-2 flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                  <h3 className="text-lg font-semibold text-royal-sapphire mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-royal-sapphire rounded-full mr-2"></span>
                     Material:
                   </h3>
                   <p className="text-medium-gray pl-4">{product.material}</p>
                 </div>
                 
                 <div className="bg-light-bg/50 p-4 rounded-lg hover:bg-light-bg transition-colors duration-300">
-                  <h3 className="text-lg font-semibold text-primary mb-2 flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                  <h3 className="text-lg font-semibold text-royal-sapphire mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-royal-sapphire rounded-full mr-2"></span>
                     Finish And Coating:
                   </h3>
                   <p className="text-medium-gray pl-4">{product.finishAndCoating}</p>
@@ -266,7 +297,7 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
 
               <div className="mt-8 pt-6 border-t border-gray-200 bg-gradient-to-r from-light-bg/50 to-transparent p-4 rounded-lg">
                 <p className="text-medium-gray italic flex items-start">
-                  <span className="text-primary text-xl mr-2">★</span>
+                  <span className="text-royal-sapphire text-xl mr-2">★</span>
                   Exports Enquiry are Highly Solicited, with 100% Timely Shipment, With Fully Documents As Per the Exports Packaging Standards.
                 </p>
               </div>
@@ -276,9 +307,9 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
           {/* CTA Section - Improved styling */}
           <div className="bg-gradient-to-r from-background to-background/80 rounded-2xl p-8 shadow-elegant max-w-3xl mx-auto text-center transform hover:scale-[1.01] transition-all duration-300 border border-border-light/30">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-1 h-6 bg-primary rounded-full mr-3"></div>
+              <div className="w-1 h-6 bg-royal-sapphire rounded-full mr-3"></div>
               <h3 className="text-2xl font-bold text-foreground">
-                Need <span className="text-gradient-primary">Custom Specifications</span>?
+                Need <span className="text-royal-sapphire">Custom Specifications</span>?
               </h3>
             </div>
             <p className="text-base md:text-lg text-medium-gray mb-6 max-w-2xl mx-auto">
@@ -299,7 +330,7 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
               </Button>
               <Button 
                 variant="outline" 
-                className="btn-outline border-2 hover:border-primary transition-all duration-300 transform hover:-translate-y-1 text-base px-6 py-3 h-auto"
+                className="btn-outline border-2 hover:border-royal-sapphire transition-all duration-300 transform hover:-translate-y-1 text-base px-6 py-3 h-auto"
                 onClick={() => {
                   // Store the target section in sessionStorage before navigation
                   sessionStorage.setItem('scrollTarget', 'downloads');

@@ -108,31 +108,37 @@ const IndustriesSection = () => {
   ];
 
   return (
-    <section id="industries" ref={sectionRef} className="py-24 bg-light-bg relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2 z-0"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full filter blur-3xl translate-y-1/2 -translate-x-1/2 z-0"></div>
+    <section id="industries" ref={sectionRef} className="py-24 bg-gradient-subtle relative overflow-hidden">
+      {/* Premium decorative elements */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-[#11182c]/10 rounded-full blur-2xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="inline-block">
-            <span className="text-xs font-medium text-primary/80 uppercase tracking-widest bg-primary/5 px-4 py-1 rounded-full border border-primary/10 shadow-sm mb-4 inline-block">Global Excellence</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Industries We</span> <span className="text-gradient-primary">Serve</span>
-            </h2>
-            <div className="w-40 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 mx-auto rounded-full mb-6"></div>
+          <div className="inline-flex items-center space-x-2 bg-[#11182c]/10 rounded-full px-5 py-2 mb-4">
+            <div className="p-1 rounded-full bg-[#11182c]/20">
+              <Factory className="w-3 h-3 text-[#11182c]" />
+            </div>
+            <span className="text-[#11182c] font-semibold text-sm">Global Excellence</span>
           </div>
-          <p className="text-xl text-medium-gray max-w-3xl mx-auto leading-relaxed">
-            Shreeji Components delivers precision brass parts across diverse industries, 
-            meeting specific requirements and quality standards for each sector
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Industries We <span className="text-[#11182c]">Serve</span>
+          </h2>
+          
+          <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
+          
+          <p className="text-[4F6685] max-w-3xl mx-auto leading-relaxed">
+            We deliver precision brass parts and various other engineered solutions across different industries, meeting specific requirements and quality standards for each sector.
           </p>
           
           <QualityBadgeGroup badges={['iso', 'global', 'quality']} className="mt-8" />
         </div>
 
         {/* Industries Carousel */}
-        <div className="relative overflow-hidden rounded-3xl shadow-elegant bg-background/50 backdrop-blur-sm border border-border-light">
+        <div className="relative overflow-hidden rounded-3xl shadow-elegant bg-[#11182c]/10 backdrop-blur-sm border border-[#11182c]/20">
           <div 
             className="flex transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -143,7 +149,7 @@ const IndustriesSection = () => {
                   {industries.slice(slideIndex * 4, slideIndex * 4 + 4).map((industry, index) => (
                     <div
                       key={industry.title}
-                      className={`bg-background rounded-2xl overflow-hidden shadow-card hover:shadow-elegant group transition-all duration-500 border border-border-light transform hover:-translate-y-2 hover:scale-[1.02] ${
+                      className={`bg-[#11182c]/10 rounded-2xl overflow-hidden shadow-card hover:shadow-elegant group transition-all duration-500 border border-[#11182c]/20 transform hover:-translate-y-2 hover:scale-[1.02] ${
                         isVisible ? 'animate-scale-in' : 'opacity-0'
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
@@ -158,8 +164,8 @@ const IndustriesSection = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
-                        <div className="absolute top-4 left-4 w-12 h-12 md:w-14 md:h-14 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-500 border border-primary/10">
-                          <industry.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-secondary transition-colors duration-500" />
+                        <div className="absolute top-4 left-4 w-12 h-12 md:w-14 md:h-14 bg-[#11182c]/10 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-500 border border-[#11182c]/20">
+                          <industry.icon className="w-6 h-6 md:w-7 md:h-7 text-royal-sapphire transition-colors duration-500" />
                         </div>
                         
                         <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 border border-white/20">
@@ -171,12 +177,12 @@ const IndustriesSection = () => {
                       
                       {/* Content */}
                       <div className="p-4 md:p-6">
-                        <div className="w-10 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full mb-3 md:mb-4"></div>
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300 flex items-center">
+                        <div className="w-10 h-0.5 bg-[#11182c]/70 rounded-full mb-3 md:mb-4"></div>
+                        <h3 className="text-lg md:text-xl font-semibold text-[#11182c] mb-2 md:mb-3 group-hover:text-royal-sapphire transition-colors duration-300 flex items-center">
                           {industry.title}
-                          <span className="w-2 h-2 rounded-full bg-primary ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                          <span className="w-2 h-2 rounded-full bg-royal-sapphire ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                         </h3>
-                        <p className="text-medium-gray leading-relaxed text-sm">
+                        <p className="text-[4F6685] leading-relaxed text-sm">
                           {industry.description}
                         </p>
                       </div>
@@ -195,8 +201,8 @@ const IndustriesSection = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-500 ${
                   currentIndex === index 
-                    ? 'bg-gradient-to-r from-primary to-secondary w-10 shadow-glow' 
-                    : 'bg-gray-300 hover:bg-primary/30 w-2 hover:w-6'
+                    ? 'bg-[#11182c] w-10 shadow-glow' 
+                    : 'bg-gray-300 hover:bg-[#11182c]/30 w-2 hover:w-6'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -204,37 +210,6 @@ const IndustriesSection = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className={`text-center mt-16 md:mt-20 transition-all duration-1000 delay-500 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-r from-background to-background/80 rounded-2xl p-6 md:p-10 shadow-elegant max-w-4xl mx-auto border border-primary/5 transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
-            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
-            
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full filter blur-2xl -translate-y-1/2 translate-x-1/2 z-0"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary/5 rounded-full filter blur-2xl translate-y-1/2 -translate-x-1/2 z-0"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-                Don't See Your Industry?
-              </h3>
-              <p className="text-base md:text-lg text-medium-gray mb-6 md:mb-8 max-w-2xl mx-auto">
-                We work with clients across many more industries. Contact us to discuss 
-                how our precision manufacturing can serve your specific needs.
-              </p>
-              
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-4 md:mb-8">
-                <div className="inline-flex items-center space-x-2 bg-primary-light rounded-full px-4 md:px-6 py-2 md:py-3 shadow-sm hover:shadow-md transition-shadow duration-300 w-full md:w-auto">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-primary font-semibold text-sm">30+ Years Serving Diverse Industries</span>
-                </div>
-                <div className="inline-flex items-center space-x-2 bg-secondary-light rounded-full px-4 md:px-6 py-2 md:py-3 shadow-sm hover:shadow-md transition-shadow duration-300 w-full md:w-auto">
-                  <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                  <span className="text-secondary font-semibold text-sm">Global Manufacturing Excellence</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

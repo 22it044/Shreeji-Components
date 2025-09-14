@@ -3,8 +3,11 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
-import ProductsSection from '@/components/sections/ProductsSection';
+import StatsSection from '@/components/sections/StatsSection';
+import VisionMissionSection from '@/components/sections/VisionMissionSection';
+import ProductsSectionMain from '@/components/sections/ProductsSection';
 import QualitySection from '@/components/sections/QualitySection';
+// QualityToolsSection removed as requested
 import IndustriesSection from '@/components/sections/IndustriesSection';
 import DownloadSection from '@/components/sections/DownloadSection';
 import ContactSection from '@/components/sections/ContactSection';
@@ -37,8 +40,11 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <ProductsSection />
+        <StatsSection />
+        <VisionMissionSection />
+        <ProductsSectionMain />
         <QualitySection />
+        {/* QualityToolsSection removed as requested */}
         <IndustriesSection />
         <DownloadSection />
         <ContactSection />

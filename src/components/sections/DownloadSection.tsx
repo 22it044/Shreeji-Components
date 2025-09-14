@@ -26,7 +26,7 @@ const DownloadSection = () => {
   const downloadItems = [
     {
       icon: BookOpen,
-      title: 'Company Brochure',
+      title: 'Company Profile',
       description: 'Complete overview of Shreeji Components, our capabilities, and quality standards',
       fileSize: '2.4 MB',
       pages: '16 pages',
@@ -77,7 +77,7 @@ const DownloadSection = () => {
     
     // Map each item to its actual file path
     const fileMap: Record<string, string> = {
-      'Company Brochure': '/shreeji-company-brochure.pdf',
+      'Company Profile': '/shreeji-company-brochure.pdf',
       'ISO 9001:2015 Certificate': '/ISO 2015 .pdf',
       'IATF 16949:2016 Certificate': '/IATF.pdf',
       'Z Bronze Certificate 1': '/Z Bronze1.pdf',
@@ -99,32 +99,32 @@ const DownloadSection = () => {
   };
 
   return (
-    <section id="downloads" ref={sectionRef} className="py-28 bg-gradient-subtle">
+    <section id="downloads" ref={sectionRef} className="py-28 bg-[#11182c]">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Download Our <span className="text-gradient-primary">Resources</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Download Our <span className="text-white">Resources</span>
           </h2>
-          <p className="text-xl text-medium-gray max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
             Access comprehensive information about Shreeji Components, our products, 
             quality standards, and manufacturing capabilities
           </p>
         </div>
 
         {/* Download Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 px-4 sm:px-0">
           {downloadItems.map((item, index) => (
             <div
               key={item.title}
-              className={`relative bg-background rounded-2xl p-8 shadow-md hover:shadow-lg border border-border-light transition-all duration-300 group overflow-hidden ${
+              className={`relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-md hover:shadow-lg border border-white/20 transition-all duration-300 group overflow-hidden ${
                 isVisible ? 'animate-scale-in' : 'opacity-0'
               } hover:-translate-y-1`}
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Popular Badge */}
               {item.popular && (
-                <div className="absolute top-4 right-4 bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1">
+                <div className="absolute top-4 right-4 bg-[#11182c] text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1">
                   <Star className="w-3 h-3" />
                   <span>Popular</span>
                 </div>
@@ -136,10 +136,10 @@ const DownloadSection = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors duration-300">
                 {item.title}
               </h3>
-              <p className="text-medium-gray leading-relaxed mb-6">
+              <p className="text-white/80 leading-relaxed mb-6">
                 {item.description}
               </p>
 
@@ -161,10 +161,12 @@ const DownloadSection = () => {
 
               {/* Download Button */}
               <Button 
+                variant="primary" 
+                size="lg" 
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#11182c] to-[#1a2340] hover:from-[#1a2340] hover:to-[#11182c] text-white"
                 onClick={() => handleDownload(item)}
-                className="w-full bg-primary/10 hover:bg-primary/20 text-primary font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:translate-x-1"
               >
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="w-5 h-5" />
                 Download {item.format}
               </Button>
 

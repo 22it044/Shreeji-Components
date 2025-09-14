@@ -2,9 +2,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Products from "./pages/Products";
+import Quality from "./pages/Quality";
+import TechnicalCursor from "./components/ui/TechnicalCursor";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 // Product Pages
 import BrassElectricalTerminalParts from "./pages/products/BrassElectricalTerminalParts";
@@ -22,14 +27,26 @@ import ProductDetail from "./pages/products/ProductDetailTemplate";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  // Initialize smooth scroll with custom options for better transitions
+  useSmoothScroll({
+    offset: 50,
+    duration: 1200,
+    easing: (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+  });
+  
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <TechnicalCursor initialType="default" />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Index />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/quality" element={<Quality />} />
           
           {/* Product Routes - Specific routes first */}
           <Route path="/products/brass-electrical-terminal-parts" element={<BrassElectricalTerminalParts />} />
@@ -53,6 +70,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

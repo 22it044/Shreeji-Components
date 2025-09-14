@@ -2,90 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Manufacturing Design System - All colors MUST be HSL */
+/* Industrial Brutalism Design System for Brass Manufacturing - All colors MUST be HSL */
 
 @layer base {
   :root {
-    /* Premium B2B Manufacturing Brand Colors - Enhanced for Brass Manufacturing */
-    --primary: 215 84% 38%;           /* Vivid Professional Navy - Brightened */
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 84% 48%;      /* Enhanced glow effect */
-    --primary-light: 215 50% 96%;
-    --primary-dark: 215 84% 25%;
+    /* Refined Professional Palette 2025 */
+    /* Primary Rich Color Palette */
+    --royal-sapphire: 210 100% 40%;    /* #0066cc - Vibrant royal blue */
+    --brilliant-brass: 38 60% 55%;    /* #d9b44a - Sophisticated brass gold */
+    --midnight-black: 220 40% 12%;    /* #121c2e - Deep sophisticated dark */
     
-    --secondary: 38 90% 55%;          /* Enhanced Brass Gold Accent - More vivid */
-    --secondary-foreground: 0 0% 100%;
-    --secondary-glow: 38 90% 65%;      /* Enhanced glow effect */
-    --secondary-light: 38 70% 96%;
+    /* Rich Secondary Colors */
+    --electric-teal: 195 100% 45%;    /* #00a3d9 - Bright teal blue */
+    --copper-blaze: 25 70% 50%;      /* #d97b32 - Warm copper accent */
+    --forest-steel: 220 70% 50%;     /* #3355cc - Deep royal blue */
     
-    --dark: 218 45% 10%;               /* Deeper Charcoal - More contrast */
-    --dark-foreground: 0 0% 100%;
+    /* Dynamic Background System - Blue Family */
+    --pure-snow: 0 0% 100%;           /* #FFFFFF - Primary background */
+    --ice-blue: 210 30% 98%;          /* #f5f8fc - Subtle blue tint for backgrounds */
+    --silver-mist: 215 20% 96%;       /* #f0f4fa - Neutral light background */
+    --platinum-shine: 205 25% 94%;    /* #ebf2f8 - Elegant light background */
     
-    --background: 218 18% 99%;        /* Crisp Professional Off-White */
-    --foreground: 218 45% 12%;        /* Enhanced contrast for better readability */
+    /* High-Impact Accent Colors - Blue Family */
+    --laser-orange: 22 85% 45%;       /* #c45a1e - Refined CTAs */
+    --victory-green: 145 60% 35%;     /* #2a7850 - Premium success states */
+    --alert-crimson: 358 75% 45%;     /* #c92a3c - Sophisticated error states */
+    --golden-highlight: 210 90% 60%;  /* #3399ff - Blue highlights and focus */
     
-    --light-bg: 215 25% 98%;          /* Enhanced Sophisticated Light Background */
-    --medium-gray: 218 15% 48%;       /* Professional Gray - More vivid */
-    --light-gray: 218 15% 88%;        /* Enhanced Refined Light Gray */
-    --border-light: 218 20% 92%;      /* Premium Border - More visible */
-    --success: 142 80% 38%;           /* Professional Green - More vivid */
+    /* Professional Transparency System - Blue Family */
+    --sapphire-20: rgba(0, 102, 204, 0.2);  /* Royal Sapphire at 20% */
+    --brass-30: rgba(217, 180, 74, 0.3);     /* Brilliant Brass at 30% */
+    --teal-15: rgba(0, 163, 217, 0.15);     /* Electric Teal at 15% */
+    --black-80: rgba(18, 28, 46, 0.8);       /* Midnight Black at 80% */
+    --blue-10: rgba(51, 153, 255, 0.1);     /* Blue highlight at 10% */
     
-    /* Enhanced Premium Colors for Brass Manufacturing */
-    --accent-blue: 213 94% 72%;       /* Premium Accent Blue - More vivid */
-    --warm-gray: 28 15% 55%;          /* Enhanced Warm Professional Gray - More vivid */
-    --platinum: 210 15% 96%;          /* Enhanced Platinum Background */
-    --steel: 215 18% 38%;             /* Steel Gray - More vivid */
-    --brass: 38 85% 65%;              /* Signature Brass Accent - More vivid */
-    --brass-light: 38 75% 92%;        /* Light Brass Highlight - Enhanced */
-    --brass-dark: 38 75% 45%;         /* Deep Brass Accent - Enhanced */
+    /* Legacy color mapping for compatibility - Blue Family */
+    --primary: 210 100% 40%;         /* Royal Sapphire */
+    --primary-foreground: 0 0% 100%;   /* Pure Snow */
+    --primary-glow: 210 100% 50%;     /* Royal Sapphire - lighter */
+    --primary-light: 210 100% 90%;    /* Royal Sapphire - very light */
+    --primary-dark: 210 100% 30%;     /* Royal Sapphire - darker */
     
-    /* Component Colors */
-    --card: 0 0% 100%;
-    --card-foreground: 220 39% 11%;
+    --secondary: 195 100% 45%;       /* Electric Teal - bright blue */
+    --secondary-foreground: 0 0% 100%; /* Pure Snow */
+    --secondary-glow: 195 100% 55%;    /* Lighter Electric Teal */
+    --secondary-light: 195 100% 90%;   /* Very Light Electric Teal */
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 39% 11%;
+    --dark: 220 40% 12%;              /* Midnight Black */
+    --dark-foreground: 0 0% 100%;      /* Pure Snow */
     
-    --muted: 215 20% 98%;
-    --muted-foreground: 220 9% 46%;
+    /* Component Colors - Updated for Refined Professional Design */
+    --background: 195 100% 97%;       /* Ice Blue */
+    --foreground: 220 40% 12%;        /* Midnight Black */
     
-    --accent: 215 20% 98%;
-    --accent-foreground: 220 39% 11%;
+    --light-bg: 200 25% 96%;          /* Silver Mist */
+    --medium-gray: 195 54% 45%;       /* Royal Sapphire */
+    --light-gray: 195 18% 93%;        /* Platinum Shine */
+    --border-light: 195 18% 85%;      /* Lighter Platinum Shine */
+    --success: 145 60% 35%;           /* Victory Green */
     
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --card: 0 0% 100%;                /* Pure Snow */
+    --card-foreground: 220 40% 12%;   /* Midnight Black */
     
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 215 84% 35%;
+    --popover: 0 0% 100%;             /* Pure Snow */
+    --popover-foreground: 220 40% 12%; /* Midnight Black */
+    
+    --muted: 200 25% 96%;             /* Silver Mist */
+    --muted-foreground: 195 54% 45%;  /* Royal Sapphire */
+    
+    --accent: 195 54% 45%;             /* Royal Sapphire */
+    --accent-foreground: 0 0% 100%;    /* Pure Snow */
+    
+    --destructive: 358 75% 45%;         /* Alert Crimson */
+    --destructive-foreground: 0 0% 100%; /* Pure Snow */
+    
+    --border: 195 18% 85%;            /* Lighter Platinum Shine */
+    --input: 195 18% 93%;             /* Platinum Shine */
+    --ring: 195 54% 45%;              /* Royal Sapphire */
     
     --radius: 12px;
     
-    /* Enhanced Premium B2B Gradients for Brass Manufacturing */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
-    --gradient-primary-secondary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%); /* New mixed gradient */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--platinum)) 0%, hsl(var(--background)) 50%, hsl(var(--light-bg)) 100%);
+    /* Professional Gradient System */
+    --gradient-primary: linear-gradient(135deg, hsl(195 54% 45%) 0%, hsl(187 48% 47%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(187 48% 47%) 0%, hsl(195 54% 45%) 100%);
+    --gradient-primary-secondary: linear-gradient(135deg, hsl(195 54% 45%) 0%, hsl(187 48% 47%) 50%, hsl(195 54% 45%) 100%);
+    --gradient-commanding: linear-gradient(135deg, hsl(195 54% 45%) 0%, hsl(195 54% 35%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(195 54% 45%) 0%, hsl(187 48% 47%) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(var(--light-bg)), hsl(var(--background)));
-    --gradient-professional: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--platinum)) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--light-bg)) 50%, hsl(var(--platinum)) 100%);
-    --gradient-brass: linear-gradient(135deg, hsl(var(--brass-light)) 0%, hsl(var(--brass)) 50%, hsl(var(--brass-dark)) 100%);
-    --gradient-quality: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--brass-light)) 100%);
-    --gradient-dark: linear-gradient(135deg, hsl(var(--dark)) 0%, hsl(var(--steel)) 100%); /* New dark gradient */
+    --gradient-professional: linear-gradient(135deg, hsl(var(--midnight-black)) 0%, hsl(var(--royal-sapphire)) 100%);
+    --gradient-brass: linear-gradient(135deg, hsl(var(--brilliant-brass)) 0%, hsl(42 80% 65%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(var(--laser-orange)) 0%, hsl(var(--alert-crimson)) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(var(--midnight-black)) 0%, hsl(var(--royal-sapphire)) 30%);
     
-    /* Premium Professional Shadows */
-    --shadow-card: 0 2px 10px -1px rgba(0, 0, 0, 0.08), 0 1px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-elegant: 0 8px 28px -5px rgba(0, 0, 0, 0.1), 0 4px 15px -2px rgba(0, 0, 0, 0.06);
-    --shadow-deep: 0 15px 40px -5px rgba(0, 0, 0, 0.14), 0 8px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-premium: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 10px 30px -5px rgba(0, 0, 0, 0.08);
-    --shadow-glow-primary: 0 0 15px rgba(var(--primary-rgb), 0.4);
-    --shadow-glow-secondary: 0 0 15px rgba(var(--secondary-rgb), 0.4);
+    /* Executive-Grade Shadows */
+    --shadow-card: 0 4px 20px hsla(var(--midnight-black), 0.05);
+    --shadow-elegant: 0 8px 30px hsla(var(--royal-sapphire), 0.15);
+    --shadow-deep: 0 12px 40px hsla(var(--royal-sapphire), 0.2);
+    --shadow-professional: 0 8px 24px var(--sapphire-20);
+    --shadow-glow: 0 0 15px hsla(var(--royal-sapphire), 0.4);
+    --shadow-glow-subtle: 0 0 10px hsla(var(--royal-sapphire), 0.2);
+    --shadow-inset: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-glow-primary: 0 0 15px hsla(var(--royal-sapphire), 0.3); /* Primary glow */
+    --shadow-glow-brass: 0 0 15px hsla(var(--brilliant-brass), 0.3); /* Brass glow */
+    --shadow-glow-red: 0 0 15px hsla(var(--alert-crimson), 0.3); /* Red glow */
+    --shadow-glow-blue: 0 0 15px hsla(var(--electric-teal), 0.3); /* Blue glow */
+    --shadow-glow-green: 0 0 15px hsla(var(--forest-steel), 0.3); /* Green glow */
     
-    /* Smooth Professional Animations */
+    /* Industrial Mechanical Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-mechanical: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-precise: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-industrial: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -161,15 +188,15 @@
 @layer components {
   /* Enhanced Professional B2B Button Variants */
   .btn-hero {
-    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground px-10 py-5 rounded-xl font-semibold text-lg shadow-elegant hover:shadow-deep transition-all duration-300 hover:scale-105;
+    @apply bg-royal-sapphire text-primary-foreground px-10 py-5 rounded-xl font-semibold text-lg shadow-elegant hover:shadow-deep transition-all duration-300 hover:scale-105;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-secondary to-secondary-glow text-secondary-foreground px-10 py-5 rounded-xl font-semibold text-lg shadow-elegant hover:shadow-deep transition-all duration-300 hover:scale-105;
+    @apply bg-royal-sapphire text-secondary-foreground px-10 py-5 rounded-xl font-semibold text-lg shadow-elegant hover:shadow-deep transition-all duration-300 hover:scale-105;
   }
   
   .btn-outline {
-    @apply border-2 border-primary text-primary bg-background px-10 py-5 rounded-xl font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-card hover:shadow-elegant;
+    @apply border-2 border-royal-sapphire text-royal-sapphire bg-background px-10 py-5 rounded-xl font-semibold text-lg hover:bg-royal-sapphire hover:text-primary-foreground transition-all duration-300 shadow-card hover:shadow-elegant;
   }
 
   /* Enhanced Professional Card Styles */
@@ -188,22 +215,200 @@
   .card-brass {
     @apply bg-white border border-border-light rounded-2xl p-6 shadow-card hover:shadow-elegant transition-all duration-300;
   }
+  
+  /* Executive-Grade Gradients */
+  .gradient-brass {
+    background: linear-gradient(135deg, hsl(var(--champagne-bronze)), hsl(var(--antique-brass)));
+  }
+  
+  .gradient-steel {
+    background: linear-gradient(135deg, hsl(var(--steel-blue)), hsl(var(--gunmetal-gray)));
+  }
+  
+  /* Rich Professional Background System */
+  .section-primary {
+    background-color: hsl(var(--ice-blue));
+    border-left: 4px solid hsl(var(--royal-sapphire));
+  }
+  
+  .section-alternate {
+    background-color: hsl(var(--silver-mist));
+    border-left: 4px solid hsl(var(--royal-sapphire));
+  }
+  
+  .hero-commanding {
+    background: hsl(var(--royal-sapphire));
+    position: relative;
+  }
+  
+  .hero-commanding::after {
+    content: '';
+    background: linear-gradient(45deg, 
+      transparent 0%, 
+      var(--brass-30) 100%);
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  
+  /* Executive-Grade Shadows */
+  .shadow-brass {
+    box-shadow: 0 8px 30px hsla(var(--champagne-bronze), 0.2);
+  }
+  
+  .shadow-steel {
+    box-shadow: 0 8px 30px hsla(var(--steel-blue), 0.15);
+  }
 
-  /* Professional Typography */
+  /* Premium Card Styling */
+  .card-premium {
+    background-color: hsl(var(--pure-snow));
+    border: 1px solid hsl(var(--platinum-shine));
+    box-shadow: 0 4px 20px hsla(var(--midnight-black), 0.05);
+    border-radius: var(--radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px hsla(var(--midnight-black), 0.1);
+  }
+  
+  .card-premium-elevated {
+    background: hsl(var(--platinum-shine));
+    border: 1px solid hsl(var(--royal-sapphire));
+    box-shadow: 0 12px 40px rgba(30, 64, 175, 0.15);
+    border-radius: var(--radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-premium-elevated:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(30, 64, 175, 0.2);
+  }
+  
+  /* Vibrant Professional Buttons */
+  .btn-commanding {
+    background: hsl(var(--royal-sapphire));
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px var(--sapphire-20);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-commanding:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(30, 64, 175, 0.4);
+  }
+  
+  .btn-action {
+    background-color: hsl(var(--laser-orange));
+    color: white;
+    border: 2px solid hsl(var(--laser-orange));
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-action:hover {
+    background-color: hsl(var(--alert-crimson));
+    border-color: hsl(var(--alert-crimson));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
+  }
+  
+  .btn-premium {
+    background-color: hsl(var(--brilliant-brass));
+    color: white;
+    border: 2px solid hsl(var(--brilliant-brass));
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-premium:hover {
+    background-color: hsl(var(--copper-blaze));
+    border-color: hsl(var(--copper-blaze));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(218, 165, 32, 0.4);
+  }
+  
+  /* Rich Mobile Professional Design */
+  @media (max-width: 768px) {
+    .hero-commanding {
+      background: hsl(var(--royal-sapphire));
+      /* Simplified for mobile performance while maintaining impact */
+    }
+    
+    .section-rich-mobile {
+      background: hsl(var(--ice-blue));
+      padding: 2rem 1rem;
+      /* Maintains richness with mobile optimization */
+    }
+    
+    .section-alternate {
+      background: hsl(var(--silver-mist));
+      border-left: 2px solid hsl(var(--electric-teal));
+      /* Maintain visual hierarchy on small screens */
+    }
+    
+    .btn-commanding,
+    .btn-action,
+    .btn-premium {
+      min-height: 48px;
+      font-size: 18px;
+      font-weight: 600;
+      /* Ensures rich colors remain impactful on small screens */
+    }
+  }
+  
+  /* Professional Typography Standards */
   .text-hero {
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-deep-charcoal;
+    color: hsl(var(--deep-charcoal));
   }
   
-  .text-hero-large {
-    @apply text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight;
+  .text-heading {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    color: hsl(var(--deep-charcoal));
   }
   
-  .text-subtitle {
-    @apply text-xl md:text-2xl text-medium-gray leading-relaxed font-light;
+  .text-subheading {
+    @apply text-xl md:text-2xl font-semibold;
+    color: hsl(var(--steel-blue));
   }
-
-  .text-section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight;
+  
+  .text-title {
+    @apply text-lg md:text-xl font-semibold;
+    color: hsl(var(--deep-charcoal));
+  }
+  
+  .text-body {
+    @apply text-base leading-relaxed;
+    color: hsl(var(--deep-charcoal));
+  }
+  
+  .text-small {
+    @apply text-sm leading-relaxed;
+    color: hsl(var(--steel-blue));
+  }
+  
+  /* Technical Specifications Typography */
+  .text-spec-label {
+    @apply text-sm font-medium;
+    color: hsl(var(--steel-blue));
+  }
+  
+  .text-spec-value {
+    @apply text-base font-medium;
+    color: hsl(var(--deep-charcoal));
   }
 
   /* Animations */
@@ -291,6 +496,14 @@
   }
 }
 
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out 3s infinite;
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -352,16 +565,13 @@
   }
 }
 
-/* Enhanced Utility Classes */
+/* Industrial Brutalism Utility Classes */
 .hover-scale {
   @apply transition-transform duration-300 hover:scale-105;
 }
 
 .text-gradient-primary {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: hsl(var(--royal-sapphire));
 }
 
 .text-gradient-brass {
@@ -387,22 +597,50 @@
   background: var(--gradient-quality);
 }
 
-/* Premium Shadow Effects */
+.bg-gradient-industrial {
+  background: var(--gradient-industrial);
+}
+
+.bg-gradient-copper {
+  background: var(--gradient-copper);
+}
+
+.bg-gradient-warning {
+  background: var(--gradient-warning);
+}
+
+.bg-gradient-dark {
+  background: var(--gradient-dark);
+}
+
+/* Industrial Brutalism Shadow Effects */
 .shadow-elegant {
   box-shadow: var(--shadow-elegant);
 }
 
-.shadow-elegant-hover {
-  box-shadow: var(--shadow-premium);
+.shadow-industrial {
+  box-shadow: var(--shadow-industrial);
 }
 
-.shadow-glow {
-  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3), 0 0 5px rgba(var(--secondary-rgb), 0.2);
+.shadow-inset {
+  box-shadow: var(--shadow-inset);
 }
 
-/* Premium Filter Effects */
+.shadow-glow-primary {
+  box-shadow: 0 0 15px rgba(var(--royal-sapphire-rgb), 0.5);
+}
+
+.shadow-glow-secondary {
+  box-shadow: 0 0 15px rgba(var(--royal-sapphire-rgb), 0.3);
+}
+
+.shadow-glow-red {
+  box-shadow: var(--shadow-glow-red);
+}
+
+/* Industrial Brutalism Filter Effects */
 .drop-shadow-glow {
-  filter: drop-shadow(0 0 5px rgba(var(--primary-rgb), 0.4));
+  filter: drop-shadow(0 0 5px rgba(var(--royal-sapphire-rgb), 0.4));
 }
 
 .drop-shadow-text {
@@ -410,10 +648,48 @@
 }
 
 .drop-shadow-text-colored {
-  text-shadow: 0 2px 10px rgba(var(--primary-rgb), 0.2), 0 1px 5px rgba(var(--secondary-rgb), 0.1);
+  text-shadow: 0 2px 10px rgba(var(--royal-sapphire-rgb), 0.2), 0 1px 5px rgba(var(--royal-sapphire-rgb), 0.1);
 }
 
-/* Premium Background Effects */
+/* Industrial Brutalism Background Effects */
 .bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.bg-metal {
+  background-image: url('/images/textures/metal-texture.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-brushed-metal {
+  background-image: url('/images/textures/brushed-metal.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-oxidized-copper {
+  background-image: url('/images/textures/oxidized-copper.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Industrial Brutalism Typography */
+.font-industrial {
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+}
+
+.font-technical {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Industrial Brutalism Borders */
+.border-industrial {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.border-machined {
+  border-width: 1px;
+  border-style: dashed;
 }
