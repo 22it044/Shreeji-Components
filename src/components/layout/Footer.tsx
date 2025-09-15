@@ -58,13 +58,13 @@ const Footer = () => {
                 { name: 'Products', href: '#products' },
                 { name: 'Quality', href: '#quality' },
                 { name: 'Industries', href: '#industries' },
-                { name: 'Downloads', href: '#downloads' },
+                { name: 'Stats', href: '#stats' },
                 { name: 'Contact', href: '#contact' },
               ].map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-dark-foreground/80 hover:text-royal-sapphire transition-colors duration-200"
+                    className="text-foreground/70 hover:text-[#11182c] transition-colors duration-300"
                   >
                     {link.name}
                   </button>

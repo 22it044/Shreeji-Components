@@ -128,12 +128,12 @@ const Products = () => {
                     </p>
                     
                     <Link 
-                      to={product.link}
-                      className="inline-flex items-center justify-center px-4 py-2 bg-amber-500/10 text-amber-600 rounded-lg hover:bg-amber-500 hover:text-white transition-all duration-300 text-sm font-medium mt-auto group/btn"
-                    >
-                      View Details
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
+                to={product.link}
+                className="inline-flex items-center justify-center px-4 py-2 bg-amber-500/10 text-amber-600 rounded-lg hover:bg-amber-500 hover:text-white transition-all duration-300 text-sm font-medium mt-auto group/btn"
+              >
+                View Details
+                <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
                   </div>
                 </motion.div>
               ))}

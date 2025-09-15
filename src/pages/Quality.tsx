@@ -646,7 +646,7 @@ const Quality = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row items-center gap-4">
                     <Button 
-                      onClick={() => window.location.href = '/#contact'}
+                      onClick={() => window.location.href = '/home#contact'}
                       className="relative overflow-hidden bg-black border border-amber-500 hover:bg-amber-500 hover:text-black text-amber-500 font-bold px-6 py-3 shadow-md hover:shadow-lg transition-all duration-500 w-full sm:w-auto group uppercase tracking-wider"
                     >
                       <span className="relative z-10 flex items-center justify-center">Contact Us <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" /></span>

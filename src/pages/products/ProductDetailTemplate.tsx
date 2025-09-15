@@ -157,7 +157,7 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           {/* Back to Products Button - Improved alignment */}
-          <div className="flex justify-start mb-12">
+          <div className="flex justify-between mb-12">
             <Button 
               variant="outline" 
               className="flex items-center space-x-2 border-2 hover:border-primary transition-all duration-300 transform hover:-translate-y-1 shadow-sm"
@@ -171,6 +171,9 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
               <ArrowLeft className="h-4 w-4" />
               <span>Back to Products</span>
             </Button>
+            <Link to="/home#contact" className="text-sm text-[#11182c] hover:text-amber-500 transition-colors">
+                Contact Us
+              </Link>
           </div>
 
           {/* Product Header */}

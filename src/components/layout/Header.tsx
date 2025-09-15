@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   const navigation: NavigationItem[] = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
     { name: 'Products', href: '/products', isPage: true },
     { name: 'Quality', href: '/quality', isPage: true },
@@ -232,7 +232,7 @@ const Header = () => {
                   scrollToSection('#contact');
                 }
               }}
-              className="relative overflow-hidden bg-royal-sapphire hover:bg-royal-sapphire/90 text-white font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-500 transform hover:-translate-y-1 group"
+              className="relative overflow-hidden bg-[#11182c] hover:bg-[#11182c]/90 text-white font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-500 transform hover:-translate-y-1 group"
             >
               <span className="relative z-10 flex items-center">Contact Us <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" /></span>
                 {/* Animated background effect */}

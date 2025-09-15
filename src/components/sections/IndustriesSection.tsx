@@ -108,17 +108,20 @@ const IndustriesSection = () => {
   ];
 
   return (
-    <section id="industries" ref={sectionRef} className="py-24 bg-gradient-subtle relative overflow-hidden">
+    <section id="industries" ref={sectionRef} className="py-24 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
       {/* Premium decorative elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute top-40 right-20 w-32 h-32 bg-[#11182c]/10 rounded-full blur-2xl"></div>
       
+      {/* Glass overlay */}
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="inline-flex items-center space-x-2 bg-[#11182c]/10 rounded-full px-5 py-2 mb-4">
-            <div className="p-1 rounded-full bg-[#11182c]/20">
+        <div className={`text-center mb-20 transition-all duration-1000 max-w-3xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md rounded-full px-5 py-2 mb-4 border border-white/70 shadow-md">
+            <div className="p-1 rounded-full bg-white/60 backdrop-blur-md border border-white/70">
               <Factory className="w-3 h-3 text-[#11182c]" />
             </div>
             <span className="text-[#11182c] font-semibold text-sm">Global Excellence</span>
@@ -130,7 +133,7 @@ const IndustriesSection = () => {
           
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
           
-          <p className="text-[4F6685] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[#334155] max-w-3xl mx-auto leading-relaxed">
             We deliver precision brass parts and various other engineered solutions across different industries, meeting specific requirements and quality standards for each sector.
           </p>
           
@@ -138,7 +141,7 @@ const IndustriesSection = () => {
         </div>
 
         {/* Industries Carousel */}
-        <div className="relative overflow-hidden rounded-3xl shadow-elegant bg-[#11182c]/10 backdrop-blur-sm border border-[#11182c]/20">
+        <div className="relative overflow-hidden rounded-xl shadow-elegant bg-white/160 backdrop-blur-md border border-white/170">
           <div 
             className="flex transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -149,7 +152,7 @@ const IndustriesSection = () => {
                   {industries.slice(slideIndex * 4, slideIndex * 4 + 4).map((industry, index) => (
                     <div
                       key={industry.title}
-                      className={`bg-[#11182c]/10 rounded-2xl overflow-hidden shadow-card hover:shadow-elegant group transition-all duration-500 border border-[#11182c]/20 transform hover:-translate-y-2 hover:scale-[1.02] ${
+                      className={`bg-white/60 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover:shadow-2xl group transition-all duration-500 border border-white/70 transform hover:-translate-y-2 hover:scale-[1.02] ${
                         isVisible ? 'animate-scale-in' : 'opacity-0'
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
@@ -164,8 +167,8 @@ const IndustriesSection = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
-                        <div className="absolute top-4 left-4 w-12 h-12 md:w-14 md:h-14 bg-[#11182c]/10 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-500 border border-[#11182c]/20">
-                          <industry.icon className="w-6 h-6 md:w-7 md:h-7 text-royal-sapphire transition-colors duration-500" />
+                        <div className="absolute top-4 left-4 w-12 h-12 md:w-14 md:h-14 bg-white/60 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 border border-white/70">
+                          <industry.icon className="w-6 h-6 md:w-7 md:h-7 text-[#11182c] transition-colors duration-500" />
                         </div>
                         
                         <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 border border-white/20">
