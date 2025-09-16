@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Wrench, Award, CheckCircle, Globe, Shield, Sparkle, Star, Linkedin, BadgeCheck, Zap, ArrowRight } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Menu, X, Phone, Mail, Wrench, Award, CheckCircle, Globe, Shield, Sparkle, Star, Linkedin, BadgeCheck, Zap, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
+// Import product data for dropdown
+import { productData } from '@/components/sections/ProductsSection';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const productDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,18 +21,33 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (productDropdownRef.current && !productDropdownRef.current.contains(event.target as Node)) {
+        setIsProductDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   // Define the navigation item type
   type NavigationItem = {
     name: string;
     href: string;
     isPage?: boolean;
     highlight?: boolean;
+    hasDropdown?: boolean;
   };
 
   const navigation: NavigationItem[] = [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
-    { name: 'Products', href: '/products', isPage: true },
+    { name: 'Products', href: '/products', isPage: true, hasDropdown: true },
     { name: 'Quality', href: '/quality', isPage: true },
     { name: 'Industries', href: '#industries' },
     { name: 'Downloads', href: '#downloads' },
@@ -183,17 +204,61 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item, index) => (
                 item.isPage ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-royal-sapphire transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
-                    {/* Subtle glow effect on hover */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-royal-sapphire/0 to-royal-sapphire/0 group-hover:from-royal-sapphire/5 group-hover:to-royal-sapphire/5 rounded-lg blur-sm transition-all duration-300 -z-10"></span>
-                  </a>
+                  item.hasDropdown ? (
+                    <div key={item.name} className="relative" ref={productDropdownRef}>
+                      <button
+                        onClick={() => setIsProductDropdownOpen(!isProductDropdownOpen)}
+                        className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group flex items-center ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
+                        style={{ animationDelay: `${index * 100}ms` }}
+                      >
+                        <span className="relative z-10">{item.name}</span>
+                        <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-300 ${isProductDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-royal-sapphire transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
+                        {/* Subtle glow effect on hover */}
+                        <span className="absolute inset-0 bg-gradient-to-r from-royal-sapphire/0 to-royal-sapphire/0 group-hover:from-royal-sapphire/5 group-hover:to-royal-sapphire/5 rounded-lg blur-sm transition-all duration-300 -z-10"></span>
+                      </button>
+                      
+                      {/* Product Dropdown Menu */}
+                      {isProductDropdownOpen && (
+                        <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-elegant border border-border-light/30 py-2 z-50 transform origin-top transition-all duration-300">
+                          {/* Product Portfolio Link */}
+                          <Link 
+                            to="/products" 
+                            className="block px-4 py-2.5 text-foreground hover:bg-royal-sapphire/5 hover:text-royal-sapphire transition-colors duration-200 font-medium border-b border-border-light/30"
+                            onClick={() => setIsProductDropdownOpen(false)}
+                          >
+                            Product Portfolio
+                          </Link>
+                          
+                          {/* Individual Product Links */}
+                          <div className="max-h-80 overflow-y-auto py-1">
+                            {productData.map((product, idx) => (
+                              <Link 
+                                key={idx}
+                                to={product.link} 
+                                className="block px-4 py-2 text-sm text-foreground hover:bg-royal-sapphire/5 hover:text-royal-sapphire transition-colors duration-200"
+                                onClick={() => setIsProductDropdownOpen(false)}
+                              >
+                                {product.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-royal-sapphire transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
+                      {/* Subtle glow effect on hover */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-royal-sapphire/0 to-royal-sapphire/0 group-hover:from-royal-sapphire/5 group-hover:to-royal-sapphire/5 rounded-lg blur-sm transition-all duration-300 -z-10"></span>
+                    </a>
+                  )
                 ) : (
                   <button
                     key={item.name}
@@ -263,26 +328,67 @@ const Header = () => {
             
             <div className="flex flex-col space-y-4 relative z-10">
               {navigation.map((item, index) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    const isProductPage = window.location.pathname.includes('/products/');
-                    const isQualityPage = window.location.pathname.includes('/quality');
-                    const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
-                    if (isNotHomePage) {
-                      navigateToHomeSection(item.href);
-                    } else {
-                      scrollToSection(item.href);
-                    }
-                  }}
-                  className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <span className="relative z-10">{item.name}</span>
-                  <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
-                  {/* Subtle background highlight on hover */}
-                  <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
-                </button>
+                item.hasDropdown ? (
+                  <div key={item.name} className="relative">
+                    <button
+                      onClick={() => {
+                        if (item.isPage) {
+                          window.location.href = item.href;
+                        }
+                      }}
+                      className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group w-full flex justify-between items-center"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      <ChevronDown className="h-4 w-4" />
+                      <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
+                      <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
+                    </button>
+                    
+                    {/* Mobile Product Links */}
+                    <div className="pl-6 mt-2 space-y-2 border-l-2 border-royal-sapphire/10 ml-6">
+                      <Link 
+                        to="/products"
+                        className="block py-1.5 text-sm text-foreground hover:text-royal-sapphire transition-colors duration-200 font-medium"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Product Portfolio
+                      </Link>
+                      
+                      {productData.map((product, idx) => (
+                        <Link 
+                          key={idx}
+                          to={product.link} 
+                          className="block py-1.5 text-xs text-foreground/80 hover:text-royal-sapphire transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {product.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      const isProductPage = window.location.pathname.includes('/products/');
+                      const isQualityPage = window.location.pathname.includes('/quality');
+                      const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
+                      if (isNotHomePage) {
+                        navigateToHomeSection(item.href);
+                      } else {
+                        scrollToSection(item.href);
+                      }
+                    }}
+                    className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <span className="relative z-10">{item.name}</span>
+                    <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
+                    {/* Subtle background highlight on hover */}
+                    <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
+                  </button>
+                )
               ))}
               <div className="px-4 pt-2">
                 <Button 

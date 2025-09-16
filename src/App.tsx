@@ -3,12 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import Quality from "./pages/Quality";
-import TechnicalCursor from "./components/ui/TechnicalCursor";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 // Product Pages
@@ -40,11 +38,10 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <TechnicalCursor initialType="default" />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/home" element={<Index />} />
+          <Route path="/" element={<Index />} />
+          <Route path="/home" element={<Navigate to="/" />} />
           <Route path="/products" element={<Products />} />
           <Route path="/quality" element={<Quality />} />
           

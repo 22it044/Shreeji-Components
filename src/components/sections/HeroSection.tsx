@@ -68,20 +68,16 @@ const HeroSection = () => {
         }}
         className="w-[95%] h-[80vh] overflow-hidden relative shadow-2xl rounded-xl border-2 border-amber-500/30 z-10 mx-auto"
       >
-        {/* Video container */}
+        {/* Professional image container */}
         <div className="w-full h-full overflow-hidden rounded-xl">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
+          <img 
+            src="/images/Hero section/Gemini_Generated_Image_j3idb3j3idb3j3id.png" 
+            alt="Precision Brass Manufacturing"
             className="w-full h-full object-cover object-center scale-105 transition-transform duration-700"
-          >
-            <source src="/images/Hero section/CNC_Lathe_Carving_Brass_Shaft.mp4" type="video/mp4" />
-          </video>
+          />
           
           {/* Enhanced overlay for better contrast with amber accents */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#11182c]/30 via-transparent to-amber-500/20 pointer-events-none transition-opacity duration-700"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#11182c]/40 via-transparent to-amber-500/20 pointer-events-none transition-opacity duration-700"></div>
           
           {/* Floating border elements - larger and more prominent */}
           <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-amber-500/80 animate-float rounded-tl-3xl"></div>
@@ -97,12 +93,50 @@ const HeroSection = () => {
           <div className="absolute bottom-1/4 right-0 w-16 h-1 bg-amber-500/40 animate-float"></div>
         </div>
         
-        {/* Removed text overlay as requested */}
+        {/* Premium text overlay */}
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-8 z-20">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight"
+          >
+            Shreeji Components
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="text-xl md:text-2xl text-gray-200 max-w-3xl mb-8"
+          >
+            Precision-engineered brass components with uncompromising quality and excellence
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <Button 
+              variant="premium" 
+              size="lg" 
+              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-6 text-lg"
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Explore Our Products
+            </Button>
+          </motion.div>
+        </div>
       </motion.div>
       
-      {/* Removed premium play indicator */}
-
-      {/* Removed scroll down indicator */}
+      {/* Elegant scroll indicator */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -10 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+      >
+        <ChevronDown className="w-10 h-10 text-amber-500/80 animate-bounce" />
+      </motion.div>
     </section>
   );
 };

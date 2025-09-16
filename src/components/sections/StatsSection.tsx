@@ -113,7 +113,7 @@ const StatsSection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Proven <span className="text-[#11182c]">Manufacturing</span> Excellence
+            Proven <span className="text-[#0077B5]">Manufacturing</span> Excellence
           </h2>
           
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
@@ -168,7 +168,7 @@ const StatsSection = () => {
         <div className="relative">
           <div className="mb-16 text-center">
             <h3 className={`text-2xl md:text-3xl font-semibold mb-4 text-[#11182c] transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-              What <span className="text-[#11182c]">Enabled</span> Us
+              What <span className="text-[#0077B5]">Enabled</span> Us
             </h3>
             
             <div className={`h-1 bg-[#11182c] rounded-full mx-auto mb-8 transition-all duration-1000 ${isVisible ? 'w-[60px] animate-fade-in' : 'w-0'}`}></div>

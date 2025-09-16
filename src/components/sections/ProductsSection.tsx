@@ -309,7 +309,7 @@ const ProductsSectionMain = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="text-[#11182c]">Product</span> Showcase
+            Our <span className="text-[#0077B5]">Product</span> Showcase
           </h2>
           
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>

@@ -128,7 +128,7 @@ const IndustriesSection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Industries We <span className="text-[#11182c]">Serve</span>
+            <span className="text-[#0077B5] ">Industries </span>  <span className="text-[#11182c]"> We Serve</span>
           </h2>
           
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
