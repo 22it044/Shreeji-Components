@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
+
+
 const ContactSection = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
@@ -23,9 +25,9 @@ const ContactSection = () => {
   const [hoveredTeamMember, setHoveredTeamMember] = useState<number | null>(null);
   
   // EmailJS configuration - Replace these with your actual EmailJS credentials
-  const SERVICE_ID = "service_shreeji"; 
-  const TEMPLATE_ID = "template_quote_request";
-  const PUBLIC_KEY = "YOUR_ACTUAL_PUBLIC_KEY"; // You need to replace this with your actual EmailJS public key
+const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
   const productOptions = [
     'Brass Hex Parts',
