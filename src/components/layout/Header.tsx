@@ -247,9 +247,9 @@ const Header = () => {
                       )}
                     </div>
                   ) : (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
@@ -257,7 +257,7 @@ const Header = () => {
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-royal-sapphire transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
                       {/* Subtle glow effect on hover */}
                       <span className="absolute inset-0 bg-gradient-to-r from-royal-sapphire/0 to-royal-sapphire/0 group-hover:from-royal-sapphire/5 group-hover:to-royal-sapphire/5 rounded-lg blur-sm transition-all duration-300 -z-10"></span>
-                    </a>
+                    </Link>
                   )
                 ) : (
                   <button
