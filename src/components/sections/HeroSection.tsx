@@ -86,7 +86,7 @@ const HeroSection = () => {
           <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-amber-500/80 animate-float rounded-br-3xl"></div>
           
           {/* Enhanced glow effect */}
-          <div className="absolute inset-0 shadow-[0_0_70px_rgba(251,191,36,0.4)_inset] pointer-events-none"></div>
+          <div className="absolute inset-0 shadow-[0_0_30px_rgba(251,191,36,0.4)_inset] pointer-events-none"></div>
           
           {/* Additional subtle floating elements */}
           <div className="absolute top-1/4 left-0 w-16 h-1 bg-amber-500/40 animate-float-delayed"></div>
@@ -94,7 +94,7 @@ const HeroSection = () => {
         </div>
         
         {/* Premium text overlay */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-8 z-20">
+        <div className="absolute inset-0 flex flex-col justify-top items-center text-center px-8 z-20 pt-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}

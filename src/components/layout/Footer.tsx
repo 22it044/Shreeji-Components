@@ -28,12 +28,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-royal-sapphire rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
-              </div>
+              <img src="/images/company logo.jpg" alt="Company Logo" className="w-10 h-10 rounded-lg" />
               <div>
                 <h1 className="text-xl font-bold">Shreeji Components</h1>
-                <p className="text-xs text-dark-foreground/80">Precision Brass Components</p>
+                <p className="text-xs text-dark-foreground/80">Precision Manufacturing</p>
               </div>
             </div>
             <p className="text-dark-foreground/80 mb-6 leading-relaxed max-w-md">
