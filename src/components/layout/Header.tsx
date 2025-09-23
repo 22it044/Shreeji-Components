@@ -1,16 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Phone, Mail, Wrench, Award, CheckCircle, Globe, Shield, Sparkle, Star, Linkedin, BadgeCheck, Zap, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // Import product data for dropdown
 import { productData } from '@/components/sections/ProductsSection';
+
+// Define the navigation item type
+interface NavigationItem {
+  name: string;
+  href: string;
+  isPage?: boolean;
+  hasDropdown?: boolean;
+  highlight?: boolean;
+}
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const productDropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,15 +46,6 @@ const Header = () => {
     };
   }, []);
 
-  // Define the navigation item type
-  type NavigationItem = {
-    name: string;
-    href: string;
-    isPage?: boolean;
-    highlight?: boolean;
-    hasDropdown?: boolean;
-  };
-
   const navigation: NavigationItem[] = [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
@@ -53,50 +55,53 @@ const Header = () => {
     { name: 'Downloads', href: '#downloads' },
   ];
 
-  const scrollToSection = (href: string) => {
-    // Check if we're on a product or quality page
-    const isProductPage = window.location.pathname.includes('/products/');
-    const isQualityPage = window.location.pathname.includes('/quality');
-    const isLandingPage = window.location.pathname === '/';
-    const isNotHomePage = isProductPage || isQualityPage || (window.location.pathname !== '/home' && !isLandingPage);
+  // Unified function to handle section links and page navigation
+  const handleNavigation = (href: string) => {
+    setIsMobileMenuOpen(false);
     
-    if (isLandingPage) {
-      // If on landing page, navigate to home with section target
-      const sectionId = href.replace('#', '');
-      sessionStorage.setItem('scrollTarget', sectionId);
-      window.location.href = '/home';
-    } else if (isNotHomePage) {
-      // If on product/quality page, extract the section ID and store it in sessionStorage
-      const sectionId = href.replace('#', '');
-      sessionStorage.setItem('scrollTarget', sectionId);
-      
-      // Navigate to the home page
-      window.location.href = '/home';
-    } else {
-      // If on home page, scroll to the section
+    // If it's a page link (starts with '/'), use React Router navigation
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
+    }
+    
+    // It's a section link (starts with '#')
+    const sectionId = href.replace('#', '');
+    
+    // If we're on the home page, scroll to the section
+    if (location.pathname === '/' || location.pathname === '/home') {
       const element = document.querySelector(href);
       if (element) {
-        const offsetTop = (element as HTMLElement).offsetTop - 120; // Account for fixed header height
+        const offsetTop = (element as HTMLElement).offsetTop - 120;
         window.scrollTo({
           top: offsetTop,
           behavior: 'smooth'
         });
       }
+    } else {
+      // If we're on another page, navigate to home and store the section target
+      sessionStorage.setItem('scrollTarget', sectionId);
+      navigate('/');
     }
-    setIsMobileMenuOpen(false);
   };
 
-  // Function to navigate to home page with specific section
-  const navigateToHomeSection = (href: string) => {
-    // Extract the section ID from the href (remove the # symbol)
-    const sectionId = href.replace('#', '');
-    
-    // Store the target section in sessionStorage before navigation
-    sessionStorage.setItem('scrollTarget', sectionId);
-    
-    // Navigate to the home page
-    window.location.href = '/home';
-  };
+  // Check for stored scroll target on page load
+  useEffect(() => {
+    const scrollTarget = sessionStorage.getItem('scrollTarget');
+    if (scrollTarget && (location.pathname === '/' || location.pathname === '/home')) {
+      setTimeout(() => {
+        const element = document.getElementById(scrollTarget);
+        if (element) {
+          const offsetTop = element.offsetTop - 120;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+          sessionStorage.removeItem('scrollTarget');
+        }
+      }, 500); // Small delay to ensure the page has loaded
+    }
+  }, [location.pathname]);
 
   return (
     <header 
@@ -261,20 +266,11 @@ const Header = () => {
                   )
                 ) : (
                   <button
-                    key={item.name}
-                    onClick={() => {
-                      const isProductPage = window.location.pathname.includes('/products/');
-                      const isQualityPage = window.location.pathname.includes('/quality');
-                      const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
-                      if (isNotHomePage) {
-                        navigateToHomeSection(item.href);
-                      } else {
-                        scrollToSection(item.href);
-                      }
-                    }}
-                    className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
+                  key={item.name}
+                  onClick={() => handleNavigation(item.href)}
+                  className={`text-foreground hover:text-royal-sapphire transition-all duration-200 font-medium relative group ${item.highlight ? 'text-royal-sapphire bg-royal-sapphire/10 px-3 py-1 rounded-full' : ''}`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
                   <span className="relative z-10">{item.name}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-royal-sapphire transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full"></span>
                   {/* Subtle glow effect on hover */}
@@ -287,16 +283,7 @@ const Header = () => {
           {/* Enhanced CTA Button */}
           <div className="hidden lg:block">
             <Button 
-              onClick={() => {
-                const isProductPage = window.location.pathname.includes('/products/');
-                const isQualityPage = window.location.pathname.includes('/quality');
-                const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
-                if (isNotHomePage) {
-                  navigateToHomeSection('#contact');
-                } else {
-                  scrollToSection('#contact');
-                }
-              }}
+              onClick={() => handleNavigation('#contact')}
               className="relative overflow-hidden bg-[#11182c] hover:bg-[#11182c]/90 text-white font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-500 transform hover:-translate-y-1 group"
             >
               <span className="relative z-10 flex items-center">Contact Us <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" /></span>
@@ -368,18 +355,23 @@ const Header = () => {
                     </div>
                   </div>
                 ) : (
+                    item.href.startsWith('/') ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="relative z-10">{item.name}</span>
+                    <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
+                    {/* Subtle background highlight on hover */}
+                    <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
+                  </Link>
+                ) : (
                   <button
                     key={item.name}
-                    onClick={() => {
-                      const isProductPage = window.location.pathname.includes('/products/');
-                      const isQualityPage = window.location.pathname.includes('/quality');
-                      const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
-                      if (isNotHomePage) {
-                        navigateToHomeSection(item.href);
-                      } else {
-                        scrollToSection(item.href);
-                      }
-                    }}
+                    onClick={() => handleNavigation(item.href)}
                     className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
@@ -389,29 +381,23 @@ const Header = () => {
                     <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
                   </button>
                 )
+                )
               ))}
+              </div>
               <div className="px-4 pt-2">
                 <Button 
                   onClick={() => {
-                    const isProductPage = window.location.pathname.includes('/products/');
-                    const isQualityPage = window.location.pathname.includes('/quality');
-                    const isNotHomePage = isProductPage || isQualityPage || window.location.pathname !== '/';
-                    if (isNotHomePage) {
-                      navigateToHomeSection('#contact');
-                    } else {
-                      scrollToSection('#contact');
-                    }
+                    handleNavigation('#contact');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="relative overflow-hidden bg-[#11182c] hover:bg-[#11182c]/90 text-white font-bold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-500 w-full mt-4 group"
+                  className="w-full bg-royal-sapphire hover:bg-royal-sapphire/90 text-white rounded-full px-6 py-2 flex items-center justify-center space-x-2 transition-all duration-300 shadow-md hover:shadow-lg"
                 >
-                  <span className="relative z-10 flex items-center justify-center">Get Quote <Shield className="ml-2 w-4 h-4 group-hover:rotate-12 transition-transform duration-300" /></span>
-                  {/* Animated background effect */}
-                  <span className="absolute inset-0 bg-white/10 w-1/3 -skew-x-12 transform -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 ease-in-out"></span>
+                  <span>Contact Us</span>
+                  <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
             </div>
-          </div>
+          
         )}
       </nav>
     </header>
