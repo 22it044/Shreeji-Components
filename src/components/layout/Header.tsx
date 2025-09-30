@@ -19,6 +19,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const [isMobileProductDropdownOpen, setIsMobileProductDropdownOpen] = useState(false);
   const productDropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -58,6 +59,7 @@ const Header = () => {
   // Unified function to handle section links and page navigation
   const handleNavigation = (href: string) => {
     setIsMobileMenuOpen(false);
+    setIsMobileProductDropdownOpen(false);
     
     // If it's a page link (starts with '/'), use React Router navigation
     if (href.startsWith('/')) {
@@ -320,41 +322,44 @@ const Header = () => {
                 item.hasDropdown ? (
                   <div key={item.name} className="relative">
                     <button
-                      onClick={() => {
-                        if (item.isPage) {
-                          window.location.href = item.href;
-                        }
-                      }}
+                      onClick={() => setIsMobileProductDropdownOpen(!isMobileProductDropdownOpen)}
                       className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group w-full flex justify-between items-center"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <span className="relative z-10">{item.name}</span>
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isMobileProductDropdownOpen ? 'rotate-180' : ''}`} />
                       <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
                       <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
                     </button>
                     
-                    {/* Mobile Product Links */}
-                    <div className="pl-6 mt-2 space-y-2 border-l-2 border-royal-sapphire/10 ml-6">
-                      <Link 
-                        to="/products"
-                        className="block py-1.5 text-sm text-foreground hover:text-royal-sapphire transition-colors duration-200 font-medium"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Product Portfolio
-                      </Link>
-                      
-                      {productData.map((product, idx) => (
+                    {isMobileProductDropdownOpen && (
+                      <div className="pl-6 mt-2 space-y-2 border-l-2 border-royal-sapphire/10 ml-6">
                         <Link 
-                          key={idx}
-                          to={product.link} 
-                          className="block py-1.5 text-xs text-foreground/80 hover:text-royal-sapphire transition-colors duration-200"
-                          onClick={() => setIsMobileMenuOpen(false)}
+                          to="/products"
+                          className="block py-1.5 text-sm text-foreground hover:text-royal-sapphire transition-colors duration-200 font-medium"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsMobileProductDropdownOpen(false);
+                          }}
                         >
-                          {product.title}
+                          Product Portfolio
                         </Link>
-                      ))}
-                    </div>
+                        
+                        {productData.map((product, idx) => (
+                          <Link 
+                            key={idx}
+                            to={product.link} 
+                            className="block py-1.5 text-xs text-foreground/80 hover:text-royal-sapphire transition-colors duration-200"
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsMobileProductDropdownOpen(false);
+                            }}
+                          >
+                            {product.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <button
