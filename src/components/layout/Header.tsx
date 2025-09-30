@@ -357,20 +357,6 @@ const Header = () => {
                     </div>
                   </div>
                 ) : (
-                    item.href.startsWith('/') ? (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
-                    {/* Subtle background highlight on hover */}
-                    <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
-                  </Link>
-                ) : (
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
@@ -384,7 +370,7 @@ const Header = () => {
                   </button>
                 )
                 )
-              ))}
+              )})
               </div>
               <div className="px-4 pt-2">
                 <Button 
