@@ -29,14 +29,20 @@ export const certifications = [
     description: 'Automotive Quality Standard',
   },
   {
+    icon: TrendingUp,
+    title: 'EEPC India',
+    description: 'Export Promotion Council Member',
+  },
+  {
     icon: Shield,
     title: 'Z Bronze',
     description: 'Bronze Quality Certification',
   },
+  
   {
-    icon: TrendingUp,
-    title: 'EEPC India',
-    description: 'Export Promotion Council Member',
+    icon: Shield,
+    title: 'Z Bronze 2',
+    description: 'Bronze Quality Certification',
   },
 ];
 
@@ -393,90 +399,48 @@ const QualitySection = () => {
 
         {/* Quality Control Process section removed as requested */}
             
-            {/* Premium Quality Assurance Badge - Modern Premium Style */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="relative group mb-12"
-            >
-              {/* Premium background with subtle gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] shadow-xl"></div>
-              
-              <div className="relative p-6 border border-white/30 overflow-hidden z-10 group-hover:border-white/70 transition-all duration-500">
-                {/* Premium corner elements */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-white/70"></div>
-                <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-white/70"></div>
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-white/70"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-white/70"></div>
-                
-                {/* Technical ID and specifications - refined */}
-                <div className="absolute top-2 right-2 text-[8px] font-mono text-white/50">QC-ZDP-001</div>
-                <div className="absolute top-2 left-2 text-[8px] font-mono text-white/50">REV: 2023.04</div>
-                
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div className="flex items-center space-x-6">
-                    <div className="relative w-20 h-20 transition-all duration-500 group-hover:scale-105">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/50 flex items-center justify-center">
-                        <Shield className="w-10 h-10 text-white" />
-                      </div>
-                      
-                      {/* Technical measurement indicators - refined */}
-                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4">
-                        <div className="w-px h-4 bg-white/50 mx-auto"></div>
-                        <div className="w-4 h-px bg-white/50 mt-1"></div>
-                      </div>
-                      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4">
-                        <div className="w-px h-4 bg-white/50 mx-auto"></div>
-                        <div className="w-4 h-px bg-white/50 mt-1"></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-2xl font-bold text-white mb-2">ZERO DEFECT POLICY</h4>
-                      
-                      <div className="w-16 h-0.5 bg-white/80 mb-3"></div>
-                      
-                      <p className="text-white font-light">Our commitment to excellence in every component we manufacture <span className="text-white/90">[TOLERANCE: ±0.001mm]</span></p>
-                    </div>
-                  </div>
-                  
-                  <Link to="/quality">
-                    <Button variant="outline" className="border border-white/50 bg-black/30 hover:bg-white/20 transition-all duration-300 font-medium text-white hover:text-white hover:border-white/80">
-                      <span>VIEW STANDARDS</span>
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </Link>
-                </div>
-                
-                {/* Technical measurement grid - refined */}
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-white/20"></div>
-                {[...Array(10)].map((_, i) => (
-                  <div key={`grid-b-${i}`} className="absolute bottom-0 h-2 w-px bg-white/30" style={{ left: `${i * 10}%` }}></div>
-                ))}
-              </div>
-            </motion.div>
-            
-            {/* View Full Quality Page Button - Premium Style */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isVisible ? 1 : 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="text-center"
-            >
-              <div className="inline-flex items-center space-x-2 bg-black/30 p-2 px-6 border border-white/50 transition-all duration-300 group cursor-pointer relative hover:border-white/80">
-                {/* Premium corner elements */}
-                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/70"></div>
-                <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/70"></div>
-                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/70"></div>
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/70"></div>
-                
-                <span className="text-sm font-medium text-white transition-colors duration-300 tracking-wide">PRECISION QUALITY STANDARDS</span>
-                <div className="w-3 h-3 border border-white/70 flex items-center justify-center">
-                  <div className="w-1 h-1 bg-white/80"></div>
-                </div>
-              </div>
-            </motion.div>
+            {/* Premium Call to Action Button */}
+<motion.div
+  className="text-center mt-16"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.5 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <Link 
+    to="/quality" 
+    className="group relative inline-flex items-center justify-center bg-black/80 backdrop-blur-sm shadow-elegant border border-white/20 rounded-lg transition-all duration-500 hover:shadow-glow overflow-hidden"
+  >
+    {/* Industrial brutalism decorative elements */}
+    <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-amber-500/70 rounded-tl-lg"></span>
+    <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-amber-500/70 rounded-br-lg"></span>
+    <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/30 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+    <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/30 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+    
+    {/* Technical measurement lines */}
+    <div className="absolute top-0 left-1/4 h-1 w-px bg-white/50"></div>
+    <div className="absolute top-0 left-2/4 h-1 w-px bg-white/50"></div>
+    <div className="absolute top-0 left-3/4 h-1 w-px bg-white/50"></div>
+    <div className="absolute bottom-0 left-1/4 h-1 w-px bg-white/50"></div>
+    <div className="absolute bottom-0 left-2/4 h-1 w-px bg-white/50"></div>
+    <div className="absolute bottom-0 left-3/4 h-1 w-px bg-white/50"></div>
+
+    {/* Main button content with premium styling */}
+    <div className="relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-amber-500/20 text-white rounded-lg group-hover:bg-amber-500/30 transition-all duration-500 m-0.5">
+      {/* Technical ID */}
+      <div className="absolute top-1 right-1 text-[8px] font-mono text-white/50">QC-BTN-001</div>
+      
+      <div className="text-left">
+        <span className="text-xs uppercase tracking-widest font-mono text-amber-400">PRECISION QUALITY</span>
+        <span className="block text-base font-bold leading-tight tracking-wide">EXPLORE CERTIFICATIONS & STANDARDS</span>
+        <div className="w-12 h-0.5 bg-amber-500/80 mt-1 group-hover:w-full transition-all duration-500"></div>
+      </div>
+      <div className="w-10 h-10 rounded-full border border-amber-500/50 flex items-center justify-center group-hover:bg-amber-500/50 transition-all duration-500">
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+      </div>
+    </div>
+  </Link>
+</motion.div>
           </div>
         
       

@@ -31,7 +31,7 @@ const Products = () => {
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
               <Link 
                 to="/"
-                className="mb-6 text-sm text-white/60 hover:text-amber-500 transition-colors flex items-center group bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-amber-500/20 hover:border-amber-500/50"
+                className="mt-3 mb-3 text-sm text-white/60 hover:text-amber-500 transition-colors flex items-left group bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-amber-500/20 hover:border-amber-500/50"
               >
                 <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
                 Back to Home
@@ -58,7 +58,7 @@ const Products = () => {
               </motion.h1>
               
               <motion.p 
-                className="text-lg text-white/70 max-w-3xl mx-auto mt-6 mb-8 leading-relaxed"
+                className="text-lg text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -72,24 +72,9 @@ const Products = () => {
         {/* Premium Products Showcase */}
         <section className="py-24 bg-ice-blue relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-16 relative">
-              <div className="inline-block px-4 py-1 bg-amber-500/10 rounded-full text-xs font-semibold text-amber-500 mb-4 backdrop-blur-sm border border-amber-500/20">
-                PRECISION ENGINEERING
-              </div>
-              
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Premium Product Collection
-              </h2>
-              
-              <div className="w-24 h-1 bg-amber-500 rounded-full mb-6 mx-auto"></div>
-              
-              <p className="text-medium-gray max-w-3xl mx-auto leading-relaxed">
-                Browse our selection of high-quality brass components designed for precision, durability, and performance
-              </p>
-            </div>
-            
+                        
             {/* Product Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               {productData.map((product, index) => (
                 <motion.div
                   key={index}

@@ -151,21 +151,23 @@ const Header = () => {
           
           {/* Enhanced certification display */}
           <div className="hidden md:flex items-center space-x-4 text-xs">
-            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
-              <Award className="h-3 w-3 text-royal-sapphire" />
-              <span>ISO 9001:2015</span>
-            </div>
-            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
-              <CheckCircle className="h-3 w-3 text-royal-sapphire" />
-              <span>IATF 16949:2016</span>
-            </div>
-            <div className="flex items-center space-x-1 bg-dark-foreground/10 px-3 py-1 rounded-full">
-              <Globe className="h-3 w-3 text-royal-sapphire" />
-              <span>Global Exports</span>
-            </div>
             <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <BadgeCheck className="h-2.5 w-2.5 text-royal-sapphire" />
-              <span className="text-royal-sapphire">CERTIFIED QUALITY</span>
+  <Award className="h-2.5 w-2.5 text-white" />
+  <span className="text-white">ISO 9001:2015</span>
+</div>
+
+<div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+  <CheckCircle className="h-2.5 w-2.5 text-white" />
+  <span className="text-white">IATF 16949:2016</span>
+</div>
+
+<div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+  <Globe className="h-2.5 w-2.5 text-white" />
+  <span className="text-white">GLOBAL EXPORTS</span>
+</div>
+            <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <BadgeCheck className="h-2.5 w-2.5 text-white" />
+              <span className="text-white">CERTIFIED QUALITY</span>
             </div>
           </div>
         </div>

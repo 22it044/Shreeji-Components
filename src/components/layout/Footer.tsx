@@ -62,7 +62,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-foreground/70 hover:text-[#11182c] transition-colors duration-300"
+                    className="text-white hover:text-amber-400 transition-colors duration-300"
                   >
                     {link.name}
                   </button>

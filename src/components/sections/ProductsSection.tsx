@@ -118,8 +118,8 @@ const ProductsSection = () => {
   
   // Filter products based on selected category
   const filteredProducts = selectedFilter === 'All' 
-    ? productImages 
-    : productImages.filter(product => product.tag === selectedFilter);
+    ? productData 
+    : productData.filter(product => product.tag === selectedFilter);
     
   useEffect(() => {
     // Reset current slide when filter changes
@@ -216,11 +216,6 @@ const ProductsSection = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        {product.tag && (
-                          <div className="absolute top-3 right-3 bg-royal-sapphire text-white text-xs font-medium px-3 py-1 rounded-full shadow-md">
-                            {product.tag}
-                          </div>
-                        )}
                         <div className="absolute top-0 left-0 w-full h-full bg-royal-sapphire/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-5 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 backdrop-blur-sm bg-gradient-to-t from-black/90 to-black/40">
@@ -281,7 +276,7 @@ const ProductsSection = () => {
       {/* Product Count */}
       <div className="text-center mt-4 text-xs text-medium-gray">
         <span className="bg-light-bg/70 px-3 py-1 rounded-full">
-          Showing {filteredProducts.length} of {productImages.length} products
+          Showing {filteredProducts.length} of {productData.length} products
         </span>
       </div>
     </div>
@@ -376,7 +371,6 @@ interface ProductItem {
   title: string;
   description: string;
   link: string;
-  tag?: string;
   features?: string[];
 }
 
@@ -434,11 +428,7 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
                     <h4 className="text-white font-semibold">{item.title}</h4>
                     <p className="text-white/80 text-sm mt-1">{item.description}</p>
                   </div>
-                  {item.tag && (
-                    <div className="absolute top-3 right-3 bg-[#11182c] text-white text-xs font-medium px-3 py-1 rounded-full shadow-md">
-                      {item.tag}
-                    </div>
-                  )}
+                  
                 </CardContent>
               </Card>
             </Link>
