@@ -1,15 +1,30 @@
 import { Phone, Mail, MapPin, Award, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (href: string) => {
+    if (location.pathname === '/' || location.pathname === '/home') {
+      // If on home page, scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = (element as HTMLElement).offsetTop - 120;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // If on another page, navigate to home and set scroll target
+      sessionStorage.setItem('scrollTarget', href.replace('#', ''));
+      navigate('/');
     }
   };
 
@@ -54,14 +69,14 @@ const Footer = () => {
               {[
                 { name: 'About Us', href: '#about' },
                 { name: 'Products', href: '#products' },
-                { name: 'Quality', href: '#quality' },
+                { name: 'Quality', href: '/quality' },
                 { name: 'Industries', href: '#industries' },
                 { name: 'Stats', href: '#stats' },
                 { name: 'Contact', href: '#contact' },
               ].map((link) => (
                 <li key={link.name}>
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => link.href.startsWith('#') ? handleNavigation(link.href) : navigate(link.href)}
                     className="text-white hover:text-amber-400 transition-colors duration-300"
                   >
                     {link.name}
@@ -112,9 +127,9 @@ const Footer = () => {
             © 2025 Shreeji Components. All rights reserved.
           </div>
           <div className="flex items-center space-x-6 text-sm text-dark-foreground/70">
-            <a href="#" className="hover:text-royal-sapphire transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-royal-sapphire transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-royal-sapphire transition-colors">Quality Policy</a>
+            <button onClick={() => navigate('/privacy-policy')} className="hover:text-royal-sapphire transition-colors">Privacy Policy</button>
+            <button onClick={() => navigate('/terms-of-service')} className="hover:text-royal-sapphire transition-colors">Terms of Service</button>
+            <button onClick={() => navigate('/quality')} className="hover:text-royal-sapphire transition-colors">Quality Policy</button>
           </div>
         </div>
 
