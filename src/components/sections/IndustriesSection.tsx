@@ -25,39 +25,63 @@ const IndustriesSection = () => {
     {
       icon: Plane,
       title: 'Aviation & Aerospace',
-      description: 'High-performance components meeting strict aerospace standards',
+      description: 'High-precision aerospace components meeting strict aviation standards',
       image: '/images/Aviation industry.jpg'
     },
     {
-      icon: Zap,
-      title: 'Electrical',
-      description: 'Conductive brass components for electrical systems and power distribution',
-      image: '/images/Electrical industry.jpg'
+      icon: Leaf,
+      title: 'Renewable Energy',
+      description: 'Solar and wind energy components for sustainable power generation',
+      image: '/images/Green Energy-433308.jpg'
     },
     {
       icon: Droplets,
-      title: 'Plumbing',
-      description: 'Corrosion-resistant fittings and components for water systems',
-      image: '/images/Plumbing industry.jpg'
-    },
-    {
-      icon: Wrench,
-      title: 'Hardware',
-      description: 'Precision-engineered fasteners and hardware components',
-      image: '/images/Hardware industry.jpg'
+      title: 'Sanitary',
+      description: 'Hygienic brass fittings and components for plumbing and sanitary systems',
+      image: '/images/Braass sanitary parts.jpg'
     },
     {
       icon: Factory,
-      title: 'Manufacturing',
-      description: 'Custom components for industrial machinery and equipment',
-      image: '/images/Manufacturing industry.jpg'
+      title: 'Plastic & Rubber',
+      description: 'Specialized components for plastic injection molding and rubber processing',
+      image: '/images/Plastic industries.jpg'
     },
     {
-      icon: Leaf,
+      icon: Fuel,
+      title: 'Oil & Gas',
+      description: 'Corrosion-resistant components for petroleum and natural gas applications',
+      image: '/images/Oil and gass.jpg'
+    },
+    {
+      icon: Zap,
+      title: 'Electricals & Power',
+      description: 'High-conductivity electrical components and power distribution parts',
+      image: '/images/Electrical connector industry.jpg'
+    },
+    {
+      icon: Wrench,
+      title: 'Pneumatic',
+      description: 'Precision pneumatic fittings and air handling system components',
+      image: '/images/Pnumatic.jpg'
+    },
+    {
+      icon: Building2,
       title: 'Agriculture',
-      description: 'Durable components for agricultural machinery and irrigation systems',
-      image: '/images/Agriculture industry.jpg'
-    }
+      description: 'Durable agricultural equipment components and irrigation system parts',
+      image: '/images/agriculture.jpg'
+    },
+    {
+      icon: CircuitBoard,
+      title: 'EV (Electric Vehicles)',
+      description: 'Advanced components for electric vehicle charging and power systems',
+      image: '/images/ev cars.jpg'
+    },
+    {
+      icon: Truck,
+      title: 'Industrial Manufacturing',
+      description: 'Custom industrial components for various manufacturing applications',
+      image: '/images/CNC Machining manufacturing.jpg'
+    },
   ];
 
   useEffect(() => {
