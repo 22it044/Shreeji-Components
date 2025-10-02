@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Industrial Brutalism Design System for Brass Manufacturing - All colors MUST be HSL */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600;700&display=swap');
 
 @layer base {
   :root {

@@ -1,17 +1,42 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ChevronDown } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+import { Button } from '@/components/ui/button'; // Assuming you have this
+import { ChevronDown, ArrowRight } from 'lucide-react';
+
+// Animation variants for staggered text animation (kept same as your preferred version)
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
+        if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target); // Observe only once
         }
       },
       { threshold: 0.1 }
@@ -22,120 +47,99 @@ const HeroSection = () => {
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, []);
 
   return (
     <section 
       ref={sectionRef} 
       id="hero" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 w-full"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Premium background with enhanced gradient and effects */}
-      <div className="absolute inset-0 z-0 bg-[#11182c]">
-        {/* Premium Gradient Overlay with depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#11182c] via-[#11182c]/95 to-[#0a0f1d]/90"></div>
+      <div className="absolute top-0 left-0 w-full h-48 z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none"></div>
+
+      {/* --- Background (kept same as your preferred version) --- */}
+      <div className="absolute inset-0 z-0 bg-[#0a0f1d] bg-[radial-gradient(ellipse_at_center,_rgba(23,30,58,0.7)_0%,_rgba(10,15,29,1)_70%)]"></div>
+      <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light"></div>
+
+      {/* --- Main Content Container --- */}
+      <div className="container mx-auto px-6 z-10 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8 pt-24 pb-12">
         
-        {/* Enhanced amber/gold accents */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
-        
-        {/* Dynamic diagonal amber accent lines */}
-        <div className="absolute top-20 right-20 w-[30vw] h-px rotate-45 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent animate-pulse-slow"></div>
-        <div className="absolute bottom-40 left-20 w-[20vw] h-px -rotate-45 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent animate-pulse-slow"></div>
-        <div className="absolute top-40 left-[10%] w-[15vw] h-px rotate-[30deg] bg-gradient-to-r from-transparent via-amber-500/5 to-transparent animate-pulse-slow"></div>
-        <div className="absolute bottom-60 right-[15%] w-[25vw] h-px rotate-[-60deg] bg-gradient-to-r from-transparent via-amber-500/5 to-transparent animate-pulse-slow"></div>
-        
-        {/* Enhanced Noise Texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
-      </div>
-      
-      {/* Full-width video container with floating effect */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ 
-          opacity: isVisible ? 1 : 0, 
-          scale: isVisible ? 1 : 0.95, 
-          y: [0, -15, 0] 
-        }}
-        transition={{ 
-          duration: 1, 
-          delay: 0.3,
-          y: {
-            repeat: Infinity,
-            duration: 6,
-            ease: "easeInOut"
-          }
-        }}
-        className="w-[95%] h-[80vh] overflow-hidden relative shadow-2xl rounded-xl border-2 border-amber-500/30 z-10 mx-auto"
-      >
-        {/* Professional image container */}
-        <div className="w-full h-full overflow-hidden rounded-xl">
-          <img 
-            src="/images/Hero section/Gemini_Generated_Image_j3idb3j3idb3j3id.png" 
-            alt="Precision Brass Manufacturing"
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-700"
-          />
-          
-          {/* Enhanced overlay for better contrast with amber accents */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#11182c]/40 via-transparent to-amber-500/20 pointer-events-none transition-opacity duration-700"></div>
-          
-          {/* Floating border elements - larger and more prominent */}
-          <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-amber-500/80 animate-float rounded-tl-3xl"></div>
-          <div className="absolute -top-6 -right-6 w-32 h-32 border-t-2 border-r-2 border-amber-500/80 animate-float-delayed rounded-tr-3xl"></div>
-          <div className="absolute -bottom-6 -left-6 w-32 h-32 border-b-2 border-l-2 border-amber-500/80 animate-float-delayed rounded-bl-3xl"></div>
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-amber-500/80 animate-float rounded-br-3xl"></div>
-          
-          {/* Enhanced glow effect */}
-          <div className="absolute inset-0 shadow-[0_0_30px_rgba(251,191,36,0.4)_inset] pointer-events-none"></div>
-          
-          {/* Additional subtle floating elements */}
-          <div className="absolute top-1/4 left-0 w-16 h-1 bg-amber-500/40 animate-float-delayed"></div>
-          <div className="absolute bottom-1/4 right-0 w-16 h-1 bg-amber-500/40 animate-float"></div>
-        </div>
-        
-        {/* Premium text overlay */}
-        <div className="absolute inset-0 flex flex-col justify-top items-center text-center px-8 z-20 pt-10">
+        {/* === Left Column: Text Content (kept same as your preferred version) === */}
+        <motion.div
+          className="text-center lg:text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+        >
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight"
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight"
           >
             Shreeji Components
           </motion.h1>
+
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="text-xl md:text-2xl text-gray-200 max-w-3xl mb-8"
+            variants={itemVariants}
+            className="mt-4 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto lg:mx-0"
           >
-            Precision-engineered brass components with uncompromising quality and excellence
+            Precision-engineered brass components with uncompromising quality and excellence.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-          >
+          
+          <motion.div variants={itemVariants} className="mt-8">
             <Button 
-              variant="premium" 
               size="lg" 
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-6 text-lg"
+              className="group bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Explore Our Products
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
           </motion.div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* === Right Column: Visual Element with Subtle Enclosure === */}
+        <motion.div
+          className="relative w-full aspect-video md:aspect-[4/3] lg:aspect-square max-w-lg mx-auto lg:max-w-none flex items-center justify-center p-4" // Padding for visual breathing room
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ 
+            opacity: isVisible ? 1 : 0, 
+            scale: isVisible ? 1 : 0.8 
+          }}
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+        >
+          {/* Subtle glow behind the enclosure to make it pop */}
+          <div className="absolute inset-0 bg-amber-500/10 blur-3xl rounded-3xl" /> 
+          
+          {/* The new subtle enclosure for the image */}
+          <motion.div
+            className="relative w-full  bg-gradient-to-br from-[#1c243a]/80 to-[#0d121c]/80 rounded-xl overflow-hidden
+                       shadow-xl shadow-black/40 border border-amber-500/20 flex items-center justify-center p-4" // Added inner padding
+            // A more subtle and continuous floating animation for the enclosure
+            animate={{ y: ["-1%", "1%"] }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut"
+            }}
+          >
+            <img 
+              src="images/Hero section/Gemini_Generated_Image_j3idb3j3idb3j3id.png" // IMPORTANT: Use a transparent background image for the best effect
+              alt="Precision-engineered brass components by Shreeji Components"
+              className="relative w-full h-auto object-contain max-h-[85%]" // Constrain height within enclosure for breathing room
+            />
+          </motion.div>
+        </motion.div>
+      </div>
       
-      {/* Elegant scroll indicator */}
+      {/* --- Elegant Scroll Indicator --- */}
       <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -10 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
       >
-        <ChevronDown className="w-10 h-10 text-amber-500/80 animate-bounce" />
+        <ChevronDown className="w-8 h-8 text-amber-500/70 animate-bounce" />
       </motion.div>
     </section>
   );

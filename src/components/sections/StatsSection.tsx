@@ -178,7 +178,7 @@ const StatsSection = () => {
         <div className="relative">
           <div className="mb-16 text-center">
             <h3 className={`text-2xl md:text-3xl font-semibold mb-4 text-[#11182c] transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-              What <span className="text-[#0077B5]">Enabled</span> Us
+              Our <span className="text-[#0077B5]">USP</span>
             </h3>
             
             <div className={`h-1 bg-[#11182c] rounded-full mx-auto mb-8 transition-all duration-1000 ${isVisible ? 'w-[60px] animate-fade-in' : 'w-0'}`}></div>
@@ -220,7 +220,7 @@ const StatsSection = () => {
                   <Globe className="w-8 h-8 text-[#11182c]" />
                 </div>
                 
-                <h4 className="text-xl font-bold text-[#11182c] mb-4 text-center">Global Reach</h4>
+                <h4 className="text-xl font-bold text-[#11182c] mb-4 text-center">Global Presence</h4>
                 
                 <div className="w-12 h-1 bg-gradient-to-r from-[#11182c] to-[#11182c]/50 rounded-full mx-auto mb-4"></div>
                 
