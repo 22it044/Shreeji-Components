@@ -43,7 +43,7 @@ const StatsSection = () => {
     },
     {
       icon: Package,
-      value: 25,
+      value: 5,
       suffix: 'M+',
       label: 'Parts Monthly',
       description: 'High-volume production capacity',
@@ -58,11 +58,21 @@ const StatsSection = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           
-          // Animate counters with staggered timing
+          // Immediately set values on mobile to prevent loading issues
+          if (window.innerWidth < 768) {
+            const finalValues: {[key: string]: number} = {};
+            stats.forEach(stat => {
+              finalValues[stat.key] = stat.value;
+            });
+            setCounters(finalValues as typeof counters);
+            return;
+          }
+          
+          // Animate counters with staggered timing on desktop
           stats.forEach((stat, index) => {
             setTimeout(() => {
               let startValue = 0;
-              const duration = 2500;
+              const duration = 2000; // Slightly faster animation
               const increment = stat.value / (duration / 16);
               
               const timer = setInterval(() => {
@@ -77,11 +87,11 @@ const StatsSection = () => {
                   [stat.key]: Math.floor(startValue),
                 }));
               }, 16);
-            }, index * 300);
+            }, index * 200); // Faster staggering
           });
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1, rootMargin: "50px" } // More sensitive threshold and margin
     );
 
     if (sectionRef.current) {

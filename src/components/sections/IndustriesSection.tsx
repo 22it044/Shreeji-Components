@@ -6,6 +6,75 @@ const IndustriesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Define industries data first
+  const industries = [
+    {
+      icon: Car,
+      title: 'Automobile',
+      description: 'Precision automotive components for engine, transmission, and electrical systems',
+      image: '/images/Automobile industry.jpg'
+    },
+    {
+      icon: Ship,
+      title: 'Shipping',
+      description: 'Marine-grade brass components for maritime and offshore applications',
+      image: '/images/Shipping industryjpg.jpg'
+    },
+    {
+      icon: Plane,
+      title: 'Aviation & Aerospace',
+      description: 'High-performance components meeting strict aerospace standards',
+      image: '/images/Aviation industry.jpg'
+    },
+    {
+      icon: Zap,
+      title: 'Electrical',
+      description: 'Conductive brass components for electrical systems and power distribution',
+      image: '/images/Electrical industry.jpg'
+    },
+    {
+      icon: Droplets,
+      title: 'Plumbing',
+      description: 'Corrosion-resistant fittings and components for water systems',
+      image: '/images/Plumbing industry.jpg'
+    },
+    {
+      icon: Wrench,
+      title: 'Hardware',
+      description: 'Precision-engineered fasteners and hardware components',
+      image: '/images/Hardware industry.jpg'
+    },
+    {
+      icon: Factory,
+      title: 'Manufacturing',
+      description: 'Custom components for industrial machinery and equipment',
+      image: '/images/Manufacturing industry.jpg'
+    },
+    {
+      icon: Leaf,
+      title: 'Agriculture',
+      description: 'Durable components for agricultural machinery and irrigation systems',
+      image: '/images/Agriculture industry.jpg'
+    }
+  ];
+
+  useEffect(() => {
+    // Check if mobile on initial render
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set initial value
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,85 +96,10 @@ const IndustriesSection = () => {
   // Auto-rotate carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(industries.length / 4));
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(industries.length / (isMobile ? 2 : 4)));
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
-
-  const industries = [
-    {
-      icon: Car,
-      title: 'Automobile',
-      description: 'Precision automotive components for engine, transmission, and electrical systems',
-      image: '/images/Automobile industry.jpg'
-    },
-    {
-      icon: Ship,
-      title: 'Shipping',
-      description: 'Marine-grade brass components for maritime and offshore applications',
-      image: '/images/Shipping industryjpg.jpg'
-    },
-    {
-      icon: Plane,
-      title: 'Aviation & Aerospace',
-      description: 'High-precision aerospace components meeting strict aviation standards',
-      image: '/images/Aviation industry.jpg'
-    },
-    {
-      icon: Leaf,
-      title: 'Renewable Energy',
-      description: 'Solar and wind energy components for sustainable power generation',
-      image: '/images/Green Energy-433308.jpg'
-    },
-    {
-      icon: Droplets,
-      title: 'Sanitary',
-      description: 'Hygienic brass fittings and components for plumbing and sanitary systems',
-      image: '/images/Braass sanitary parts.jpg'
-    },
-    {
-      icon: Factory,
-      title: 'Plastic & Rubber',
-      description: 'Specialized components for plastic injection molding and rubber processing',
-      image: '/images/Plastic industries.jpg'
-    },
-    {
-      icon: Fuel,
-      title: 'Oil & Gas',
-      description: 'Corrosion-resistant components for petroleum and natural gas applications',
-      image: '/images/Oil and gass.jpg'
-    },
-    {
-      icon: Zap,
-      title: 'Electricals & Power',
-      description: 'High-conductivity electrical components and power distribution parts',
-      image: '/images/Electrical connector industry.jpg'
-    },
-    {
-      icon: Wrench,
-      title: 'Pneumatic',
-      description: 'Precision pneumatic fittings and air handling system components',
-      image: '/images/Pnumatic.jpg'
-    },
-    {
-      icon: Building2,
-      title: 'Agriculture',
-      description: 'Durable agricultural equipment components and irrigation system parts',
-      image: '/images/agriculture.jpg'
-    },
-    {
-      icon: CircuitBoard,
-      title: 'EV (Electric Vehicles)',
-      description: 'Advanced components for electric vehicle charging and power systems',
-      image: '/images/ev cars.jpg'
-    },
-    {
-      icon: Truck,
-      title: 'Industrial Manufacturing',
-      description: 'Custom industrial components for various manufacturing applications',
-      image: '/images/CNC Machining manufacturing.jpg'
-    },
-  ];
+  }, [isMobile, industries.length]);
 
   return (
     <section id="industries" ref={sectionRef} className="py-24 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
@@ -146,10 +140,10 @@ const IndustriesSection = () => {
             className="flex transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {Array.from({ length: Math.ceil(industries.length / 4) }).map((_, slideIndex) => (
+            {Array.from({ length: Math.ceil(industries.length / (isMobile ? 2 : 4)) }).map((_, slideIndex) => (
               <div key={slideIndex} className="w-full flex-shrink-0 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
-                  {industries.slice(slideIndex * 4, slideIndex * 4 + 4).map((industry, index) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
+                  {industries.slice(slideIndex * (isMobile ? 2 : 4), slideIndex * (isMobile ? 2 : 4) + (isMobile ? 2 : 4)).map((industry, index) => (
                     <div
                       key={industry.title}
                       className={`bg-white/60 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover:shadow-2xl group transition-all duration-500 border border-white/70 transform hover:-translate-y-2 hover:scale-[1.02] ${
@@ -157,8 +151,6 @@ const IndustriesSection = () => {
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
-
-                      
                       {/* Industry Image */}
                       <div className="relative h-52 md:h-56 overflow-hidden">
                         <img 
@@ -198,7 +190,7 @@ const IndustriesSection = () => {
           
           {/* Carousel indicators */}
           <div className="flex justify-center py-6 space-x-3">
-            {Array.from({ length: Math.ceil(industries.length / 4) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(industries.length / (isMobile ? 2 : 4)) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

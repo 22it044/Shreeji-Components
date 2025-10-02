@@ -4,19 +4,23 @@ interface SmoothScrollOptions {
   offset?: number;
   duration?: number;
   easing?: (t: number) => number;
+  behavior?: ScrollBehavior;
 }
 
 /**
  * Hook to enable smooth scrolling between sections
+ * Enhanced for performance and smoother animations
  */
 export const useSmoothScroll = (options: SmoothScrollOptions = {}) => {
   const {
     offset = 0,
-    duration = 1000,
-    easing = (t: number) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1)
+    duration = 800, // Reduced for snappier feel
+    easing = (t: number) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1),
+    behavior = 'smooth'
   } = options;
 
   useEffect(() => {
+    // Use passive event listener for better performance
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -31,11 +35,31 @@ export const useSmoothScroll = (options: SmoothScrollOptions = {}) => {
       
       e.preventDefault();
       
+      // Check if browser supports native smooth scrolling
+      if ('scrollBehavior' in document.documentElement.style && behavior === 'smooth') {
+        const headerOffset = offset;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update URL hash without scrolling
+        setTimeout(() => {
+          window.history.pushState(null, '', targetId);
+        }, 10);
+        
+        return;
+      }
+      
+      // Fallback to custom implementation for browsers without native support
       const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition;
       
       let startTime: number | null = null;
+      let rafId: number;
       
       const animateScroll = (currentTime: number) => {
         if (startTime === null) startTime = currentTime;
@@ -46,20 +70,24 @@ export const useSmoothScroll = (options: SmoothScrollOptions = {}) => {
         window.scrollTo(0, startPosition + distance * easedProgress);
         
         if (timeElapsed < duration) {
-          requestAnimationFrame(animateScroll);
+          rafId = requestAnimationFrame(animateScroll);
+        } else {
+          // Update URL hash after animation completes
+          window.history.pushState(null, '', targetId);
         }
       };
       
-      requestAnimationFrame(animateScroll);
+      rafId = requestAnimationFrame(animateScroll);
       
-      // Update URL hash without scrolling
-      window.history.pushState(null, '', targetId);
+      return () => {
+        if (rafId) cancelAnimationFrame(rafId);
+      };
     };
     
-    document.addEventListener('click', handleAnchorClick);
+    document.addEventListener('click', handleAnchorClick, { passive: false });
     
     return () => {
       document.removeEventListener('click', handleAnchorClick);
     };
-  }, [offset, duration, easing]);
+  }, [offset, duration, easing, behavior]);
 };
