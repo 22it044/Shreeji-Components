@@ -60,17 +60,17 @@ const LinkedInSection = () => {
   // No need to fetch posts as they are now static
 
   return (
-    <div id="linkedin" ref={sectionRef} className="py-20 bg-gradient-subtle relative overflow-hidden">
+    <div id="linkedin" ref={sectionRef} className="py-20 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#0077B5]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       
       {/* Floating elements */}
       <div className="absolute top-20 left-10 opacity-20 animate-float-slow">
         <Linkedin className="w-16 h-16 text-[#0077B5]" />
       </div>
       <div className="absolute bottom-20 right-10 opacity-20 animate-float">
-        <Globe className="w-12 h-12 text-primary" />
+        <Globe className="w-12 h-12 text-[#11182c]" />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -83,28 +83,29 @@ const LinkedInSection = () => {
         >
           {/* Premium tag */}
           <div className="inline-block relative mb-2">
-            <span className="text-sm font-semibold text-[#0077B5] uppercase tracking-wider bg-[#0077B5]/10 px-4 py-1 rounded-full flex items-center justify-center space-x-1 shadow-glow border border-[#0077B5]/20">
-              <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>Professional Network</span>
+            <span className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md rounded-full px-5 py-2 mb-4 border border-white/70 shadow-md">
+              <div className="p-1 rounded-full bg-white/60 backdrop-blur-md border border-white/70">
+                <Linkedin className="w-3 h-3 text-[#0077B5]" />
+              </div>
+              <span className="text-[#11182c] font-semibold text-sm">Professional Network</span>
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077B5] to-[#00a0dc]">Connect</span> with us on LinkedIn
-            <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-[#0077B5]/50 to-transparent rounded-full"></div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-[#0077B5]">Connect</span> <span className="text-[#11182c]">with us on LinkedIn</span>
           </h2>
           
-          <p className="text-xl text-medium-gray max-w-2xl mx-auto leading-relaxed">
+          <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
+          
+          <p className="text-[#334155] max-w-3xl mx-auto leading-relaxed">
             Stay updated with our latest achievements, industry insights, and premium manufacturing excellence
           </p>
           
           {/* Decorative line with badge */}
           <div className="flex items-center justify-center mt-8">
              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#0077B5]/50"></div>
-             <div className="mx-4 p-1 rounded-full bg-gradient-to-r from-[#0077B5] to-[#00a0dc] shadow-glow">
-               <div className="bg-background rounded-full p-2">
-                 <BadgeCheck className="w-5 h-5 text-[#0077B5]" />
-               </div>
+             <div className="mx-4 p-1 rounded-full bg-white/60 backdrop-blur-md border border-white/70">
+               <BadgeCheck className="w-5 h-5 text-[#0077B5]" />
              </div>
              <div className="h-px w-16 bg-gradient-to-r from-[#0077B5]/50 to-transparent"></div>
           </div>
@@ -121,24 +122,24 @@ const LinkedInSection = () => {
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-background/80 backdrop-blur-sm rounded-2xl shadow-elegant hover:shadow-elegant-hover transition-all duration-500 border border-[#0077B5]/10 overflow-hidden group relative"
+                className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 border border-white/70 overflow-hidden group relative hover:translate-y-[-5px]"
               >
                 {/* Enhanced Post Header */}
                 <div className="p-6 pb-4 relative">
                   <div className="absolute top-3 right-3">
-                    <div className="bg-gradient-to-r from-[#0077B5]/10 to-[#00a0dc]/10 rounded-full px-2 py-0.5 text-xs font-medium text-[#0077B5] border border-[#0077B5]/20 shadow-sm flex items-center">
+                    <div className="bg-white/60 backdrop-blur-md rounded-full px-2 py-0.5 text-xs font-medium text-[#0077B5] border border-white/70 shadow-sm flex items-center">
                       <BadgeCheck className="w-3 h-3 mr-1" />
                       <span>Official</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#0077B5] to-[#00a0dc] rounded-lg flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-10 h-10 bg-[#0077B5] rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                         <span className="text-white font-bold text-sm">S</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#0077B5] to-[#00a0dc] text-sm">Shreeji Components</h4>
-                        <div className="flex items-center space-x-2 text-xs text-medium-gray">
+                        <h4 className="font-semibold text-[#0077B5] text-sm">Shreeji Components</h4>
+                        <div className="flex items-center space-x-2 text-xs text-[#334155]">
                           <Calendar className="w-3 h-3 text-[#0077B5]" />
                           <span>{post.date}</span>
                         </div>
@@ -147,7 +148,7 @@ const LinkedInSection = () => {
                   </div>
                   
                   {/* Enhanced Post Content */}
-                  <p className="text-sm text-foreground leading-relaxed mb-4 group-hover:text-foreground/90 transition-colors duration-300">
+                  <p className="text-sm text-[#334155] leading-relaxed mb-4 group-hover:text-[#11182c] transition-colors duration-300">
                     {post.content}
                   </p>
                 </div>
@@ -156,13 +157,11 @@ const LinkedInSection = () => {
                 {post.image && (
                   <div className="relative h-48 md:h-56 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0077B5]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                     <img 
                       src={post.image} 
                       alt="LinkedIn post" 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                     />
-
                   </div>
                 )}
                 
@@ -170,22 +169,22 @@ const LinkedInSection = () => {
                 <div className="p-6 pt-4">
                   <div className="flex justify-between items-center">
                     <div className="flex space-x-4">
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
                         <Heart className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.likes}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
                         <MessageCircle className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.comments}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-medium-gray group-hover:text-[#0077B5] transition-colors duration-300">
+                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
                         <Share2 className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.shares}</span>
                       </div>
                     </div>
                     <button
                       onClick={() => window.open(linkedInAccount, '_blank')}
-                      className="bg-gradient-to-r from-[#0077B5]/10 to-[#00a0dc]/10 hover:from-[#0077B5]/20 hover:to-[#00a0dc]/20 text-[#0077B5] px-3 py-1 rounded-full transition-all duration-300 text-xs font-medium flex items-center space-x-1 border border-[#0077B5]/10 group-hover:border-[#0077B5]/30 shadow-sm"
+                      className="bg-white/60 backdrop-blur-md text-[#0077B5] px-3 py-1 rounded-full transition-all duration-300 text-xs font-medium flex items-center space-x-1 border border-white/70 hover:bg-[#0077B5]/10 shadow-sm"
                     >
                       <span>View Post</span>
                       <ExternalLink className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" />
@@ -243,14 +242,11 @@ const LinkedInSection = () => {
             
             <Button 
               onClick={() => window.open(linkedInAccount, '_blank')}
-              className="bg-gradient-to-r from-[#0077B5] to-[#00a0dc] hover:from-[#00a0dc] hover:to-[#0077B5] text-white px-10 py-6 rounded-xl shadow-glow hover:shadow-elegant-hover transition-all duration-500 group relative overflow-hidden"
+              className="bg-[#0077B5] hover:bg-[#0077B5]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative flex items-center justify-center">
-                <Linkedin className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-lg font-medium">Follow on LinkedIn</span>
-                <Zap className="w-5 h-5 ml-2 animate-pulse" />
-              </span>
+              <Linkedin className="w-5 h-5 mr-2" />
+              <span>Follow Us on LinkedIn</span>
+              <ExternalLink className="w-4 h-4 ml-2" />
             </Button>
             
             {/* Trust indicators */}

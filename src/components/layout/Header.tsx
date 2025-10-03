@@ -159,21 +159,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4 text-xs">
             <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
               <Award className="h-2.5 w-2.5 text-white" />
-              <span className="text-white">ISO 9001:2015</span>
-            </div>
-
-            <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <CheckCircle className="h-2.5 w-2.5 text-white" />
-              <span className="text-white">IATF 16949:2016</span>
-            </div>
-
-            <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <Globe className="h-2.5 w-2.5 text-white" />
-              <span className="text-white">GLOBAL EXPORTS</span>
-            </div>
-            <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <BadgeCheck className="h-2.5 w-2.5 text-white" />
-              <span className="text-white">CERTIFIED QUALITY</span>
+              <span className="text-white">ISO 9001:2015 | IATF 16949:2016 | Z Bronze | EEPC India</span>
             </div>
           </div>
           
@@ -181,13 +167,9 @@ const Header = () => {
           <div className="md:hidden flex items-center overflow-x-auto scrollbar-hide space-x-2 text-xs max-w-[140px]">
             <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-1 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
               <Award className="h-3 w-3 text-white" />
-              <span className="text-white whitespace-nowrap">ISO</span>
+              <span className="text-white whitespace-nowrap">ISO 9001:2015 | IATF 16949:2016 | Z Bronze | EEPC India</span>
             </div>
-            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-1 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <CheckCircle className="h-3 w-3 text-white" />
-              <span className="text-white whitespace-nowrap">IATF</span>
-            </div>
-          </div>
+                      </div>
         </div>
       </div>
 

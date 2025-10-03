@@ -208,15 +208,15 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
       {/* Premium decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute top-40 right-20 w-32 h-32 bg-[#11182c]/10 rounded-full blur-2xl"></div>
       
       {/* Glass overlay */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 relative max-w-3xl mx-auto">
+        <div className={`text-center mb-16 transition-all duration-1000 max-w-3xl mx-auto`}>
           <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md rounded-full px-5 py-2 mb-4 border border-white/70 shadow-md">
             <div className="p-1 rounded-full bg-white/60 backdrop-blur-md border border-white/70">
               <Mail className="w-3 h-3 text-[#11182c]" />
@@ -225,12 +225,12 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get <span className="text-[#0077B5]"> In</span> <span className="text-[#11182c]">Touch</span>
+            <span className="text-[#0077B5]">Get In</span> <span className="text-[#11182c]">Touch</span>
           </h2>
           
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
           
-          <p className="text-[#334155] max-w-3xl mx-auto">
+          <p className="text-[#334155] max-w-3xl mx-auto leading-relaxed">
             Have questions about our products or services? Our team is ready to assist you.
             Reach out to us through any of the channels below.
           </p>
@@ -242,13 +242,13 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div className="bg-white/80 backdrop-blur-md rounded-xl p-10 shadow-xl border border-white/70 relative group transition-all duration-500 hover:shadow-2xl hover:bg-white/90">
-            <div className="absolute -top-3 -right-3 bg-[#11182c] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md transform transition-transform duration-300 group-hover:scale-110">
+            <div className="absolute -top-3 -right-3 bg-[#0077B5] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md transform transition-transform duration-300 group-hover:scale-110">
               EXPERT SERVICE
             </div>
             
             <h3 className="text-2xl font-bold text-[#11182c] mb-6 flex items-center">
-              <span className="text-[#334155] mr-2">Request a Quote</span>
-              <div className="h-px flex-grow bg-[#11182c]/50 to-transparent ml-3"></div>
+              <span className="text-[#0077B5] mr-2">Request a Quote</span>
+              <div className="h-px flex-grow bg-gradient-to-r from-[#0077B5] to-transparent ml-3"></div>
             </h3>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -359,7 +359,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#11182c] hover:bg-[#11182c]/90 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center"
+                className="w-full bg-[#0077B5] hover:bg-[#0077B5]/90 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <>
@@ -368,7 +368,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
                   </>
                 ) : (
                   <>
-                    Send Message
+                    Send Inquiry
                     <Send className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                   </>
                 )}

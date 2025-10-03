@@ -33,7 +33,7 @@ const Footer = () => {
       {/* Back to Top Button */}
       <button
         onClick={scrollToTop}
-        className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-royal-sapphire rounded-full flex items-center justify-center hover:bg-royal-sapphire/80 transition-colors duration-300 shadow-md"
+        className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#404E68] rounded-full flex items-center justify-center hover:bg-[#404E68]/80 transition-colors duration-300 shadow-md"
       >
         <ArrowUp className="w-6 h-6 text-white" />
       </button>
@@ -54,17 +54,29 @@ const Footer = () => {
               Brass Components based in Jamnagar, Gujarat. Serving industries globally 
               for 30+ years with top-notch quality products.
             </p>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-royal-sapphire">
-                <Award className="w-4 h-4" />
-                <span className="text-sm">ISO 9001:2015 & IATF 16949:2016</span>
+            <div className="flex flex-col space-y-3">
+              
+              
+              <div className="flex items-center space-x-4">
+                <a href="/ISO 2015 .pdf" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-md hover:shadow-md transition-shadow">
+                  <img src="/images/iso certification.jpg" alt="ISO 9001:2015 Certificate" className="h-12 w-auto object-contain" />
+                </a>
+                <a href="/IATF.pdf" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-md hover:shadow-md transition-shadow">
+                  <img src="/images/iatf-16949-2016-certification-services.jpeg" alt="IATF 16949:2016 Certificate" className="h-12 w-auto object-contain" />
+                </a>
+                <a href="/Z Bronze1.pdf" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-md hover:shadow-md transition-shadow">
+                  <img src="/images/Bronze-new-1.webp" alt="Z Bronze Certificate" className="h-12 w-auto object-contain" />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-md hover:shadow-md transition-shadow">
+                  <img src="/images/eepc india logo.png" alt="EEPC India Certificate" className="h-12 w-auto object-contain" />
+                </a>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {[
                 { name: 'About Us', href: '#about' },
@@ -91,7 +103,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-royal-sapphire flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-dark-foreground/80">
                   <p>Shreeji Components</p>
                   <p>GIDC Phase 3, Plot No. 4694-Z Road</p>
@@ -99,19 +111,19 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-royal-sapphire" />
+                <Phone className="w-5 h-5 text-white" />
                 <a 
                   href="tel:+918347549511"
-                  className="text-sm text-dark-foreground/80 hover:text-royal-sapphire transition-colors"
+                  className="text-sm text-dark-foreground/80 hover:text-amber-400 transition-colors"
                 >
                   +91 8347549511 (Harshil)
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-royal-sapphire" />
+                <Mail className="w-5 h-5 text-white" />
                 <a 
                   href="mailto:chhapiah@gmail.com"
-                  className="text-sm text-dark-foreground/80 hover:text-royal-sapphire transition-colors"
+                  className="text-sm text-dark-foreground/80 hover:text-amber-400 transition-colors"
                 >
                   chhapiah@gmail.com
                 </a>
@@ -127,18 +139,13 @@ const Footer = () => {
             © 2025 Shreeji Components. All rights reserved.
           </div>
           <div className="flex items-center space-x-6 text-sm text-dark-foreground/70">
-            <button onClick={() => navigate('/privacy-policy')} className="hover:text-royal-sapphire transition-colors">Privacy Policy</button>
-            <button onClick={() => navigate('/terms-of-service')} className="hover:text-royal-sapphire transition-colors">Terms of Service</button>
-            <button onClick={() => navigate('/quality')} className="hover:text-royal-sapphire transition-colors">Quality Policy</button>
+            <button onClick={() => navigate('/privacy-policy')} className="hover:text-amber-400 transition-colors">Privacy Policy</button>
+            <button onClick={() => navigate('/terms-of-service')} className="hover:text-amber-400 transition-colors">Terms of Service</button>
+            <button onClick={() => navigate('/quality')} className="hover:text-amber-400 transition-colors">Quality Policy</button>
           </div>
         </div>
 
-        {/* Certifications Footer */}
-        <div className="text-center mt-8 pt-6 border-t border-dark-foreground/20">
-          <p className="text-xs text-dark-foreground/60">
-            ISO 9001:2015 | IATF 16949:2016 | Z Bronze | EEPC India | Made with precision in India
-          </p>
-        </div>
+        
       </div>
     </footer>
   );

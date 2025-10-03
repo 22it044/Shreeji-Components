@@ -312,6 +312,7 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
                     <Link 
                       key={id} 
                       to={`/products/${id}`} 
+                      onClick={() => window.scrollTo(0, 0)}
                       className="group bg-amber-500/5 rounded-lg p-3 hover:bg-amber-500/10 transition-colors duration-300 flex flex-col items-center border border-amber-500/10 hover:border-amber-500/30"
                     >
                       <div className="w-full h-24 overflow-hidden rounded-md mb-2">
