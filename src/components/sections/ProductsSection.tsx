@@ -392,7 +392,7 @@ const ProductsSectionMain = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-                className="bg-[#11182c] hover:bg-[#1a2340] text-white shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-2 h-auto rounded-full"
+                className="bg-[#11182c] hover:bg-[#11182c]/90 text-white shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-2 h-auto rounded-full"
                 onClick={() => {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -402,7 +402,7 @@ const ProductsSectionMain = () => {
               <Link to="/products">
                 <Button 
                   variant="outline" 
-                  className="bg-gradient-to-r from-[#404E68]/10 to-background hover:from-[#404E68]/20 text-[#404E68] border border-[#404E68]/30 hover:border-[#404E68] shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-2 h-auto rounded-full"
+                  className="bg-[#E7ECEF]/20 hover:bg-[#E7ECEF]/50 text-[#404E68] border border-[#404E68]/30 hover:border-gray-400 hover:text-[#404E68] shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-3 h-auto rounded-full"
                 >
                   View All Products <ArrowRight className="ml-1 h-3 w-3" />
                 </Button>
@@ -487,12 +487,12 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious 
-        className="-left-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md"
-      />
-      <CarouselNext 
-        className="-right-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md"
-      />
+<CarouselPrevious 
+  className="-left-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md hover:!translate-y-0"
+/>
+<CarouselNext 
+  className="-right-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md hover:!translate-y-0"
+/>
       
       {/* Indicators */}
       <div className="flex justify-center gap-1 mt-2 ">
