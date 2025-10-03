@@ -62,7 +62,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light"></div>
 
       {/* --- Main Content Container --- */}
-      <div className="container mx-auto px-6 z-10 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8 pt-24 pb-12">
+      <div className="container mx-auto px-4 sm:px-6 z-10 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12 pt-24 pb-12">
         
         {/* === Left Column: Text Content (kept same as your preferred version) === */}
         <motion.div
@@ -73,33 +73,33 @@ const HeroSection = () => {
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight"
           >
             Shreeji Components
           </motion.h1>
 
           <motion.p 
             variants={itemVariants}
-            className="mt-4 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto lg:mx-0"
+            className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto lg:mx-0"
           >
             Precision-engineered brass components with uncompromising quality and excellence.
           </motion.p>
           
-          <motion.div variants={itemVariants} className="mt-8">
+          <motion.div variants={itemVariants} className="mt-6 sm:mt-8">
             <Button 
               size="lg" 
-              className="group bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
+              className="group bg-amber-500 hover:bg-amber-600 text-black font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Explore Our Products
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
           </motion.div>
         </motion.div>
 
         {/* === Right Column: Visual Element with Subtle Enclosure === */}
         <motion.div
-          className="relative w-full aspect-video md:aspect-[4/3] lg:aspect-square max-w-lg mx-auto lg:max-w-none flex items-center justify-center p-4" // Padding for visual breathing room
+          className="relative w-full aspect-square sm:aspect-video md:aspect-[4/3] lg:aspect-square max-w-[280px] sm:max-w-lg mx-auto lg:max-w-none flex items-center justify-center p-2 sm:p-4" // Adjusted for mobile
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: isVisible ? 1 : 0, 
@@ -112,8 +112,8 @@ const HeroSection = () => {
           
           {/* The new subtle enclosure for the image */}
           <motion.div
-            className="relative w-full  bg-gradient-to-br from-[#1c243a]/80 to-[#0d121c]/80 rounded-xl overflow-hidden
-                       shadow-xl shadow-black/40 border border-amber-500/20 flex items-center justify-center p-4" // Added inner padding
+            className="relative w-full bg-gradient-to-br from-[#1c243a]/80 to-[#0d121c]/80 rounded-xl overflow-hidden
+                       shadow-xl shadow-black/40 border border-amber-500/20 flex items-center justify-center p-2 sm:p-4" // Adjusted padding for mobile
             // A more subtle and continuous floating animation for the enclosure
             animate={{ y: ["-1%", "1%"] }}
             transition={{

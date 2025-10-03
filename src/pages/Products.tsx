@@ -84,19 +84,17 @@ const Products = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   {/* Product Image */}
-                  <Link to={product.link} className="block relative overflow-hidden aspect-[4/3]">
+                  <Link 
+                    to={product.link} 
+                    className="block relative overflow-hidden aspect-[4/3]"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     <img 
                       src={product.src} 
                       alt={product.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    
-                    {/* Premium Tag */}
-                    <div className="absolute top-4 right-4 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
-                      <Award className="w-3 h-3 mr-1" />
-                      <span>Premium</span>
-                    </div>
-                    
+                                        
                     {/* Category Tag */}
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-medium px-3 py-1 rounded-full shadow-sm border border-amber-500/20">
                       {product.tag}
@@ -115,6 +113,7 @@ const Products = () => {
                     <Link 
                 to={product.link}
                 className="inline-flex items-center justify-center px-4 py-2 bg-amber-500/10 text-amber-600 rounded-lg hover:bg-amber-500 hover:text-white transition-all duration-300 text-sm font-medium mt-auto group/btn"
+                onClick={() => window.scrollTo(0, 0)}
               >
                 View Details
                 <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

@@ -107,14 +107,19 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/60 backdrop-blur-md shadow-card border-b border-border-light' 
-          : 'bg-background/90 backdrop-blur-sm'
-      }`}
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    isScrolled 
+      ? 'bg-white/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.12)] border-b border-white/40' 
+      : 'bg-white/90 backdrop-blur-lg border-b border-white/30'
+  }`}
+  style={{
+    backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(16px) saturate(150%)',
+    WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(16px) saturate(150%)',
+    boxShadow: isScrolled ? '0 8px 32px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.5)' : 'inset 0 1px 0 0 rgba(255, 255, 255, 0.4)',
+  }}
     >
       {/* Top Contact Bar - Professional design */}
-      <div className="bg-dark text-dark-foreground py-2.5 px-4 text-sm relative overflow-hidden border-b border-dark-foreground/10">
+      <div className="bg-dark text-dark-foreground py-2 px-3 sm:py-2.5 sm:px-4 text-sm relative overflow-hidden border-b border-dark-foreground/10">
         {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-royal-sapphire/5 rounded-full blur-xl opacity-70"></div>
@@ -122,12 +127,12 @@ const Header = () => {
         </div>
         
         <div className="container mx-auto flex justify-between items-center relative z-10">
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3 sm:space-x-6">
             <a href="tel:+918347549511" className="flex items-center space-x-2 hover:text-royal-sapphire transition-colors duration-300 group">
                 <div className="bg-royal-sapphire/10 p-1.5 rounded-full group-hover:bg-royal-sapphire/20 transition-colors duration-300">
                   <Phone className="h-3.5 w-3.5" />
                 </div>
-                <span>+91 8347549511</span>
+                <span className="hidden sm:inline-block">+91 8347549511</span>
               </a>
             
             {/* LinkedIn Link */}
@@ -141,13 +146,12 @@ const Header = () => {
                 <Linkedin className="h-3.5 w-3.5" />
               </div>
               <span className="hidden sm:inline-block">Connect on LinkedIn</span>
-              <span className="inline-block sm:hidden">LinkedIn</span>
             </a>
             <a href="mailto:chhapiah@gmail.com" className="flex items-center space-x-2 hover:text-royal-sapphire transition-colors duration-300 group">
               <div className="bg-royal-sapphire/10 p-1.5 rounded-full group-hover:bg-royal-sapphire/20 transition-colors duration-300">
                 <Mail className="h-3.5 w-3.5" />
               </div>
-              <span>chhapiah@gmail.com</span>
+              <span className="hidden sm:inline-block">chhapiah@gmail.com</span>
             </a>
           </div>
           
@@ -175,20 +179,20 @@ const Header = () => {
           
           {/* Mobile certification display - Horizontal scrollable */}
           <div className="md:hidden flex items-center overflow-x-auto scrollbar-hide space-x-2 text-xs max-w-[140px]">
-            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[9px] font-medium border border-royal-sapphire/10 shadow-md">
-              <Award className="h-2 w-2 text-white" />
-              <span className="text-white whitespace-nowrap">ISO 9001</span>
+            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-1 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <Award className="h-3 w-3 text-white" />
+              <span className="text-white whitespace-nowrap">ISO</span>
             </div>
-            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[9px] font-medium border border-royal-sapphire/10 shadow-md">
-              <CheckCircle className="h-2 w-2 text-white" />
-              <span className="text-white whitespace-nowrap">IATF 16949</span>
+            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-1 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <CheckCircle className="h-3 w-3 text-white" />
+              <span className="text-white whitespace-nowrap">IATF</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Navigation - Professional styling */}
-      <nav className="container mx-auto px-4 py-3 relative">
+      <nav className="container mx-auto px-3 sm:px-4 py-2 sm:py-3 relative">
         {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute right-1/4 top-1/2 w-32 h-32 bg-royal-sapphire/5 rounded-full blur-3xl opacity-50"></div>
@@ -210,13 +214,13 @@ const Header = () => {
               <div className="flex items-center space-x-2">
                 <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/90">Shreeji Components</h1>
                 <div className="hidden sm:flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium">
-                  <Star className="h-2.5 w-2.5 text-royal-sapphire" />
-                  <span className="text-royal-sapphire">SINCE 1995</span>
+                  <Star className="h-2.5 w-2.5 text-[#202f50]" />
+                  <span className="text-[#11182c]">SINCE 1995</span>
                 </div>
               </div>
               <div className="flex items-center space-x-1">
-                <div className="w-6 h-0.5 bg-royal-sapphire rounded-full"></div>
-                <p className="text-xs text-royal-sapphire font-medium">Precision Manufacturing</p>
+                <div className="w-6 h-0.5 bg-[#11182c] rounded-full"></div>
+                <p className="text-xs text-[#11182c] font-medium">Precision Manufacturing</p>
               </div>
             </div>
           </div>
@@ -311,98 +315,99 @@ const Header = () => {
           {/* Enhanced Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-royal-sapphire transition-colors relative group"
+            className="lg:hidden p-2 text-foreground hover:text-royal-sapphire transition-colors relative group bg-royal-sapphire/5 rounded-lg"
           >
-            <div className="absolute inset-0 bg-royal-sapphire/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div className="absolute inset-0 bg-royal-sapphire/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             <div className="relative z-10">
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </div>
           </button>
         </div>
 
         {/* Enhanced Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-border-light bg-background/95 backdrop-blur-md rounded-lg shadow-elegant overflow-hidden">
-            {/* Decorative background elements */}
+          <div className="lg:hidden mt-4 py-4 border-t border-border-light bg-white/95 backdrop-blur-xl rounded-b-xl shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] overflow-hidden fixed top-[100px] left-0 right-0 max-h-[80vh] overflow-y-auto z-50">
+            {/* Premium decorative background elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute right-0 bottom-0 w-40 h-40 bg-royal-sapphire/5 rounded-full blur-2xl"></div>
-              <div className="absolute left-0 top-0 w-32 h-32 bg-royal-sapphire/5 rounded-full blur-xl"></div>
+              <div className="absolute right-0 bottom-0 w-64 h-64 bg-gradient-to-tr from-royal-sapphire/10 to-transparent rounded-full blur-3xl opacity-70"></div>
+              <div className="absolute left-0 top-0 w-48 h-48 bg-gradient-to-br from-royal-sapphire/10 to-transparent rounded-full blur-2xl opacity-60"></div>
             </div>
             
-            <div className="flex flex-col space-y-4 relative z-10">
+            <div className="flex flex-col space-y-1 relative z-10 px-6">
               {navigation.map((item, index) => (
                 item.hasDropdown ? (
                   <div key={item.name} className="relative">
                     <button
                       onClick={() => setIsMobileProductDropdownOpen(!isMobileProductDropdownOpen)}
-                      className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group w-full flex justify-between items-center"
+                      className="text-left py-3.5 px-4 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group w-full flex justify-between items-center rounded-lg hover:bg-royal-sapphire/5 border-b border-gray-100"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      <span className="relative z-10">{item.name}</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isMobileProductDropdownOpen ? 'rotate-180' : ''}`} />
-                      <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
-                      <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
+                      <span className="relative z-10 text-base font-semibold">{item.name}</span>
+                      <ChevronDown className={`h-5 w-5 transition-transform duration-300 text-royal-sapphire ${isMobileProductDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
                     
                     {isMobileProductDropdownOpen && (
-                      <div className="pl-6 mt-2 space-y-2 border-l-2 border-royal-sapphire/10 ml-6">
-                        <Link 
-                          to="/products"
-                          className="block py-1.5 text-sm text-foreground hover:text-royal-sapphire transition-colors duration-200 font-medium"
-                          onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            setIsMobileProductDropdownOpen(false);
-                          }}
-                        >
-                          Product Portfolio
-                        </Link>
-                        
-                        {productData.map((product, idx) => (
+                      <div className="mt-1 mb-2 bg-gradient-to-r from-royal-sapphire/5 to-transparent rounded-xl overflow-hidden">
+                        <div className="border-l-3 border-royal-sapphire/30 ml-4 py-2">
                           <Link 
-                            key={idx}
-                            to={product.link} 
-                            className="block py-1.5 text-xs text-foreground/80 hover:text-royal-sapphire transition-colors duration-200"
+                            to="/products"
+                            className="block py-3 px-4 text-sm text-foreground hover:text-royal-sapphire transition-colors duration-200 font-semibold"
                             onClick={() => {
                               setIsMobileMenuOpen(false);
                               setIsMobileProductDropdownOpen(false);
                             }}
                           >
-                            {product.title}
+                            Product Portfolio
                           </Link>
-                        ))}
+                          
+                          <div className="space-y-0.5 max-h-[40vh] overflow-y-auto pr-2 pl-2">
+                            {productData.map((product, idx) => (
+                              <Link 
+                                key={idx}
+                                to={product.link} 
+                                className="block py-2.5 px-4 text-sm text-foreground/80 hover:text-royal-sapphire hover:bg-royal-sapphire/5 transition-colors duration-200 rounded-lg"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setIsMobileProductDropdownOpen(false);
+                                }}
+                              >
+                                {product.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
                 ) : (
                   <button
                     key={item.name}
-                    onClick={() => handleNavigation(item.href)}
-                    className="text-left px-4 py-2 text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group"
+                    onClick={() => {
+                      handleNavigation(item.href);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-left py-3.5 px-4 text-base text-foreground hover:text-royal-sapphire transition-all duration-300 font-medium relative group rounded-lg hover:bg-royal-sapphire/5 border-b border-gray-100"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <span className="relative z-10">{item.name}</span>
-                    <span className="absolute bottom-1 left-4 w-0 h-0.5 bg-royal-sapphire rounded-full transition-all duration-300 group-hover:w-24"></span>
-                    {/* Subtle background highlight on hover */}
-                    <span className="absolute inset-0 bg-royal-sapphire/0 group-hover:bg-royal-sapphire/5 rounded-lg transition-all duration-300 -z-10"></span>
+                    <span className="relative z-10 font-semibold">{item.name}</span>
                   </button>
                 )
-                )
-              )})
-              </div>
-              <div className="px-4 pt-2">
+              ))}
+              
+              <div className="pt-4 pb-2">
                 <Button 
                   onClick={() => {
                     handleNavigation('#contact');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full bg-royal-sapphire hover:bg-royal-sapphire/90 text-white rounded-full px-6 py-2 flex items-center justify-center space-x-2 transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="w-full bg-gradient-to-r from-[#11182c] to-royal-sapphire text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
                 >
-                  <span>Contact Us</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <span className="flex items-center">Contact Us <ArrowRight className="ml-2 w-5 h-5" /></span>
                 </Button>
               </div>
+                  
             </div>
-          
+          </div>
         )}
       </nav>
     </header>

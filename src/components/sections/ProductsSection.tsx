@@ -413,7 +413,7 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
       <CarouselContent>
         {productItems.map((item, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <Link to={item.link}>
+            <Link to={item.link} onClick={() => window.scrollTo(0, 0)}>
               <Card className="border-blue-900/20 hover:border-blue-900/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
                 <CardContent className="p-0 relative overflow-hidden">
                   <div className="aspect-square overflow-hidden">

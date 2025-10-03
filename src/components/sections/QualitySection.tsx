@@ -98,15 +98,15 @@ const QualitySection = () => {
   return (
     <section 
       id="quality" 
-      className="py-24 md:py-32 relative overflow-hidden bg-[#11182c] text-slate-100"
+      className="py-16 md:py-24 relative overflow-hidden bg-[#11182c] text-white"
     >
-      {/* AESTHETIC REFINEMENT: Neutral background gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03),transparent_50%)]"></div>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05),transparent_70%)]"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         
         {/* --- Section Header --- */}
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-12 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,13 +122,13 @@ const QualitySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="mt-6 text-base md:text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed"
+            className="mt-4 md:mt-6 text-base md:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
           >
             Our commitment to excellence is built upon measurable metrics and adherence to globally recognized industry standards.
           </motion.p>
         </div>
         
-        <div className="space-y-24">
+        <div className="space-y-16 md:space-y-24">
           {/* --- Performance Metrics Section --- */}
           <motion.div
             variants={containerVariants}
@@ -136,23 +136,20 @@ const QualitySection = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-center mb-12 text-white">Performance Metrics</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-8 md:mb-12 text-white">Performance Metrics</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
               {qualityMetrics.map(({ metric, label, Icon }) => (
                 <motion.div 
                   key={label}
                   variants={itemVariants}
-                  className="group relative bg-slate-900/50 rounded-2xl border border-white/10 transition-all duration-300 hover:bg-slate-900/80"
+                  className="group relative bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/15"
                 >
-                  {/* AESTHETIC REFINEMENT: Subtle white "aurora" glow on hover */}
-                  <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-white/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="relative h-full backdrop-blur-lg rounded-2xl p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-slate-800/50 rounded-full flex items-center justify-center border border-slate-700 shadow-inner">
-                      <Icon className="w-8 h-8 text-slate-300 transition-colors duration-300 group-hover:text-white" />
+                  <div className="relative h-full rounded-xl p-4 md:p-6 text-center">
+                    <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-white transition-colors duration-300" />
                     </div>
-                    <h4 className="text-4xl font-bold text-white">{metric}</h4>
-                    <p className="text-sm font-semibold tracking-wider text-slate-400 mt-2 uppercase">{label}</p>
+                    <h4 className="text-3xl md:text-4xl font-bold text-white">{metric}</h4>
+                    <p className="text-xs md:text-sm font-medium tracking-wider text-white/80 mt-2 uppercase">{label}</p>
                   </div>
                 </motion.div>
               ))}
@@ -166,26 +163,23 @@ const QualitySection = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-center mb-12 text-white">Industry Certifications</h3>
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-8 md:mb-12 text-white">Industry Certifications</h3>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               {certifications.map(cert => (
                 <motion.div 
                   key={cert.title}
                   variants={itemVariants}
-                  className="group relative bg-slate-900/50 rounded-2xl border border-white/10 transition-all duration-300 hover:bg-slate-900/80"
+                  className="group relative bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/15"
                 >
-                  {/* AESTHETIC REFINEMENT: Subtle white "aurora" glow on hover */}
-                  <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-white/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="relative h-full backdrop-blur-lg rounded-2xl p-6 flex items-center gap-6">
-                    <div className="flex-shrink-0 w-20 h-20 bg-slate-800/50 rounded-xl flex items-center justify-center p-2 border border-slate-700">
+                  <div className="relative h-full rounded-xl p-4 md:p-6 flex flex-col sm:flex-row items-center gap-4 md:gap-6">
+                    <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-lg flex items-center justify-center p-2 border border-white/20">
                       <img src={certImages[cert.title] || ''} alt={cert.title} className="w-full h-full object-contain" />
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white">{cert.title}</h4>
-                      <p className="text-slate-400 mt-1 text-sm">{cert.description}</p>
+                    <div className="flex-1 text-center sm:text-left">
+                      <h4 className="text-base md:text-lg font-semibold text-white">{cert.title}</h4>
+                      <p className="text-white/80 mt-1 text-sm">{cert.description}</p>
                     </div>
-                    <ArrowRight className="absolute top-4 right-4 w-5 h-5 text-slate-600 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />
+                    <ArrowRight className="hidden sm:block w-5 h-5 text-white/60 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />
                   </div>
                 </motion.div>
               ))}
