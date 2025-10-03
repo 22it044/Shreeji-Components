@@ -185,28 +185,15 @@ const QualitySection = () => {
                   className="group relative bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/15"
                 >
                   <div className="relative h-full rounded-xl p-4 md:p-6 flex flex-col sm:flex-row items-center gap-4 md:gap-6">
-                    <a 
-                      href={certData[cert.title]?.pdf} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <div 
                       className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-lg flex items-center justify-center p-2 border border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-white/20"
-                      title={`Download ${cert.title} Certificate`}
                     >
                       <img src={certData[cert.title]?.image || ''} alt={cert.title} className="w-full h-full object-contain" />
-                    </a>
+                    </div>
                     <div className="flex-1 text-center sm:text-left">
                       <h4 className="text-base md:text-lg font-semibold text-white">{cert.title}</h4>
                       <p className="text-white/80 mt-1 text-sm">{cert.description}</p>
-                      <a 
-                        href={certData[cert.title]?.pdf} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center mt-2 text-xs text-blue-300 hover:text-blue-200 transition-colors"
-                      >
-                        Download Certificate <ArrowRight className="ml-1 w-3 h-3" />
-                      </a>
                     </div>
-                    <ArrowRight className="hidden sm:block w-5 h-5 text-white/60 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />
                   </div>
                 </motion.div>
               ))}

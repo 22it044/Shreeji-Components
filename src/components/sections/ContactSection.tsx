@@ -23,9 +23,9 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [hoveredTeamMember, setHoveredTeamMember] = useState<number | null>(null);
-  
+
   // EmailJS configuration - Replace these with your actual EmailJS credentials
-const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
+  const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
   const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID;
   const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_EMAILJS_PUBLIC_KEY;
 
@@ -56,7 +56,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Please fill in required fields",
@@ -67,11 +67,11 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
     }
 
     setIsSubmitting(true);
-    
+
     try {
       // Initialize EmailJS
       emailjs.init(PUBLIC_KEY);
-      
+
       // Prepare template parameters
       const templateParams = {
         from_name: formData.name,
@@ -83,14 +83,14 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
         reply_to: formData.email,
         to_email: 'teaminnovativestudios@gmail.com'
       };
-      
+
       // Send email using EmailJS
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams
       );
-      
+
       // Reset form and show success message
       setFormData({
         name: '',
@@ -100,10 +100,10 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
         productInterest: '',
         message: '',
       });
-      
+
       setIsSubmitting(false);
       setIsSubmitted(true);
-      
+
       toast({
         title: "Thank you for your inquiry!",
         description: "Your message has been sent successfully. We'll respond within 24 hours.",
@@ -111,7 +111,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
     } catch (error) {
       console.error('Email sending failed:', error);
       setIsSubmitting(false);
-      
+
       toast({
         title: "Error sending message",
         description: "Please try again or contact us directly at teaminnovativestudios@gmail.com",
@@ -161,7 +161,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
     {
       name: 'Sandip Chhapia',
       role: 'CEO and Founder',
-      email: 'sandipchhapia2001@gmail.com', 
+      email: 'sandipchhapia2001@gmail.com',
       phone: '+91 9824206708',
       linkedin: 'https://www.linkedin.com/in/sandip-chhapia-899637188/',
     },
@@ -179,7 +179,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
               Thank You for Your Inquiry!
             </h2>
             <p className="text-lg text-foreground/70 mb-8">
-              We've received your message and our team will review your requirements. 
+              We've received your message and our team will review your requirements.
               You can expect a detailed response within 24 hours.
             </p>
             <Button
@@ -207,55 +207,54 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
 
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
-      {/* Premium decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute top-40 right-20 w-32 h-32 bg-[#11182c]/10 rounded-full blur-2xl"></div>
-      
+      {/* Blur orbs */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-[#0077B5]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#0077B5]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-[#0077B5]/10 rounded-full blur-2xl"></div>
+
       {/* Glass overlay */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className={`text-center mb-16 transition-all duration-1000 max-w-3xl mx-auto`}>
           <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md rounded-full px-5 py-2 mb-4 border border-white/70 shadow-md">
             <div className="p-1 rounded-full bg-white/60 backdrop-blur-md border border-white/70">
-              <Mail className="w-3 h-3 text-[#11182c]" />
+              <Phone className="w-3 h-3 text-[#11182c]" />
             </div>
-            <span className="text-[#11182c] font-semibold text-sm">Contact Us</span>
+            <span className="text-[#11182c] font-semibold text-sm">GET IN TOUCH</span>
           </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-[#0077B5]">Get In</span> <span className="text-[#11182c]">Touch</span>
+
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+            <span className="text-[#0077B5]">Contact</span> <span className="text-[#11182c]">Us</span>
           </h2>
-          
+
           <div className="w-24 h-1 bg-[#11182c] rounded-full mb-6 mx-auto"></div>
-          
-          <p className="text-[#334155] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[#334155] max-w-3xl mx-auto leading-relaxed text-center">
             Have questions about our products or services? Our team is ready to assist you.
-            Reach out to us through any of the channels below.
+            Fill out the form below and we'll get back to you as soon as possible.
           </p>
-          
+
           {/* Quality Badges */}
           <QualityBadgeGroup badges={['iso', 'global', 'quality']} className="mt-8" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
-          <div className="bg-white/80 backdrop-blur-md rounded-xl p-10 shadow-xl border border-white/70 relative group transition-all duration-500 hover:shadow-2xl hover:bg-white/90">
-            <div className="absolute -top-3 -right-3 bg-[#0077B5] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md transform transition-transform duration-300 group-hover:scale-110">
+          <div className="bg-white/80 backdrop-blur-md rounded-xl p-10 shadow-xl border border-white/70 group transition-all duration-500 hover:shadow-2xl hover:bg-white/90 relative">
+            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl border border-white/30 transform transition-transform duration-300 group-hover:scale-110">
               EXPERT SERVICE
             </div>
-            
-            <h3 className="text-2xl font-bold text-[#11182c] mb-6 flex items-center">
-              <span className="text-[#0077B5] mr-2">Request a Quote</span>
+
+            <h3 className="text-2xl font-bold mb-6 flex items-center">
+              <span className="text-[#0077B5]">Request a Quote</span>
               <div className="h-px flex-grow bg-gradient-to-r from-[#0077B5] to-transparent ml-3"></div>
             </h3>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[#4F6685] mb-2">
-                  Name *
-                </label>
+                  <label htmlFor="name" className="text-sm font-medium text-[#4F6685] mb-2 block">
+                    Name *
+                  </label>
                   <Input
                     id="name"
                     name="name"
@@ -269,8 +268,8 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-[#4F6685] mb-2">
-                  Email *
-                </label>
+                    Email *
+                  </label>
                   <Input
                     id="email"
                     name="email"
@@ -287,8 +286,8 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-[#4F6685] mb-2">
-                  Company
-                </label>
+                    Company
+                  </label>
                   <Input
                     id="company"
                     name="company"
@@ -301,8 +300,8 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-[#4F6685] mb-2">
-                  Phone
-                </label>
+                    Phone
+                  </label>
                   <Input
                     id="phone"
                     name="phone"
@@ -359,7 +358,7 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#0077B5] hover:bg-[#0077B5]/90 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center"
+                className="w-full bg-[#0077B5] hover:bg-[#0077B5]/90 text-white py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <>
@@ -381,160 +380,157 @@ const SERVICE_ID = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
           </div>
 
           {/* Contact Information - Premium Glassmorphism */}
-<div className="space-y-6 bg-white/5 backdrop-blur-2xl rounded-2xl p-10 shadow-2xl border border-white/30 relative group transition-all duration-700 hover:shadow-3xl hover:bg-white/10 hover:border-white/40">
-  {/* Enhanced premium gradient overlay */}
-  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-  
-  {/* Subtle glass reflections */}
-  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-  
-  {/* Team Members - Enhanced Glass Effect */}
-  <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 md:p-8 shadow-xl border border-white/30 relative group transition-all duration-700 hover:shadow-2xl hover:bg-white/15 hover:border-white/40">
-    {/* Premium glass overlay effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
-    
-    {/* Premium Badge with enhanced glass effect */}
-    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl border border-white/30 transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl">
-      EXECUTIVE TEAM
-    </div>
-    
-    <h4 className="text-xl font-semibold text-foreground mb-6 flex items-center relative z-10">
-      <Phone className="w-5 h-5 text-[#4F6685] mr-2" />
-      <span className="text-[#4F6685]">Direct Contact</span>
-      <div className="h-px flex-grow bg-gradient-to-r from-[#4F6685]/50 to-transparent ml-3"></div>
-    </h4>
-    
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative z-10">
-      {teamMembers.map((member, index) => (
-        <div 
-          key={index} 
-          className="bg-white/15 backdrop-blur-xl border border-white/30 rounded-xl p-5 transition-all duration-500 hover:shadow-xl hover:border-white/40 hover:bg-white/20 relative overflow-hidden group/member"
-          onMouseEnter={() => setHoveredTeamMember(index)}
-          onMouseLeave={() => setHoveredTeamMember(null)}
-        >
-          {/* Enhanced animated glass background */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-[#11182c]/5 opacity-0 transition-all duration-500 rounded-xl ${hoveredTeamMember === index ? 'opacity-100' : ''}`}></div>
-          
-          {/* Enhanced shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/member:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
-          
-          <div className="relative z-10">
-            <h5 className="font-semibold text-foreground mb-1">{member.name}</h5>
-            <p className="text-sm text-[#4F6685] font-medium mb-3">{member.role}</p>
-            <div className="space-y-3 text-sm">
-              <a 
-                href={`mailto:${member.email}`}
-                className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
-              >
-                <Mail className="w-4 h-4 mr-3 text-[#11182c] group-hover/link:scale-110 transition-transform duration-300" />
-                <span className="group-hover/link:translate-x-1 transition-transform duration-300">{member.email}</span>
-              </a>
-              <a 
-                href={`tel:${member.phone}`}
-                className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
-              >
-                <Phone className="w-4 h-4 mr-3 text-[#11182c] group-hover/link:scale-110 transition-transform duration-300" />
-                <span className="group-hover/link:translate-x-1 transition-transform duration-300">{member.phone}</span>
-              </a>
-              {member.linkedin && (
+          <div className="space-y-6 bg-white/5 backdrop-blur-2xl rounded-2xl p-10 shadow-2xl border border-white/30 relative group transition-all duration-700 hover:shadow-3xl hover:bg-white/10 hover:border-white/40">
+            {/* Enhanced premium gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+
+            {/* Subtle glass reflections */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+
+            {/* Team Members - Enhanced Glass Effect */}
+            <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 md:p-8 shadow-xl border border-white/30 relative group transition-all duration-700 hover:shadow-2xl hover:bg-white/15 hover:border-white/40">
+              {/* Premium glass overlay effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+
+              {/* Premium Badge with enhanced glass effect */}
+              <div className="absolute -top-3 -left-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl border border-white/30 transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl">
+                EXECUTIVE TEAM
+              </div>
+
+              <h4 className="text-xl font-semibold text-foreground mb-6 flex items-center relative z-10">
+                <Phone className="w-5 h-5 text-[#4F6685] mr-2" />
+                <span className="text-[#4F6685]">Direct Contact</span>
+                <div className="h-px flex-grow bg-gradient-to-r from-[#4F6685]/50 to-transparent ml-3"></div>
+              </h4>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative z-10">
+                {teamMembers.map((member, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/15 backdrop-blur-xl border border-white/30 rounded-xl p-5 transition-all duration-500 hover:shadow-xl hover:border-white/40 hover:bg-white/20 relative overflow-hidden group/member"
+                    onMouseEnter={() => setHoveredTeamMember(index)}
+                    onMouseLeave={() => setHoveredTeamMember(null)}
+                  >
+                    {/* Enhanced animated glass background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-[#11182c]/5 opacity-0 transition-all duration-500 rounded-xl ${hoveredTeamMember === index ? 'opacity-100' : ''}`}></div>
+
+                    {/* Enhanced shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/member:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
+
+                    <div className="relative z-10">
+                      <h5 className="font-semibold text-foreground mb-1">{member.name}</h5>
+                      <p className="text-sm text-[#4F6685] font-medium mb-3">{member.role}</p>
+                      <div className="space-y-3 text-sm">
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
+                        >
+                          <Mail className="w-4 h-4 mr-3 text-[#11182c] group-hover/link:scale-110 transition-transform duration-300" />
+                          <span className="group-hover/link:translate-x-1 transition-transform duration-300">{member.email}</span>
+                        </a>
+                        <a
+                          href={`tel:${member.phone}`}
+                          className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
+                        >
+                          <Phone className="w-4 h-4 mr-3 text-[#11182c] group-hover/link:scale-110 transition-transform duration-300" />
+                          <span className="group-hover/link:translate-x-1 transition-transform duration-300">{member.phone}</span>
+                        </a>
+                        {member.linkedin && (
+                          <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
+                          >
+                            <div className="bg-gradient-to-r from-[#11182c] to-[#11182c]/80 backdrop-blur-sm rounded-full p-1.5 mr-3 group-hover/link:shadow-lg group-hover/link:scale-110 transition-all duration-300">
+                              <Linkedin className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="group-hover/link:underline group-hover/link:translate-x-1 transition-all duration-300">Connect on LinkedIn</span>
+                            <ExternalLink className="w-3 h-3 ml-2 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-300" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* LinkedIn Button - Added beneath team info */}
+              <div className="mt-6">
                 <a
-                  href={member.linkedin}
+                  href="https://www.linkedin.com/company/shreeji-components/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-[#4F6685] hover:text-[#11182c] transition-all duration-300 group/link"
+                  className="inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-[#0077B5]/90 to-[#0077B5]/80 backdrop-blur-xl text-white rounded-xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 relative z-10 group/btn overflow-hidden"
                 >
-                  <div className="bg-gradient-to-r from-[#11182c] to-[#11182c]/80 backdrop-blur-sm rounded-full p-1.5 mr-3 group-hover/link:shadow-lg group-hover/link:scale-110 transition-all duration-300">
-                    <Linkedin className="w-3 h-3 text-white" />
-                  </div>
-                  <span className="group-hover/link:underline group-hover/link:translate-x-1 transition-all duration-300">Connect on LinkedIn</span>
-                  <ExternalLink className="w-3 h-3 ml-2 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/15 to-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
+                  <Linkedin className="w-5 h-5 mr-2 relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
+                  <span className="relative z-10 font-medium">Follow Us on LinkedIn</span>
+                  <ExternalLink className="w-4 h-4 ml-2 relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" />
                 </a>
-              )}
+              </div>
+            </div>
+
+            {/* Map Section - Full Width */}
+            <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-xl border border-white/30 relative group transition-all duration-700 hover:shadow-2xl hover:bg-white/15 hover:border-white/40">
+              {/* Premium glass overlay effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+
+              {/* Premium Badge with enhanced glass effect */}
+              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl border border-white/30 transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl">
+                GLOBAL FACILITY
+              </div>
+
+              <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center relative z-10">
+                <MapPin className="w-5 h-5 text-[#11182c] mr-2" />
+                <span className="text-[#11182c]">Our Location</span>
+                <div className="h-px flex-grow bg-gradient-to-r from-[#11182c]/50 to-transparent ml-3"></div>
+              </h4>
+
+              {/* Address Information with enhanced premium glass effect */}
+              <div className="mb-4 bg-white/20 backdrop-blur-xl p-4 rounded-xl border border-white/30 shadow-lg relative z-10 group/address hover:bg-white/25 hover:border-white/40 transition-all duration-400">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/address:translate-x-full transition-transform duration-1000 pointer-events-none rounded-xl"></div>
+                <div className="space-y-2 text-medium-gray relative z-10">
+                  <p className="font-semibold text-[#11182c] text-base">Shreeji Components</p>
+                  <p className="flex items-center text-sm group-hover/address:translate-x-1 transition-transform duration-300">
+                    <MapPin className="w-4 h-4 text-[#11182c] mr-3 group-hover/address:scale-110 transition-transform duration-300" />
+                    GIDC Phase 3, Plot No. 4694-Z Road
+                  </p>
+                  <p className="flex items-center text-sm group-hover/address:translate-x-1 transition-transform duration-300">
+                    <Globe className="w-4 h-4 text-[#11182c] mr-3 group-hover/address:scale-110 transition-transform duration-300" />
+                    Jamnagar, Gujarat 361004, IN
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-xl border border-white/30 group hover:bg-white/15 hover:border-white/40 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#0077B5]/5 rounded-2xl"></div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3693.5345736473246!2d70.0123456!3d22.4759167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca248c77c099%3A0x79b0c2486aeb4ecc!2sShreeji%20Components!5e0!3m2!1sen!2sin!4v1640995200000!5m2!1sen!2sin"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shreeji Components Location"
+                  className="rounded-xl border border-white/30"
+                ></iframe>
+              </div>
+
+              <a
+                href="https://maps.app.goo.gl/E9yWV3YTbcyCMDQ88?g_st=ac"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white rounded-xl shadow-xl border border-white/30 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 group/btn relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/15 to-white/10 opacity-0 group-hover/btn:opacity-100 transition-all duration-500"></div>
+                <MapPin className="w-5 h-5 mr-2 relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
+                <span className="relative z-10">Get Directions</span>
+              </a>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-    
-    {/* LinkedIn Button - Added beneath team info */}
-    <div className="mt-6">
-      <a
-        href="https://www.linkedin.com/company/shreeji-components/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-[#0077B5]/90 to-[#0077B5]/80 backdrop-blur-xl text-white rounded-xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 relative z-10 group/btn overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-white/15 to-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
-        <Linkedin className="w-5 h-5 mr-2 relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
-        <span className="relative z-10 font-medium">Follow Us on LinkedIn</span>
-        <ExternalLink className="w-4 h-4 ml-2 relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" />
-      </a>
-    </div>
-  </div>
-
-  {/* Map Section - Full Width */}
-  <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-xl border border-white/30 relative group transition-all duration-700 hover:shadow-2xl hover:bg-white/15 hover:border-white/40">
-    {/* Premium glass overlay effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
-    
-    {/* Premium Badge with enhanced glass effect */}
-    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl border border-white/30 transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl">
-      GLOBAL FACILITY
-    </div>
-    
-    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center relative z-10">
-      <MapPin className="w-5 h-5 text-[#11182c] mr-2" />
-      <span className="text-[#11182c]">Our Location</span>
-      <div className="h-px flex-grow bg-gradient-to-r from-[#11182c]/50 to-transparent ml-3"></div>
-    </h4>
-    
-    {/* Address Information with enhanced premium glass effect */}
-    <div className="mb-4 bg-white/20 backdrop-blur-xl p-4 rounded-xl border border-white/30 shadow-lg relative z-10 group/address hover:bg-white/25 hover:border-white/40 transition-all duration-400">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/address:translate-x-full transition-transform duration-1000 pointer-events-none rounded-xl"></div>
-      <div className="space-y-2 text-medium-gray relative z-10">
-        <p className="font-semibold text-[#11182c] text-base">Shreeji Components</p>
-        <p className="flex items-center text-sm group-hover/address:translate-x-1 transition-transform duration-300">
-          <MapPin className="w-4 h-4 text-[#11182c] mr-3 group-hover/address:scale-110 transition-transform duration-300" /> 
-          GIDC Phase 3, Plot No. 4694-Z Road
-        </p>
-        <p className="flex items-center text-sm group-hover/address:translate-x-1 transition-transform duration-300">
-          <Globe className="w-4 h-4 text-[#11182c] mr-3 group-hover/address:scale-110 transition-transform duration-300" /> 
-          Jamnagar, Gujarat 361004, IN
-        </p>
-      </div>
-    </div>
-    
-    {/* Google Maps with premium glass frame */}
-    <div className="relative overflow-hidden rounded-xl border border-white/30 mb-4 shadow-xl group/map transition-all duration-500 hover:shadow-2xl hover:border-white/40">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/15 to-white/10 opacity-0 group-hover/map:opacity-100 transition-opacity duration-500 pointer-events-none z-10 rounded-xl"></div>
-      <div className="absolute inset-0 border-2 border-white/20 rounded-xl pointer-events-none z-20"></div>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3693.5345736473246!2d70.0123456!3d22.4759167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca248c77c099%3A0x79b0c2486aeb4ecc!2sShreeji%20Components!5e0!3m2!1sen!2sin!4v1640995200000!5m2!1sen!2sin"
-        width="100%"
-        height="300"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="Shreeji Components Location"
-        className="rounded-xl"
-      ></iframe>
-    </div>
-    
-    {/* Action Button with enhanced premium glass effect */}
-    <a
-      href="https://maps.app.goo.gl/E9yWV3YTbcyCMDQ88?g_st=ac"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-[#11182c]/90 to-[#11182c]/80 backdrop-blur-xl text-white rounded-xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 relative z-10 group/btn overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-white/15 to-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
-      <MapPin className="w-5 h-5 mr-2 relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
-      <span className="relative z-10 font-medium">Get Directions</span>
-    </a>
-  </div>
-</div>
         </div>
       </div>
     </section>

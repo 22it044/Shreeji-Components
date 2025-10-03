@@ -112,6 +112,7 @@ const ProductsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const [isMobile, setIsMobile] = useState(false);
   
   // Filter categories based on product tags
   const filterCategories = ['All', 'Industrial', 'Electrical', 'Precision', 'Hydraulic', 'Engineering'];
@@ -120,6 +121,22 @@ const ProductsSection = () => {
   const filteredProducts = selectedFilter === 'All' 
     ? productData 
     : productData.filter(product => product.tag === selectedFilter);
+  
+  useEffect(() => {
+    // Check if mobile on initial render
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set initial value
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
     
   useEffect(() => {
     // Reset current slide when filter changes
@@ -129,18 +146,18 @@ const ProductsSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (!isHovered) {
-        setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredProducts.length / 4));
+        setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredProducts.length / (isMobile ? 2 : 4)));
       }
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
-  }, [filteredProducts.length, isHovered]);
+  }, [filteredProducts.length, isHovered, isMobile]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredProducts.length / 4));
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredProducts.length / (isMobile ? 2 : 4)));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredProducts.length / 4)) % Math.ceil(filteredProducts.length / 4));
+    setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredProducts.length / (isMobile ? 2 : 4))) % Math.ceil(filteredProducts.length / (isMobile ? 2 : 4)));
   };
   
   // Handle filter change
@@ -171,18 +188,39 @@ const ProductsSection = () => {
       </div>
       
       {/* Carousel Container */}
-      <div 
-        className="overflow-hidden rounded-2xl shadow-elegant mx-10 transition-all duration-500"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <div className="relative overflow-hidden rounded-xl shadow-elegant bg-white/40 backdrop-blur-md border border-white/50 before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none">
+        {/* Glass decorative elements */}
+        <div className="absolute top-10 left-10 w-40 h-40 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-10 right-10 w-60 h-60 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 bg-[#11182c]/10 rounded-full blur-2xl"></div>
+        
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#11182c] hover:text-white transition-all duration-500 border border-white/50 group z-10"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-[#11182c] group-hover:text-white group-hover:scale-110 transition-transform duration-300" />
+          <span className="absolute inset-0 rounded-full bg-[#0077B5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#11182c] hover:text-white transition-all duration-500 border border-white/50 group z-10"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-[#11182c] group-hover:text-white group-hover:scale-110 transition-transform duration-300" />
+          <span className="absolute inset-0 rounded-full bg-[#0077B5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </button>
+        
         <div 
-          className="flex transition-transform duration-700 ease-in-out"
+          className="flex transition-transform duration-1000 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           {filteredProducts.length === 0 ? (
             <div className="w-full flex-shrink-0 py-20 flex items-center justify-center">
-              <div className="text-center p-10 bg-light-bg/50 rounded-xl border border-royal-sapphire/10 shadow-elegant">
+              <div className="text-center p-10 bg-white/40 backdrop-blur-md rounded-xl border border-royal-sapphire/10 shadow-elegant">
                 <Settings className="w-12 h-12 text-royal-sapphire/50 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No Products Found</h3>
                 <p className="text-medium-gray">No products match the selected filter criteria.</p>
@@ -195,35 +233,65 @@ const ProductsSection = () => {
               </div>
             </div>
           ) : (
-            Array.from({ length: Math.ceil(filteredProducts.length / 4) }).map((_, slideIndex) => (
-              <div key={slideIndex} className="w-full flex-shrink-0 py-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6 h-full">
-                  {filteredProducts.slice(slideIndex * 4, slideIndex * 4 + 4).map((product, index) => (
+            Array.from({ length: Math.ceil(filteredProducts.length / (isMobile ? 2 : 4)) }).map((_, slideIndex) => (
+              <div key={slideIndex} className="w-full flex-shrink-0 py-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 lg:gap-8 px-5 md:px-7 lg:px-10">
+                  {filteredProducts.slice(slideIndex * (isMobile ? 2 : 4), slideIndex * (isMobile ? 2 : 4) + (isMobile ? 2 : 4)).map((product, index) => (
                   <Link 
                     to={product.link} 
                     key={`${slideIndex}-${index}`}
                     className="block h-full"
                   >
                     <div
-                      className="group relative overflow-hidden rounded-xl bg-background shadow-elegant hover:shadow-elegant-hover transition-all duration-500 border border-transparent hover:border-primary/20 h-full flex flex-col transform hover:-translate-y-1"
+                      className={`bg-white/40 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover:shadow-2xl group transition-all duration-700 border border-white/40 transform hover:-translate-y-2 hover:scale-[1.02] h-full ${
+                        isVisible ? 'animate-scale-in' : 'opacity-0'
+                      }`}
+                      style={{ animationDelay: `${index * 150}ms` }}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
                     >
-                      <div className="aspect-square overflow-hidden relative">
+                      {/* Glass effect overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-70 pointer-events-none z-10"></div>
+                      
+                      {/* Product Image */}
+                      <div className="relative h-52 md:h-56 overflow-hidden">
                         <img 
                           src={product.src} 
                           alt={product.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div className="absolute top-0 left-0 w-full h-full bg-royal-sapphire/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                        
+                        {/* Liquid animation effect */}
+                        <div className="absolute -bottom-2 left-0 right-0 h-8 bg-white/20 backdrop-blur-sm transform skew-y-3 z-10"></div>
+                        
+                        <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/60 backdrop-blur-md rounded-lg text-[#11182c] text-xs font-medium border border-white/50 shadow-md">
+                          {product.tag}
+                        </div>
+                        
+                        <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out border border-white/20">
+                          <h3 className="text-lg font-semibold text-white">
+                            {product.title}
+                          </h3>
+                        </div>
                       </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-5 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 backdrop-blur-sm bg-gradient-to-t from-black/90 to-black/40">
-                        <div className="w-12 h-0.5 bg-royal-sapphire rounded-full mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100"></div>
-                        <h4 className="font-semibold text-base mb-2">{product.title}</h4>
-                        <p className="text-sm text-white/90">{product.description}</p>
+                      
+                      {/* Content */}
+                      <div className="p-5 md:p-6 relative">
+                        {/* Subtle glass highlight */}
+                        <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white/30 to-transparent pointer-events-none"></div>
+                        
+                        <div className="w-10 h-0.5 bg-[#11182c]/70 rounded-full mb-3 md:mb-4"></div>
+                        <h3 className="text-lg md:text-xl font-semibold text-[#11182c] mb-2 md:mb-3 group-hover:text-royal-sapphire transition-colors duration-300 flex items-center">
+                          {product.title}
+                          <span className="w-2 h-2 rounded-full bg-royal-sapphire ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                        </h3>
+                        <p className="text-[#4F6685] leading-relaxed text-sm">
+                          {product.description}
+                        </p>
                         <div className="mt-4 flex items-center">
-                          <div className="px-3 py-1.5 bg-royal-sapphire rounded-full text-white text-xs font-medium flex items-center group-hover:shadow-md transition-all duration-300">
+                          <div className="px-3 py-1.5 bg-gradient-to-r from-royal-sapphire to-royal-sapphire/90 rounded-full text-white text-xs font-medium flex items-center group-hover:shadow-md transition-all duration-300 border border-white/20">
                             <span>View Details</span>
                             <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
                           </div>
@@ -237,40 +305,23 @@ const ProductsSection = () => {
             ))
           )}
         </div>
-      </div>
-
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-background/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-royal-sapphire hover:text-white transition-all duration-500 border border-royal-sapphire/10 group z-10"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
-        <span className="absolute inset-0 rounded-full bg-royal-sapphire/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-background/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-royal-sapphire hover:text-white transition-all duration-500 border border-royal-sapphire/10 group z-10"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
-        <span className="absolute inset-0 rounded-full bg-royal-sapphire/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      </button>
-
-      {/* Slide Indicators */}
-      <div className="flex justify-center mt-8 space-x-4">
-        {filteredProducts.length > 0 && Array.from({ length: Math.ceil(filteredProducts.length / 4) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-            className={`h-2 rounded-full transition-all duration-500 ${
-              currentSlide === index 
-                ? 'bg-royal-sapphire w-10 shadow-md scale-110' 
-                : 'bg-gray-300/50 hover:bg-gray-300 w-3 hover:w-8'
-            }`}
-          />
-        ))}
+        
+        {/* Carousel indicators with liquid effect */}
+        <div className="flex justify-center py-8 space-x-3 relative z-10">
+          <div className="absolute inset-x-0 top-1/2 h-0.5 bg-gradient-to-r from-transparent via-[#11182c]/10 to-transparent transform -translate-y-1/2"></div>
+          {filteredProducts.length > 0 && Array.from({ length: Math.ceil(filteredProducts.length / (isMobile ? 2 : 4)) }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`h-2 rounded-full transition-all duration-700 ${
+                currentSlide === index 
+                  ? 'bg-[#11182c] w-12 shadow-glow scale-110' 
+                  : 'bg-gray-300/70 hover:bg-[#11182c]/30 w-2 hover:w-8'
+              }`}
+            />
+          ))}
+        </div>
       </div>
       
       {/* Product Count */}
@@ -327,21 +378,21 @@ const ProductsSectionMain = () => {
 
         {/* Bottom CTA */}
         <div className={`text-center transition-all duration-1000 delay-500 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-r from-background to-background/80 rounded-2xl p-10 shadow-md max-w-4xl mx-auto transform hover:scale-[1.02] transition-all duration-300 border border-[#11182c]/10 relative overflow-hidden">
-            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-[#11182c] rounded-full"></div>
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#11182c]/30"></div>
-            <div className="absolute -left-16 -top-16 w-32 h-32 bg-[#11182c]/5 rounded-full blur-2xl"></div>
-            <div className="absolute -right-16 -bottom-16 w-32 h-32 bg-[#11182c]/5 rounded-full blur-2xl"></div>
+          <div className="bg-gradient-to-r from-background to-background/80 rounded-xl p-6 shadow-sm max-w-3xl mx-auto border border-[#11182c]/10 relative overflow-hidden">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-[#11182c] rounded-full"></div>
+            <div className="absolute top-0 left-0 w-full h-0.5 bg-[#11182c]/30"></div>
+            <div className="absolute -left-16 -top-16 w-24 h-24 bg-[#11182c]/5 rounded-full blur-xl"></div>
+            <div className="absolute -right-16 -bottom-16 w-24 h-24 bg-[#11182c]/5 rounded-full blur-xl"></div>
             
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
               Need a <span className="text-[#11182c]">Custom Solution</span>?
             </h3>
-            <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
+            <p className="text-base text-foreground/70 mb-4 max-w-2xl mx-auto">
               Not just Brass, we provide exceptionally engineered products made up of : Copper, Stainless steel, Bronze, Gold plated parts, Plastic parts and much more.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-                className="bg-[#11182c] hover:bg-[#1a2340] text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-base px-8 py-6 h-auto rounded-full"
+                className="bg-[#11182c] hover:bg-[#1a2340] text-white shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-2 h-auto rounded-full"
                 onClick={() => {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -351,9 +402,9 @@ const ProductsSectionMain = () => {
               <Link to="/products">
                 <Button 
                   variant="outline" 
-                  className="bg-background hover:bg-light-bg text-foreground border-2 border-[#11182c]/30 hover:border-[#11182c] transition-all duration-300 transform hover:-translate-y-1 text-base px-8 py-6 h-auto rounded-full"
+                  className="bg-gradient-to-r from-[#404E68]/10 to-background hover:from-[#404E68]/20 text-[#404E68] border border-[#404E68]/30 hover:border-[#404E68] shadow-sm hover:shadow-md transition-all duration-300 text-sm px-6 py-2 h-auto rounded-full"
                 >
-                  View All Products <ArrowRight className="ml-2 h-4 w-4" />
+                  View All Products <ArrowRight className="ml-1 h-3 w-3" />
                 </Button>
               </Link>
             </div>
@@ -392,16 +443,17 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
     });
   }, [api]);
 
-  // Auto-rotation effect
+  // Auto-rotation effect with infinite scrolling
   useEffect(() => {
     if (!api || isHovered) return;
     
     const interval = setInterval(() => {
-      api.scrollNext();
-    }, 3000); // Rotate every 3 seconds
+      const nextIndex = (current + 1) % count;
+      api.scrollTo(nextIndex);
+    }, 4000); // Rotate every 4 seconds - slightly slower for better user experience
     
     return () => clearInterval(interval);
-  }, [api, isHovered]);
+  }, [api, isHovered, current, count]);
 
   return (
     <Carousel 
@@ -412,7 +464,7 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
     >
       <CarouselContent>
         {productItems.map((item, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 mt-2">
             <Link to={item.link} onClick={() => window.scrollTo(0, 0)}>
               <Card className="border-blue-900/20 hover:border-blue-900/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
                 <CardContent className="p-0 relative overflow-hidden">
@@ -435,11 +487,15 @@ const ProductCarousel = ({ productItems }: { productItems: ProductItem[] }) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="-left-4 bg-background border-[#11182c]/30 hover:bg-[#11182c] hover:text-white" />
-      <CarouselNext className="-right-4 bg-background border-[#11182c]/30 hover:bg-[#11182c] hover:text-white" />
+      <CarouselPrevious 
+        className="-left-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md"
+      />
+      <CarouselNext 
+        className="-right-4 bg-white/60 backdrop-blur-md border-white/50 hover:bg-[#11182c] hover:text-white w-10 h-10 md:w-12 md:h-12 shadow-md"
+      />
       
       {/* Indicators */}
-      <div className="flex justify-center gap-1 mt-4">
+      <div className="flex justify-center gap-1 mt-2 ">
         {Array.from({ length: count }).map((_, i) => (
           <button
             key={i}

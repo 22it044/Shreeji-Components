@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Car, Plane, Ship, Zap, Droplets, Wrench, Factory, Leaf, Fuel, Building2, CircuitBoard, Truck } from 'lucide-react';
+import { Car, Plane, Ship, Zap, Droplets, Wrench, Factory, Leaf, Fuel, Building2, CircuitBoard, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
 import QualityBadgeGroup from '@/components/ui/QualityBadgeGroup';
 
 const IndustriesSection = () => {
@@ -160,6 +160,24 @@ const IndustriesSection = () => {
 
         {/* Industries Carousel */}
         <div className="relative overflow-hidden rounded-xl shadow-elegant bg-white/160 backdrop-blur-md border border-white/170">
+          {/* Navigation Buttons */}
+          <button
+            onClick={() => setCurrentIndex((prev) => (prev - 1 + Math.ceil(industries.length / (isMobile ? 2 : 4))) % Math.ceil(industries.length / (isMobile ? 2 : 4)))}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#11182c]/50 hover:text-white transition-all duration-500 border border-white/70 group z-10"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
+            <span className="absolute inset-0 rounded-full bg-[#0077B5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+          </button>
+          <button
+            onClick={() => setCurrentIndex((prev) => (prev + 1) % Math.ceil(industries.length / (isMobile ? 2 : 4)))}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-[#11182c]/50 hover:text-white transition-all duration-500 border border-white/70 group z-10"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
+            <span className="absolute inset-0 rounded-full bg-[#0077B5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+          </button>
+          
           <div 
             className="flex transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}

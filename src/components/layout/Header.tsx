@@ -155,21 +155,41 @@ const Header = () => {
             </a>
           </div>
           
-          {/* Enhanced certification display */}
-          <div className="hidden md:flex items-center space-x-4 text-xs">
-            <div className="flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-0.5 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <Award className="h-2.5 w-2.5 text-white" />
-              <span className="text-white">ISO 9001:2015 | IATF 16949:2016 | Z Bronze | EEPC India</span>
+          {/* Enhanced certification display with logos */}
+          <div className="hidden md:flex items-center space-x-2 text-xs">
+            <div className="flex items-center space-x-1 bg-white px-2 py-0.5 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/iso certification.jpg" alt="ISO 9001:2015" className="h-5 w-auto" />
+              <span className="text-dark">ISO 9001:2015</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-white px-2 py-0.5 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/iatf-16949-2016-certification-services.jpeg" alt="IATF 16949:2016" className="h-5 w-auto" />
+              <span className="text-dark">IATF 16949:2016</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-white px-2 py-0.5 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/Bronze-new-1.webp" alt="Z Bronze" className="h-5 w-auto" />
+              <span className="text-dark">Z Bronze</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-white px-2 py-0.5 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/eepc india logo.png" alt="EEPC India" className="h-5 w-auto" />
+              <span className="text-dark">EEPC India</span>
             </div>
           </div>
           
-          {/* Mobile certification display - Horizontal scrollable */}
+          {/* Mobile certification display - Logos only */}
           <div className="md:hidden flex items-center overflow-x-auto scrollbar-hide space-x-2 text-xs max-w-[140px]">
-            <div className="flex-shrink-0 flex items-center space-x-1 bg-royal-sapphire/10 px-2 py-1 rounded-full text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
-              <Award className="h-3 w-3 text-white" />
-              <span className="text-white whitespace-nowrap">ISO 9001:2015 | IATF 16949:2016 | Z Bronze | EEPC India</span>
+            <div className="flex-shrink-0 flex items-center justify-center bg-white p-1 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/iso certification.jpg" alt="ISO 9001:2015" className="h-5 w-auto" />
             </div>
-                      </div>
+            <div className="flex-shrink-0 flex items-center justify-center bg-white p-1 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/iatf-16949-2016-certification-services.jpeg" alt="IATF 16949:2016" className="h-5 w-auto" />
+            </div>
+            <div className="flex-shrink-0 flex items-center justify-center bg-white p-1 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/Bronze-new-1.webp" alt="Z Bronze" className="h-5 w-auto" />
+            </div>
+            <div className="flex-shrink-0 flex items-center justify-center bg-white p-1 rounded-md text-[10px] font-medium border border-royal-sapphire/10 shadow-md">
+              <img src="/images/eepc india logo.png" alt="EEPC India" className="h-5 w-auto" />
+            </div>
+          </div>
         </div>
       </div>
 

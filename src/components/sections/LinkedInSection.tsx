@@ -60,10 +60,14 @@ const LinkedInSection = () => {
   // No need to fetch posts as they are now static
 
   return (
-    <div id="linkedin" ref={sectionRef} className="py-20 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
+    <div id="linkedin" ref={sectionRef} className="py-24 bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-md relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#11182c]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute top-20 left-10 w-64 h-64 bg-[#0077B5]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#0077B5]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-[#0077B5]/10 rounded-full blur-2xl"></div>
+      
+      {/* Glass overlay */}
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
       
       {/* Floating elements */}
       <div className="absolute top-20 left-10 opacity-20 animate-float-slow">
@@ -128,7 +132,7 @@ const LinkedInSection = () => {
                 <div className="p-6 pb-4 relative">
                   <div className="absolute top-3 right-3">
                     <div className="bg-white/60 backdrop-blur-md rounded-full px-2 py-0.5 text-xs font-medium text-[#0077B5] border border-white/70 shadow-sm flex items-center">
-                      <BadgeCheck className="w-3 h-3 mr-1" />
+                      <BadgeCheck className="w-3 h-3 mr-1 text-[#0077B5]" />
                       <span>Official</span>
                     </div>
                   </div>
@@ -139,7 +143,7 @@ const LinkedInSection = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold text-[#0077B5] text-sm">Shreeji Components</h4>
-                        <div className="flex items-center space-x-2 text-xs text-[#334155]">
+                        <div className="flex items-center space-x-2 text-xs text-[#4F6685]">
                           <Calendar className="w-3 h-3 text-[#0077B5]" />
                           <span>{post.date}</span>
                         </div>
@@ -156,7 +160,6 @@ const LinkedInSection = () => {
                 {/* Enhanced Post Image */}
                 {post.image && (
                   <div className="relative h-48 md:h-56 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <img 
                       src={post.image} 
                       alt="LinkedIn post" 
@@ -169,16 +172,16 @@ const LinkedInSection = () => {
                 <div className="p-6 pt-4">
                   <div className="flex justify-between items-center">
                     <div className="flex space-x-4">
-                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
+                      <div className="flex items-center space-x-1 text-xs text-[#4F6685] group-hover:text-[#0077B5] transition-colors duration-300">
                         <Heart className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.likes}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
-                        <MessageCircle className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
+                      <div className="flex items-center space-x-1 text-xs text-[#4F6685] group-hover:text-[#0077B5] transition-colors duration-300">
+                        <MessageCircle className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.comments}</span>
                       </div>
-                      <div className="flex items-center space-x-1 text-xs text-[#334155] group-hover:text-[#0077B5] transition-colors duration-300">
-                        <Share2 className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
+                      <div className="flex items-center space-x-1 text-xs text-[#4F6685] group-hover:text-[#0077B5] transition-colors duration-300">
+                        <Share2 className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform duration-300" />
                         <span>{post.shares}</span>
                       </div>
                     </div>
@@ -221,12 +224,11 @@ const LinkedInSection = () => {
           transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
           className="text-center relative"
         >
-          <div className="bg-gradient-to-br from-background/80 to-background/60 backdrop-blur-md rounded-2xl p-10 max-w-3xl mx-auto border border-[#0077B5]/20 shadow-elegant hover:shadow-elegant-hover transition-all duration-500 group relative overflow-hidden">
+          <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-10 max-w-3xl mx-auto border border-white/30 group hover:bg-white/15 hover:border-white/40 relative overflow-hidden">
             {/* Background glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#0077B5]/5 rounded-2xl"></div>
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#0077B5]/20 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#0077B5]/10 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
-
             
             <div className="w-16 h-16 bg-gradient-to-br from-[#0077B5] to-[#00a0dc] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow group-hover:scale-110 transition-transform duration-500">
               <Linkedin className="w-8 h-8 text-white" />
@@ -236,30 +238,30 @@ const LinkedInSection = () => {
               Join Our Professional Network
             </h3>
             
-            <p className="text-lg text-medium-gray mb-8 leading-relaxed max-w-xl mx-auto">
+            <p className="text-lg text-[#334155] mb-8 leading-relaxed max-w-xl mx-auto">
               Connect with Shreeji Components on LinkedIn for exclusive updates on our manufacturing achievements, industry insights, and global partnerships.
             </p>
             
             <Button 
               onClick={() => window.open(linkedInAccount, '_blank')}
-              className="bg-[#0077B5] hover:bg-[#0077B5]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+              className="bg-[#0077B5] hover:bg-[#0077B5]/90 text-white py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center"
             >
               <Linkedin className="w-5 h-5 mr-2" />
               <span>Follow Us on LinkedIn</span>
-              <ExternalLink className="w-4 h-4 ml-2" />
+              <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
             
             {/* Trust indicators */}
             <div className="flex items-center justify-center mt-8 space-x-6">
-              <div className="flex items-center text-xs text-medium-gray">
+              <div className="flex items-center text-xs text-[#4F6685]">
                 <BadgeCheck className="w-4 h-4 text-[#0077B5] mr-1" />
                 <span>Verified Company</span>
               </div>
-              <div className="flex items-center text-xs text-medium-gray">
+              <div className="flex items-center text-xs text-[#4F6685]">
                 <Award className="w-4 h-4 text-[#0077B5] mr-1" />
                 <span>Industry Leader</span>
               </div>
-              <div className="flex items-center text-xs text-medium-gray">
+              <div className="flex items-center text-xs text-[#4F6685]">
                 <Globe className="w-4 h-4 text-[#0077B5] mr-1" />
                 <span>Global Network</span>
               </div>
