@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 // Define product images at the top level so they can be exported and used throughout the file
 export const productData = [
@@ -255,10 +256,14 @@ const ProductsSection = () => {
                       
                       {/* Product Image */}
                       <div className="relative h-52 md:h-56 overflow-hidden">
-                        <img 
+                        <ResponsiveImage 
                           src={product.src} 
                           alt={product.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                          width={400}
+                          height={300}
+                          priority={index < 4}
+                          aboveTheFold={index < 4}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div className="absolute top-0 left-0 w-full h-full bg-royal-sapphire/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

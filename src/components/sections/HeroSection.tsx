@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { Button } from '@/components/ui/button'; // Assuming you have this
+import { Button } from '@/components/ui/button';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
 // Animation variants for staggered text animation (kept same as your preferred version)
@@ -123,10 +124,14 @@ const HeroSection = () => {
               ease: "easeInOut"
             }}
           >
-            <img 
-              src="images/Hero section/Gemini_Generated_Image_j3idb3j3idb3j3id.png" // IMPORTANT: Use a transparent background image for the best effect
+            <ResponsiveImage
+              src="/images/Hero section/Gemini_Generated_Image_j3idb3j3idb3j3id.png"
               alt="Precision-engineered brass components by Shreeji Components"
-              className="relative w-full h-auto object-contain max-h-[85%]" // Constrain height within enclosure for breathing room
+              className="relative w-full h-auto object-contain max-h-[85%]"
+              width={1200}
+              height={900}
+              priority={true}
+              aboveTheFold={true}
             />
           </motion.div>
         </motion.div>

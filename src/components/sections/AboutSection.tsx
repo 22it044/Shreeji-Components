@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Shield, Globe, Factory, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -139,10 +140,14 @@ export default function AboutSection() {
                 }}
                 className="absolute inset-0"
               >
-                <img 
+                <ResponsiveImage 
                   src={image.src} 
                   alt={`Shreeji Components - ${image.description}`} 
                   className="w-full h-full object-cover transition-transform duration-7000 ease-out"
+                  width={800}
+                  height={600}
+                  priority={false}
+                  aboveTheFold={false}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60"></div>
                 

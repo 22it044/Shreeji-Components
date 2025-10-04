@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 // Import the product data from ProductsSection
 import { productData } from '@/components/sections/ProductsSection';
@@ -89,10 +90,14 @@ const Products = () => {
                     className="block relative overflow-hidden aspect-[4/3]"
                     onClick={() => window.scrollTo(0, 0)}
                   >
-                    <img 
+                    <ResponsiveImage 
                       src={product.src} 
                       alt={product.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      width={400}
+                      height={300}
+                      priority={index < 4}
+                      aboveTheFold={index < 4}
                     />
                                         
                     {/* Category Tag */}

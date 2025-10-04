@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Car, Plane, Ship, Zap, Droplets, Wrench, Factory, Leaf, Fuel, Building2, CircuitBoard, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
 import QualityBadgeGroup from '@/components/ui/QualityBadgeGroup';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 const IndustriesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -195,10 +196,14 @@ const IndustriesSection = () => {
                     >
                       {/* Industry Image */}
                       <div className="relative h-52 md:h-56 overflow-hidden">
-                        <img 
+                        <ResponsiveImage 
                           src={industry.image} 
                           alt={`${industry.title} industry`}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                          width={800}
+                          height={600}
+                          priority={false}
+                          aboveTheFold={false}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div className="absolute top-4 left-4 w-12 h-12 md:w-14 md:h-14 bg-white/60 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 border border-white/70">

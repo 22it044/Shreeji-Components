@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Globe, Award, Settings } from 'lucide-react';
+import { ArrowLeft, Globe, Award, Settings, Check, Download, ExternalLink } from 'lucide-react';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 interface ProductDetailProps {
   title: string;
@@ -223,10 +225,14 @@ const ProductDetail = ({ productId: propProductId }: ProductDetailComponentProps
             <div className="bg-white rounded-2xl overflow-hidden shadow-elegant group transform hover:scale-[1.02] transition-all duration-500 max-w-4xl mx-auto w-full">
               {product.imagePath ? (
                 <div className="relative overflow-hidden">
-                  <img 
+                  <ResponsiveImage 
                     src={product.imagePath} 
                     alt={product.title} 
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                    width={800}
+                    height={600}
+                    priority={true}
+                    aboveTheFold={true}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>

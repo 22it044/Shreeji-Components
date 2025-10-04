@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Phone, Mail, Wrench, Award, CheckCircle, Globe, Shield, Sparkle, Star, Linkedin, BadgeCheck, Zap, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 
 // Import product data for dropdown
 import { productData } from '@/components/sections/ProductsSection';
@@ -206,10 +207,14 @@ const Header = () => {
           <div className="flex items-center space-x-3 group">
             <div className="relative w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-md overflow-hidden border border-border-light/30 group-hover:border-royal-sapphire/20 transition-all duration-300">
               <div className="absolute inset-0 bg-royal-sapphire/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <img 
+              <ResponsiveImage 
                 src="/images/company logo.jpg" 
                 alt="Shreeji Components Logo" 
                 className="w-full h-full object-contain relative z-10 group-hover:scale-102 transition-transform duration-300"
+                width={160}
+                height={80}
+                priority={true}
+                aboveTheFold={true}
               />
             </div>
             <div>
