@@ -214,21 +214,7 @@ export default function AboutSection() {
           </motion.h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1: Innovation */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white/10 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-white/20 hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 mx-auto">
-                  <Factory className="w-7 h-7 text-white" />
-                </div>
-              <h4 className="text-xl font-bold mb-3 text-center text-white">Advanced Manufacturing</h4>
-              <p className="text-white/80 text-center">
-                State-of-the-art CNC machinery and precision equipment delivering components with tolerances as tight as ±0.001mm.
-              </p>
-            </motion.div>
+            
             
             {/* Card 2: Quality */}
             <motion.div
@@ -242,10 +228,26 @@ export default function AboutSection() {
                 </div>
               <h4 className="text-xl font-bold mb-3 text-center text-white">Certified Excellence</h4>
               <p className="text-white/80 text-center">
-                ISO 9001:2015 & IATF 16949:2016 certified with rigorous quality control processes ensuring zero defects.
+                ISO 9001:2015, IATF 16949:2016 & Zed Bronze certified with rigorous quality control processes ensuring zero defects.
               </p>
             </motion.div>
             
+            {/* Card 1: Innovation */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-white/10 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-white/20 hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Factory className="w-7 h-7 text-white" />
+                </div>
+              <h4 className="text-xl font-bold mb-3 text-center text-white">Advanced Manufacturing</h4>
+              <p className="text-white/80 text-center">
+                State-of-the-art CNC machinery, Automatic machinery and precision equipments delivering components with tolerances as tight as ±0.001mm.
+              </p>
+            </motion.div>
+
             {/* Card 3: Global Reach */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}

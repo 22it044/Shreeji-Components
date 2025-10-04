@@ -237,11 +237,11 @@ const StatsSection = () => {
                 <ul className="space-y-2 text-[#334155] text-sm sm:text-base">
                   <li className="flex items-start">
                     <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-[#11182c] mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Exports to 25+ countries</span>
+                    <span>High volume production capability</span>
                   </li>
                   <li className="flex items-start">
                     <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-[#11182c] mr-2 mt-0.5 flex-shrink-0" />
-                    <span>On-time delivery guarantee</span>
+                    <span>5M + parts supplied monthly to various Multinational companies</span>
                   </li>
                 </ul>
               </div>
