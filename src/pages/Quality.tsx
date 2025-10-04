@@ -42,8 +42,9 @@ const certifications = certificationsArray.map((cert, index) => ({
   image: `/images/certification-${index + 1}.png`,
   pdfPath: cert.title === 'ISO 9001:2015' ? '/ISO 2015 .pdf' :
     cert.title === 'IATF 16949:2016' ? '/IATF.pdf' :
-      cert.title === 'Z Bronze' ? '/Z Bronze1.pdf' :
-        cert.title === 'Z Bronze 2' ? '/Z Bronze2.pdf' :
+      cert.title === 'Z Bronze Pledge' ? '/Shreeji-Components-zed-pledge-certificate.pdf' :
+        cert.title === 'Z Bronze Certificate' ? '/Shreeji-Componnets-zed-bronze-certificate.pdf' :
+        
           cert.title === 'EEPC India' ? '/shreeji-components-profile.pdf' :
             '/shreeji-company-brochure.pdf'
 }));
@@ -645,17 +646,18 @@ const Quality = () => {
 
                   <div className="relative z-10">
                     {/* Certificate image */}
-                    <div className="w-full h-32 mb-4 bg-white/10 rounded-lg overflow-hidden border border-amber-500/30 shadow-glow-sm flex items-center justify-center">
+                    <div className={`w-full h-32 mb-4 bg-white/10 rounded-lg overflow-hidden border border-amber-500/30 shadow-glow-sm flex items-center justify-center ${cert.title === 'EEPC India' ? 'h-40' : ''}`}>
                       <img
                         src={cert.title === 'ISO 9001:2015' ? '/images/iso certification.jpg' :
                           cert.title === 'IATF 16949:2016' ? '/images/iatf-16949-2016-certification-services.jpeg' :
 
                             cert.title === 'EEPC India' ? '/images/eepc india logo.png' :
-                              cert.title === 'Z Bronze' ? '/images/Bronze-new-1.webp' :
-                                cert.title === 'Z Bronze 2' ? '/images/Bronze-new-1.webp' :
+                              cert.title === 'Z Bronze Pledge' ? '/images/Bronze-new-1.webp' :
+                                cert.title === 'Z Bronze Certificate' ? '/images/Bronze-new-1.webp' :
+                                
                                   '/images/certification-default.png'}
                         alt={cert.title}
-                        className="w-full h-full object-contain p-2"
+                        className={cert.title === 'EEPC India' ? 'w-full h-full object-cover p-0' : 'w-full h-full object-contain p-2'}
                       />
                     </div>
 
@@ -664,16 +666,18 @@ const Quality = () => {
                       <span className="ml-2 bg-amber-500/20 text-amber-500 text-[10px] px-2 py-0.5 rounded-full">Verified</span>
                     </h3>
 
-                    <p className="text-white/70 mb-4">{cert.description}</p>
+                    <p className="text-white/70 mb-4">{cert.title === 'EEPC India' ? 'A recognized member of the Engineering Export Promotion Council (EEPC) of India.' : cert.description}</p>
 
-                    <a
-                      href={cert.pdfPath}
-                      download
-                      className="inline-flex items-center justify-center px-4 py-2 bg-amber-500/10 text-amber-500 rounded-lg hover:bg-amber-500 hover:text-white transition-all duration-300 text-sm font-medium group border border-amber-500/20"
-                    >
-                      <ArrowRight className="mr-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      Download Certificate
-                    </a>
+                    {cert.title !== 'EEPC India' && (
+                      <a
+                        href={cert.pdfPath}
+                        download
+                        className="inline-flex items-center justify-center px-4 py-2 bg-amber-500/10 text-amber-500 rounded-lg hover:bg-amber-500 hover:text-white transition-all duration-300 text-sm font-medium group border border-amber-500/20"
+                      >
+                        <ArrowRight className="mr-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        Download Certificate
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}

@@ -26,7 +26,7 @@ const DownloadSection = () => {
 
   const downloadItems = [
     {
-      icon: BookOpen,
+      image: '/images/company logo.jpg',
       title: 'Company Profile',
       description: 'Complete overview of Shreeji Components, our capabilities, and quality standards',
       fileSize: '2.4 MB',
@@ -35,7 +35,7 @@ const DownloadSection = () => {
       popular: true,
     },
     {
-      icon: FileText,
+      image: '/images/iso certification.jpg',
       title: 'ISO 9001:2015 Certificate',
       description: 'Quality Management System certification demonstrating our commitment to quality standards',
       fileSize: '0.8 MB',
@@ -44,7 +44,7 @@ const DownloadSection = () => {
       popular: false,
     },
     {
-      icon: FileText,
+      image: '/images/iatf-16949-2016-certification-services.jpeg',
       title: 'IATF 16949:2016 Certificate',
       description: 'Automotive Quality Management System certification for automotive industry standards',
       fileSize: '0.9 MB',
@@ -52,24 +52,26 @@ const DownloadSection = () => {
       format: 'PDF',
       popular: false,
     },
+
     {
-      icon: FileText,
-      title: 'Z Bronze Certificate 1',
-      description: 'Z Bronze certification for excellence in manufacturing and quality control',
+      image: '/images/Bronze-new-1.webp',
+      title: 'Z Bronze Pledge Certificate',
+      description: 'Our formal commitment to the Ministry of MSME\'s national mission of Zero Defect Zero Effect manufacturing.',
       fileSize: '0.7 MB',
       pages: '1 page',
       format: 'PDF',
       popular: false,
     },
     {
-      icon: FileText,
-      title: 'Z Bronze Certificate 2',
-      description: 'Additional Z Bronze certification for specialized manufacturing processes',
+      image: '/images/Bronze-new-1.webp',
+      title: 'Z Bronze Certificate',
+      description: 'Certified by the Ministry of MSME for meeting national ZED standards for quality and sustainability.',
       fileSize: '0.7 MB',
       pages: '1 page',
       format: 'PDF',
       popular: false,
     },
+    
   ];
 
   const handleDownload = (item: typeof downloadItems[0]) => {
@@ -81,8 +83,8 @@ const DownloadSection = () => {
       'Company Profile': '/shreeji-company-brochure.pdf',
       'ISO 9001:2015 Certificate': '/ISO 2015 .pdf',
       'IATF 16949:2016 Certificate': '/IATF.pdf',
-      'Z Bronze Certificate 1': '/Z Bronze1.pdf',
-      'Z Bronze Certificate 2': '/z Bronze 2.pdf',
+      'Z Bronze Certificate': 'Shreeji-Componnets-zed-bronze-certificate.pdf',
+      'Z Bronze Pledge Certificate': 'Shreeji-Components-zed-pledge-certificate.pdf',
     };
     
     const filePath = fileMap[item.title];
@@ -157,21 +159,21 @@ const DownloadSection = () => {
                 </div>
               )}
 
-              {/* Icon */}
-              <div className="w-12 h-12 bg-brilliant-brass/10 rounded-md flex items-center justify-center mb-4 group-hover:bg-brilliant-brass/20 transition-colors duration-300">
-                <item.icon className="w-6 h-6 text-brilliant-brass" />
+              {/* Certificate Image */}
+              <div className="w-16 h-16 bg-white rounded-md flex items-center justify-center mb-4 overflow-hidden border border-brilliant-brass/20 group-hover:border-brilliant-brass/40 transition-all duration-300">
+                <img src={item.image} alt={item.title} className="w-full h-full object-contain p-1" />
               </div>
 
               {/* Content */}
               <h3 className="text-lg font-medium text-white mb-2 group-hover:text-brilliant-brass transition-colors duration-300">
                 {item.title}
               </h3>
-              <p className="text-sm text-white/70 leading-relaxed mb-4">
+              <p className="text-sm text-white/80 leading-relaxed mb-4">
                 {item.description}
               </p>
 
               {/* File Details */}
-              <div className="flex items-center justify-between mb-4 text-xs text-white/50">
+              <div className="flex items-center justify-between mb-4 text-xs text-white/60">
                 <span className="flex items-center space-x-1">
                   <FileText className="w-3 h-3" />
                   <span>{item.format}</span>
@@ -179,9 +181,9 @@ const DownloadSection = () => {
                 <span>{item.fileSize}</span>
                 <span>{item.pages}</span>
               </div>
-              <div className="flex items-center space-x-1 text-brilliant-brass text-xs mb-4">
+              <div className="flex items-center space-x-1 text-white/90 text-xs mb-4">
                 <CheckCircle className="w-3 h-3" />
-                <span>Updated 2024</span>
+                <span>Updated 2025</span>
               </div>
 
               {/* Download Button */}

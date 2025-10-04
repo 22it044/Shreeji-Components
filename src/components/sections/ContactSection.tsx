@@ -397,7 +397,7 @@ const ContactSection = () => {
               {/* Map - Full width */}
               <div className="rounded-lg overflow-hidden shadow-md h-[300px]">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.0456153371224!2d70.0543223!3d22.3119444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca2b8a398bbb%3A0x3533e2b9e2d0fe95!2sShreeji+Components%2C+GIDC+Phase+3%2C+Plot+No.+4694-Z+Road%2C+Jamnagar%2C+Gujarat+361004%2C+India!5e0!3m2!1sen!2sin!4v1654321098765!5m2!1sen!2sin" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.4554982685827!2d70.04879488663171!3d22.411875386273177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39576b4bac1c169d%3A0x81d4af2ed98b2269!2sShreeji%20Components!5e0!3m2!1sen!2sin!4v1759560477723!5m2!1sen!2sin" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 

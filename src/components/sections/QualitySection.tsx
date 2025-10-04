@@ -64,9 +64,15 @@ export const certifications = [
   },
   {
     icon: Shield,
-    title: 'Z Bronze',
+    title: 'Z Bronze Pledge',
+    description: 'Quality Commitment Pledge',
+  },
+  {
+    icon: Shield,
+    title: 'Z Bronze Certificate',
     description: 'Bronze Quality Certification',
   },
+  
 ];
 
 export const qualityMetrics = [
@@ -88,13 +94,17 @@ const QualitySection = () => {
       image: '/images/iatf-16949-2016-certification-services.jpeg',
       pdf: '/IATF.pdf'
     },
-    'Z Bronze': { 
+    'Z Bronze Certificate': { 
       image: '/images/Bronze-new-1.webp',
-      pdf: '/Z Bronze1.pdf'
+      pdf: '/Shreeji-Componnets-zed-bronze-certificate.pdf'
+    },
+    'Z Bronze Pledge': { 
+      image: '/images/Bronze-new-1.webp',
+      pdf: '/Shreeji-Components-zed-pledge-certificate.pdf'
     },
     'EEPC India': { 
       image: '/images/eepc india logo.png',
-      pdf: '#' // Using company profile as fallback
+      pdf: '/shreeji-components-profile.pdf'
     }
   };
 
@@ -198,6 +208,23 @@ const QualitySection = () => {
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+
+          {/* Learn More Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex justify-center mt-12"
+          >
+            <Link 
+              to="/quality" 
+              className="group inline-flex items-center justify-center px-6 py-3 bg-amber-500/10 text-white/80 rounded-lg hover:bg-amber-500/20 hover:text-white transition-all duration-300 text-sm font-medium border border-amber-500/20"
+            >
+              <span>Explore Our Quality Standards</span>
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
         </div>
       </div>

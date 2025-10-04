@@ -74,14 +74,14 @@ export const productData = [
     tag: 'Sanitary'
   },
   {
-    src: '/images/Brass sheet metal p arts.jpg',
+    src: '/images/Brass Pin Moulding Inserts.jpg',
     title: 'Brass Pin Molding Inserts',
     description: 'Precision sheet metal components for manufacturing processes',
     link: '/products/brass-pin-molding-inserts',
     tag: 'Manufacturing'
   },
   {
-    src: '/images/brass-fittings-sale-parts-installation-600nw-1842618283.webp',
+    src: '/images/Brass cross diamond knurling.jpg',
     title: 'Brass Cross Diamond Knurling Inserts',
     description: 'Installation and assembly fittings with enhanced grip patterns',
     link: '/products/brass-cross-diamond-knurling-inserts',
