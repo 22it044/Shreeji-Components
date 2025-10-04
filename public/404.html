@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // SPA fallback for static hosts (e.g., GitHub Pages)
+      // Redirect to index.html and preserve the original path/query/hash
+      (function (l) {
+        var redirect = l.pathname + (l.search || "") + (l.hash || "");
+        // Use query param so index.html can restore the path via history API
+        l.replace("/index.html?redirect=" + encodeURIComponent(redirect));
+      })(window.location);
+    </script>
+  </head>
+  <body></body>
+</html>

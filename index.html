@@ -46,6 +46,22 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Restore SPA route when redirected via 404.html fallback
+      (function () {
+        try {
+          var url = new URL(window.location.href);
+          var redirect = url.searchParams.get("redirect");
+          if (redirect) {
+            var target = decodeURIComponent(redirect);
+            // Replace history so the SPA boots on the intended route
+            window.history.replaceState(null, "", target);
+          }
+        } catch (e) {
+          // no-op
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
